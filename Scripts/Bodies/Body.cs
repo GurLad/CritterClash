@@ -19,13 +19,22 @@ public class Body
     public event Action<TriggerParameter<Body>> OnDeath;
 
     public int DamageTaken { get; private set; } = 0;
-    public bool Dead => DamageTaken >= Stats.Health;
-    public Stats Stats
+    public bool Dead => DamageTaken >= BaseStats.Health;
+    public Stats BaseStats
     {
         get
         {
             Stats result = new Stats(Record.BaseStats);
             BodyParts.ForEach(a => result = a.StatsMod.Apply(result));
+            StatMods.ForEach(a => result = a.Apply(result));
+            return result;
+        }
+    }
+    public Stats Stats
+    {
+        get
+        {
+            Stats result = BaseStats;
             result.Health -= DamageTaken;
             return result;
         }
@@ -73,7 +82,7 @@ public class Body
 
     public int DealDamage(Body target)
     {
-        TriggerParameter<int> damage = new TriggerParameter<int>(Stats.Attack);
+        TriggerParameter<int> damage = new TriggerParameter<int>(BaseStats.Attack);
         OnDealDamage?.Invoke(new TriggerParameter<Body>(this), new TriggerParameter<Body>(target), damage);
         return target.TakeDamage(target, damage);
     }
@@ -81,7 +90,7 @@ public class Body
     public void TakeDirectDamage(int amount)
     {
         DamageTaken += amount;
-        if (DamageTaken >= Stats.Health)
+        if (DamageTaken >= BaseStats.Health)
         {
             Die();
         }
@@ -91,7 +100,7 @@ public class Body
     {
         OnTakeDamage?.Invoke(new TriggerParameter<Body>(this), new TriggerParameter<Body>(attacker), damage);
         DamageTaken += damage.Data;
-        if (DamageTaken >= Stats.Health)
+        if (DamageTaken >= BaseStats.Health)
         {
             Die();
         }

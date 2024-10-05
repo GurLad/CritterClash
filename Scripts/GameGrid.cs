@@ -35,7 +35,7 @@ public partial class GameGrid : Node2D
     public (Vector2I NewTile, Critter Collision) TryMoveCritter(Critter critter)
     {
         bool enemy = critter.Enemy;
-        Vector2I target = critter.Tile + (enemy ? Vector2I.Left : Vector2I.Right) * critter.Body.Stats.Speed;
+        Vector2I target = critter.Tile + (enemy ? Vector2I.Left : Vector2I.Right) * critter.Body.BaseStats.Speed;
         int sign = critter.Direction;
         Critter collision = Critters.Find(a =>
             a.Tile.Y == critter.Tile.Y &&

@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class UIStats : Node
+public partial class UIStats : Control
 {
     [Export] private Label Health { get; set; }
     [Export] private TextureRect HealthRect { get; set; }
@@ -14,9 +14,9 @@ public partial class UIStats : Node
     {
         HealthRect.Visible = !string.IsNullOrEmpty(stats.Health);
         Health.Text = stats.Health;
-        AttackRect.Visible = !string.IsNullOrEmpty(stats.Health);
-        Attack.Text = stats.Health;
-        SpeedRect.Visible = !string.IsNullOrEmpty(stats.Health);
-        Speed.Text = stats.Health;
+        AttackRect.Visible = !string.IsNullOrEmpty(stats.Attack);
+        Attack.Text = stats.Attack;
+        SpeedRect.Visible = !string.IsNullOrEmpty(stats.Speed);
+        Speed.Text = stats.Speed;
     }
 }

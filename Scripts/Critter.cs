@@ -83,19 +83,19 @@ public partial class Critter : Sprite2D
         Body.OnDealDamage += AnimateDealDamage;
         Body.OnTakeDamage += AnimateTakeDamage;
         Body.OnDeath += AnimateDeath;
-        UIStats.Render(Body.Stats.ToDisplayStats()); // Just render at a bunch of places...
+        Render(); // Just render at a bunch of places...
     }
 
     public void BeginTurn()
     {
         Body.BeginTurn();
-        UIStats.Render(Body.Stats.ToDisplayStats()); // Just render at a bunch of places...
+        Render(); // Just render at a bunch of places...
     }
 
     public void EndTurn()
     {
         Body.EndTurn();
-        UIStats.Render(Body.Stats.ToDisplayStats()); // Just render at a bunch of places...
+        Render(); // Just render at a bunch of places...
     }
 
     public bool CanAttachPart(BodyPartRecord part)
@@ -115,7 +115,7 @@ public partial class Critter : Sprite2D
         newSprite.FlipH = Enemy;
         newSprite.Visible = true;
         UpdateModulate();
-        UIStats.Render(Body.Stats.ToDisplayStats()); // Just render at a bunch of places...
+        Render(); // Just render at a bunch of places...
     }
 
     public void Attack(Critter target)
@@ -131,13 +131,14 @@ public partial class Critter : Sprite2D
         Interpolator.OnFinish = () =>
         {
             Body.DealDamage(target.Body);
+            target.Render(); // Just render at a bunch of places...
             PostAnimate();
         };
     }
 
     public void UpdateModulate()
     {
-        Modulate = (Acted || Body.Stats.Speed <= 0) ? ActedModulate : BaseModulate;
+        Modulate = (Acted || Body.BaseStats.Speed <= 0) ? ActedModulate : BaseModulate;
     }
 
     private void AnimateMove(Vector2I target)
@@ -240,7 +241,7 @@ public partial class Critter : Sprite2D
 
     private bool PreAnimate(Action callback)
     {
-        UIStats.Render(Body.Stats.ToDisplayStats()); // Just render at a bunch of places...
+        Render(); // Just render at a bunch of places...
         if (Busy)
         {
             ActionQueue.Enqueue(callback);
@@ -253,7 +254,7 @@ public partial class Critter : Sprite2D
 
     private void PostAnimate()
     {
-        UIStats.Render(Body.Stats.ToDisplayStats()); // Just render at a bunch of places...
+        Render(); // Just render at a bunch of places...
         if (ActionQueue.Count > 0)
         {
             _busy = false;
@@ -263,6 +264,18 @@ public partial class Critter : Sprite2D
         {
             _busy = false;
             EmitSignal(SignalName.OnFinishAnimation, this);
+        }
+    }
+
+    private void Render()
+    {
+        if (Body.Dead)
+        {
+            UIStats.Visible = false;
+        }
+        else
+        {
+            UIStats.Render(Body.Stats.ToDisplayStats());
         }
     }
 }
