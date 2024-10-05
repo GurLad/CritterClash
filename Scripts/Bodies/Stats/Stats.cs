@@ -20,4 +20,9 @@ public class Stats
         Attack = origin.Attack;
         Speed = origin.Speed;
     }
+
+    public DisplayStats ToDisplayStats()
+    {
+        return new DisplayStats(Health.ToString(), Attack.ToString(), Speed.ToString());
+    }
 }

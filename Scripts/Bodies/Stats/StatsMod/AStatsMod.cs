@@ -14,5 +14,12 @@ public abstract class AStatsMod
         Speed = speed;
     }
 
+    public DisplayStats ToDisplayStats()
+    {
+        return new DisplayStats(StatToString(Health), StatToString(Attack), StatToString(Speed));
+    }
+
     public abstract Stats Apply(Stats origin);
+
+    protected abstract string StatToString(int stat);
 }

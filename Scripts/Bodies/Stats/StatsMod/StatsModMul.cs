@@ -13,4 +13,9 @@ public class StatsModMul : AStatsMod
         result.Speed *= Speed;
         return result;
     }
+
+    protected override string StatToString(int stat)
+    {
+        return stat != 1 ? ("*" + stat) : "";
+    }
 }

@@ -13,4 +13,9 @@ public class StatsModAdd : AStatsMod
         result.Speed += Speed;
         return result;
     }
+
+    protected override string StatToString(int stat)
+    {
+        return stat > 0 ? ("+" + stat) : (stat < 0 ? stat.ToString() : "");
+    }
 }
