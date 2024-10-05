@@ -2,9 +2,9 @@ using Godot;
 using System;
 using System.Collections.Generic;
 
-public partial class BodyPartLoader : Node
+public partial class BodyPartLoader : AGameLoader<BodyPartLoader, BodyPartRecord>
 {
-    public List<BodyPartRecord> Records => new List<BodyPartRecord>(BodyPartRecords);
+    public override List<BodyPartRecord> Records => new List<BodyPartRecord>(BodyPartRecords);
 
     protected List<BodyPartRecord> BodyPartRecords { get; } = new List<BodyPartRecord>()
     {

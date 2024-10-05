@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://dycy0tin21bi5"]
 
-[ext_resource type="Script" path="res://Scripts/Bodies/Loading/BodyLoader.cs" id="1_uioub"]
+[ext_resource type="Script" path="res://Scripts/Loaders/Body/BodyLoader.cs" id="1_uioub"]
 [ext_resource type="Texture2D" uid="uid://d2f6xh26x5sy3" path="res://Sprites/Bodies/Ringabod.png" id="2_84pwv"]
-[ext_resource type="Script" path="res://Scripts/Bodies/Loading/BodyLoaderNode.cs" id="3_ficde"]
+[ext_resource type="Script" path="res://Scripts/Loaders/Body/BodyLoaderNode.cs" id="3_ficde"]
 
 [node name="BodyLoader" type="Node2D"]
 script = ExtResource("1_uioub")

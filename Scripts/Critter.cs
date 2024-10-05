@@ -59,6 +59,7 @@ public partial class Critter : Sprite2D
     private void AnimateMove(Vector2I target)
     {
         // TBA
+        Position = Tile.ToPhysicalLocation();
     }
 
     private void AnimateDealDamage(TriggerParameter<Body> @this, TriggerParameter<Body> target, TriggerParameter<int> damage)

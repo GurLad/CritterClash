@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class BodyPartLoader : Node
+public partial class BodyPartLoader : AGameLoader<BodyPartLoader, BodyPartRecord>
 {
     public override void _Ready()
     {

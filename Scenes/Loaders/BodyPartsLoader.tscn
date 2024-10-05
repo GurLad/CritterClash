@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://cj13n86hpryk8" path="res://Sprites/Heads/Beholder.png" id="1_clrmc"]
 [ext_resource type="Texture2D" uid="uid://ccm6b4g6mdgxh" path="res://Sprites/Arms/TentacleArm.png" id="2_4cg8k"]
-[ext_resource type="Script" path="res://Scripts/Bodies/Parts/Loading/BodyPartLoaderNode.cs" id="2_5bx7k"]
+[ext_resource type="Script" path="res://Scripts/Loaders/BodyParts/BodyPartLoaderNode.cs" id="2_5bx7k"]
 [ext_resource type="Texture2D" uid="uid://c08wqq36p6uo1" path="res://Sprites/Arms/MonkeyPaw.png" id="3_6p1c4"]
 [ext_resource type="Texture2D" uid="uid://ds7gmsvitjvth" path="res://Sprites/Legs/BirdLeg.png" id="4_ppdt1"]
 [ext_resource type="Texture2D" uid="uid://doc1x3613j82t" path="res://Sprites/Legs/CockatriceLeg.png" id="5_tn5am"]

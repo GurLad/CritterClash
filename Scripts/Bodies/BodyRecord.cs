@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-public record BodyRecord(int Cost, string Name, Stats BaseStats, List<ATrigger> BaseTriggers, string Description, string FlavourText)
+public record BodyRecord(int Cost, string Name, Stats BaseStats, List<ATrigger> BaseTriggers, string Description, string FlavourText) : ILoadedType
 {
     public List<(BodyPartType Type, Vector2I Position, bool Foreground)> PartSlots { get; private set; }
     public Texture2D Texture { get; private set; }
