@@ -80,7 +80,7 @@ public class Body
 
     public void TakeDirectDamage(int amount)
     {
-        DamageTaken -= amount;
+        DamageTaken += amount;
         if (DamageTaken >= Stats.Health)
         {
             Die();
@@ -90,7 +90,7 @@ public class Body
     private int TakeDamage(Body attacker, TriggerParameter<int> damage)
     {
         OnTakeDamage?.Invoke(new TriggerParameter<Body>(this), new TriggerParameter<Body>(attacker), damage);
-        DamageTaken -= damage.Data;
+        DamageTaken += damage.Data;
         if (DamageTaken >= Stats.Health)
         {
             Die();

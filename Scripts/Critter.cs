@@ -29,6 +29,10 @@ public partial class Critter : Sprite2D
         get => _tile;
         set
         {
+            if (_tile == value)
+            {
+                return;
+            }
             _tile = value;
             AnimateMove(value);
         }
@@ -91,6 +95,7 @@ public partial class Critter : Sprite2D
         Sprite2D newSprite = (Sprite2D)part.Sprite.Duplicate();
         holder.AddChild(newSprite);
         holder.Position = new Vector2(holder.Position.X * Direction, holder.Position.Y);
+        newSprite.Position = new Vector2(newSprite.Position.X * Direction, newSprite.Position.Y);
         newSprite.FlipH = Enemy;
         newSprite.Visible = true;
         UpdateModulate();
@@ -109,10 +114,6 @@ public partial class Critter : Sprite2D
         Interpolator.OnFinish = () =>
         {
             Body.DealDamage(target.Body);
-            if (target.Body.Dead)
-            {
-                Tile = Tile + Vector2I.Right * Direction;
-            }
             PostAnimate();
         };
     }
@@ -139,6 +140,10 @@ public partial class Critter : Sprite2D
     {
         if (!PreAnimate(() => AnimateDealDamage(@this, target, damage))) return;
 
+        if (Body.Dead)
+        {
+            PostAnimate();
+        }
         Interpolator.Delay(MidAttackPause);
         Interpolator.OnFinish = () =>
         {
@@ -148,7 +153,18 @@ public partial class Critter : Sprite2D
                     Position,
                     Position - new Vector2(Direction * AttackDistance, 0),
                     Easing.EaseInOutQuad));
-            Interpolator.OnFinish = PostAnimate;
+            if (target.Data.Dead && !Body.Dead)
+            {
+                Interpolator.OnFinish = () =>
+                {
+                    Tile = Tile + Vector2I.Right * Direction;
+                    PostAnimate();
+                };
+            }
+            else
+            {
+                Interpolator.OnFinish = PostAnimate;
+            }
         };
     }
 

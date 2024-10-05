@@ -52,7 +52,12 @@ public partial class GameGrid : Node2D
 
     public void RefreshAllCritters()
     {
-        Critters.ForEach(a => a.Acted = false);
+        Critters.ForEach(a => { a.Acted = false; a.UpdateModulate(); });
+    }
+
+    public void RemoveCritter(Critter critter)
+    {
+        Critters.Remove(critter);
     }
 
     public bool CanPlaceNewCritter(bool enemy, Vector2I pos, BodyRecord bodyRecord)

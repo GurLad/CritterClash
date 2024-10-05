@@ -69,7 +69,7 @@ public partial class GameFlow : Node
                 nextCritter.OnFinishAnimation += OnActiveCritterFinishAnimation;
                 (Vector2I NewTile, Critter Collision) action = GameGrid.TryMoveCritter(nextCritter);
                 nextCritter.Tile = action.NewTile;
-                if (action.Collision != null && action.Collision.Enemy != nextCritter.Enemy)
+                if (action.Collision != null && action.Collision.Enemy != nextCritter.Enemy && nextCritter.Body.Stats.Attack > 0)
                 {
                     nextCritter.Attack(action.Collision);
                 }
@@ -128,5 +128,6 @@ public partial class GameFlow : Node
         //        ExecuteAutoBattleStep();
         //    }
         //}
+        GameGrid.RemoveCritter(critter);
     }
 }
