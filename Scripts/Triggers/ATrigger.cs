@@ -6,11 +6,21 @@ public abstract class ATrigger
 {
     public List<AEffect> Effects;
 
-    protected void Trigger(List<ATriggerParameter> args)
+    protected void Trigger(Dictionary<string, TriggerParameter> args)
     {
         Effects.ForEach(a => a.Activate(args));
     }
 
-    public abstract void Connect(Body body);
-    public abstract void Disconnect(Body body);
+    public void Connect(Body body)
+    {
+        ConnectInternal(body);
+    }
+
+    public void Disconnect(Body body)
+    {
+        DisconnectInternal(body);
+    }
+
+    protected abstract void ConnectInternal(Body body);
+    protected abstract void DisconnectInternal(Body body);
 }

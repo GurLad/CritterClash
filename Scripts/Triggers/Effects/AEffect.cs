@@ -4,5 +4,5 @@ using System.Collections.Generic;
 
 public abstract class AEffect
 {
-    public abstract void Activate(List<ATriggerParameter> args);
+    public abstract void Activate(Dictionary<string, TriggerParameter> args);
 }

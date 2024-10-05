@@ -2,61 +2,75 @@ using Godot;
 using System;
 using System.Collections.Generic;
 
-public record Body(Dictionary<BodyPartType, int> PartSlots, Stats BaseStats, List<ATrigger> BaseTriggers)
+public class Body
 {
-    public List<BodyPart> BodyParts { get; } = new List<BodyPart>();
+    public BodyRecord Record { get; init; }
+    public List<BodyPartRecord> BodyParts { get; } = new List<BodyPartRecord>();
     public Dictionary<BodyPartType, int> CurrentParts { get; } = new Dictionary<BodyPartType, int>();
 
     // Events
-    public event Action OnBeginTurn;
-    public event Action OnEndTurn;
-    public event Action<TriggerParameter<Body>, TriggerParameter<int>> OnTakeDamage;
-    public event Action<TriggerParameter<Body>, TriggerParameter<int>> OnDealDamage;
-    public event Action<TriggerParameter<BodyPart>> OnBodyPartAttached;
-    public event Action OnDeath;
+    public event Action<TriggerParameter<Body>> OnBeginTurn;
+    public event Action<TriggerParameter<Body>> OnEndTurn;
+    public event Action<TriggerParameter<Body>, TriggerParameter<Body>, TriggerParameter<int>> OnTakeDamage;
+    public event Action<TriggerParameter<Body>, TriggerParameter<Body>, TriggerParameter<int>> OnDealDamage;
+    public event Action<TriggerParameter<Body>, TriggerParameter<BodyPartRecord>> OnBodyPartAttached;
+    public event Action<TriggerParameter<Body>> OnDeath;
 
-    public int DamageTaken = 0;
+    public int DamageTaken { get; private set; } = 0;
     public Stats Stats
     {
         get
         {
-            Stats result = new Stats(Stats);
+            Stats result = new Stats(Record.BaseStats);
             BodyParts.ForEach(a => result = a.StatsMod.Apply(result));
             result.Health -= DamageTaken;
             return result;
         }
     }
 
-    public void Init()
+    public Body(BodyRecord record)
     {
+        Record = record;
         for (int i = 0; i < (int)BodyPartType.EndMarker; i++)
         {
             CurrentParts.Add((BodyPartType)i, 0);
         }
+        Record.BaseTriggers.ForEach(a => a.Connect(this));
     }
 
-    public bool CanAttachPart(BodyPart part)
+    public bool CanAttachPart(BodyPartRecord part)
     {
-        return CurrentParts[part.Type] < PartSlots[part.Type];
+        return CurrentParts[part.Type] < Record.PartSlots[part.Type];
     }
 
-    public void AttachPart(BodyPart part)
+    public void AttachPart(BodyPartRecord part)
     {
         BodyParts.Add(part);
+        part.Triggers.ForEach(a => a.Connect(this));
         CurrentParts[part.Type]++;
-        OnBodyPartAttached?.Invoke(new TriggerParameter<BodyPart>(part));
+        OnBodyPartAttached?.Invoke(new TriggerParameter<Body>(this), new TriggerParameter<BodyPartRecord>(part));
+    }
+
+    public void BeginTurn()
+    {
+        OnBeginTurn?.Invoke(new TriggerParameter<Body>(this));
+    }
+
+    public void EndTurn()
+    {
+        OnEndTurn?.Invoke(new TriggerParameter<Body>(this));
     }
 
     public int DealDamage(Body target)
     {
         TriggerParameter<int> damage = new TriggerParameter<int>(Stats.Attack);
-        OnDealDamage?.Invoke(new TriggerParameter<Body>(target), damage);
+        OnDealDamage?.Invoke(new TriggerParameter<Body>(this), new TriggerParameter<Body>(target), damage);
         return target.TakeDamage(target, damage);
     }
 
     private int TakeDamage(Body attacker, TriggerParameter<int> damage)
     {
-        OnTakeDamage?.Invoke(new TriggerParameter<Body>(attacker), damage);
+        OnTakeDamage?.Invoke(new TriggerParameter<Body>(this), new TriggerParameter<Body>(attacker), damage);
         DamageTaken -= damage.Data;
         if (DamageTaken >= Stats.Health)
         {
@@ -67,7 +81,9 @@ public record Body(Dictionary<BodyPartType, int> PartSlots, Stats BaseStats, Lis
 
     private void Die()
     {
-        OnDeath?.Invoke();
+        OnDeath?.Invoke(new TriggerParameter<Body>(this));
+        Record.BaseTriggers.ForEach(a => a.Disconnect(this));
+        BodyParts.ForEach(a => a.Triggers.ForEach(b => b.Disconnect(this)));
         // TBA
     }
 }
