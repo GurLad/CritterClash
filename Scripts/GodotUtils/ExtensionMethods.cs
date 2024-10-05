@@ -1,11 +1,12 @@
 using Godot;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text.Json;
 
 public static class ExtensionMethods
 {
-    //private static readonly Random rng = new Random();
+    private static readonly Random rng = new Random();
 
     // Math
 
@@ -42,15 +43,15 @@ public static class ExtensionMethods
         return (float)(random.NextDouble() * (maxValue - minValue) + minValue);
     }
 
-    // public static T RandomItemInList<T>(this List<T> list)
-    // {
-    //     return list.Count > 0 ? list[rng.Next(0, list.Count)] : default;
-    // }
+    public static T RandomItemInList<T>(this List<T> list)
+    {
+        return list.Count > 0 ? list[rng.Next(0, list.Count)] : default;
+    }
 
-    // public static T RandomItemInList<T>(this T[] list)
-    // {
-    //     return list.Length > 0 ? list[rng.Next(0, list.Length)] : default;
-    // }
+    public static T RandomItemInList<T>(this T[] list)
+    {
+        return list.Length > 0 ? list[rng.Next(0, list.Length)] : default;
+    }
 
     // Timers
 
@@ -172,5 +173,23 @@ public static class ExtensionMethods
         {
             action(list[i], i);
         }
+    }
+
+    // Dictionary extensions
+
+    public static void ForEach<Key, Value>(this Dictionary<Key, Value> dictionary, Action<Key, Value> action)
+    {
+        dictionary.Keys.ToList().ForEach(a => action(a, dictionary[a]));
+    }
+
+    public static Dictionary<NewKey, NewValue> ConvertAll<OldKey, OldValue, NewKey, NewValue>(this Dictionary<OldKey, OldValue> dictionary, Func<OldKey, OldValue, (NewKey, NewValue)> predicate)
+    {
+        Dictionary<NewKey, NewValue> result = new Dictionary<NewKey, NewValue>();
+        dictionary.ForEach((key, value) =>
+        {
+            (NewKey key, NewValue value) newItem = predicate(key, value);
+            result.Add(newItem.key, newItem.value);
+        });
+        return result;
     }
 }

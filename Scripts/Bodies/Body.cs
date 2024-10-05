@@ -102,6 +102,5 @@ public class Body
         OnDeath?.Invoke(new TriggerParameter<Body>(this));
         Record.BaseTriggers.ForEach(a => a.Disconnect(this));
         BodyParts.ForEach(a => a.Triggers.ForEach(b => b.Disconnect(this)));
-        // TBA
     }
 }
