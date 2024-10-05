@@ -3,7 +3,8 @@ using System;
 
 public abstract partial class APlayerController : Node
 {
-    [Export] private GameFlow GameFlow;
+    [Export] protected GameFlow GameFlow { get; private set; }
+    [Export] protected GameGrid GameGrid { get; private set; }
     [Export] public bool Enemy { get; private set; }
 
     protected Deck Deck { get; set; }
@@ -34,4 +35,5 @@ public abstract partial class APlayerController : Node
     }
 
     protected abstract void BeginTurnInternal();
+    protected abstract void ConnectDeckInternal(Deck deck);
 }

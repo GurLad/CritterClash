@@ -5,7 +5,7 @@ using System.Linq;
 
 public class Deck
 {
-    private const int HAND_SIZE = 5;
+    public const int HAND_SIZE = 5;
     private const int MANA_PER_TURN = 5;
     private const int MAX_MANA = 9;
 
@@ -40,14 +40,14 @@ public class Deck
         Mana = Mathf.Min(Mana + MANA_PER_TURN, MAX_MANA);
     }
 
-    public bool CanPlayCard(int index)
+    public bool CanPlayCard(int index, GameGrid grid, Vector2I position)
     {
         if (index >= Hand.Count || index < 0)
         {
             GD.PrintErr("[Deck]: Playing a card outside the hand!");
             return false;
         }
-        return Hand[index].Cost <= Mana;
+        return Hand[index].Cost <= Mana && Hand[index].CanPlaceAt(Enemy, grid, position);
     }
 
     public void PlayCard(int index, GameGrid grid, Vector2I position)
