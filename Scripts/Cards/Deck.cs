@@ -12,7 +12,7 @@ public class Deck
     public int Mana { get; private set; }
     private bool Enemy { get; set; }
     private List<ACard> Library { get; set; } = new List<ACard>();
-    private List<ACard> Hand { get; } = new List<ACard>();
+    public List<ACard> Hand { get; } = new List<ACard>(); // Whatevs
     private List<ACard> Discard { get; } = new List<ACard>();
 
     public event Action<ACard> OnCardDrawn;

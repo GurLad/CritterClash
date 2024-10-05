@@ -18,6 +18,7 @@ public partial class PlayerCPU : APlayerController
                 }
             }
         }
+        EmitFinishTurn();
     }
 
     protected override void ConnectDeckInternal(Deck deck)

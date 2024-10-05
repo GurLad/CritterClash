@@ -1,8 +1,12 @@
-[gd_scene load_steps=4 format=3 uid="uid://b6jua45s20qxq"]
+[gd_scene load_steps=8 format=3 uid="uid://b6jua45s20qxq"]
 
 [ext_resource type="PackedScene" uid="uid://c5d4h8ww4yuqt" path="res://Scenes/Game/GameGrid.tscn" id="1_vdxqi"]
+[ext_resource type="Theme" uid="uid://dpgoerknilx0y" path="res://DefaultTheme.tres" id="2_mh66l"]
 [ext_resource type="Script" path="res://Scripts/Cards/UI/UICardPlacementGrid.cs" id="2_qid8k"]
 [ext_resource type="Script" path="res://Scripts/GameFlow.cs" id="2_ro6tr"]
+[ext_resource type="Script" path="res://Scripts/Players/PlayerHuman.cs" id="4_kjomr"]
+[ext_resource type="PackedScene" uid="uid://df3hhwbvk6qci" path="res://Scenes/Game/UI/UIHand.tscn" id="4_tlc0h"]
+[ext_resource type="Script" path="res://Scripts/Players/PlayerCPU.cs" id="5_7fil6"]
 
 [node name="Game" type="Node"]
 
@@ -20,6 +24,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("2_mh66l")
 
 [node name="UIPlacementGrid" type="Control" parent="UI" node_paths=PackedStringArray("GameGrid")]
 layout_mode = 1
@@ -30,6 +35,13 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("2_qid8k")
 GameGrid = NodePath("../../2D/GameGrid")
+
+[node name="UIHand" parent="UI" instance=ExtResource("4_tlc0h")]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+offset_right = -640.0
+grow_vertical = 0
 
 [node name="Button" type="Button" parent="UI"]
 layout_mode = 1
@@ -48,4 +60,20 @@ text = "Next Turn"
 script = ExtResource("2_ro6tr")
 GameGrid = NodePath("../2D/GameGrid")
 
-[connection signal="pressed" from="UI/Button" to="GameFlow" method="FinishTurn"]
+[node name="Players" type="Node" parent="."]
+
+[node name="Human" type="Node" parent="Players" node_paths=PackedStringArray("PlacementGrid", "Hand", "PlayerUI", "GameFlow", "GameGrid")]
+script = ExtResource("4_kjomr")
+PlacementGrid = NodePath("../../UI/UIPlacementGrid")
+Hand = NodePath("../../UI/UIHand")
+PlayerUI = NodePath("../../UI")
+GameFlow = NodePath("../../GameFlow")
+GameGrid = NodePath("../../2D/GameGrid")
+
+[node name="CPU" type="Node" parent="Players" node_paths=PackedStringArray("GameFlow", "GameGrid")]
+script = ExtResource("5_7fil6")
+GameFlow = NodePath("../../GameFlow")
+GameGrid = NodePath("../../2D/GameGrid")
+Enemy = true
+
+[connection signal="pressed" from="UI/Button" to="Players/Human" method="FinishTurn"]

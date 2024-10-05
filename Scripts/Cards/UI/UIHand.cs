@@ -17,6 +17,11 @@ public partial class UIHand : Control
         Deck.OnCardDrawn += OnCardDrawn;
     }
 
+    private void RenderInit()
+    {
+        Deck.Hand.ForEach(a => OnCardDrawn(a));
+    }
+
     private void OnCardPlaced(int index, ACard card)
     {
         UICard removedCard = Hand[index];

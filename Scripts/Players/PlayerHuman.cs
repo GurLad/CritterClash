@@ -4,6 +4,7 @@ using System;
 public partial class PlayerHuman : APlayerController
 {
     [Export] private UICardPlacementGrid PlacementGrid;
+    [Export] private UIHand Hand;
     [Export] private Control PlayerUI;
 
     public void FinishTurn()
@@ -21,5 +22,6 @@ public partial class PlayerHuman : APlayerController
     protected override void ConnectDeckInternal(Deck deck)
     {
         PlacementGrid.Init(deck);
+        Hand.Init(deck);
     }
 }
