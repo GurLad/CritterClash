@@ -14,6 +14,11 @@ config/name="CritterClash"
 config/features=PackedStringArray("4.3", "C#", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+BodyLoader="*res://Scenes/Loaders/BodyLoader.tscn"
+BodyPartsLoader="*res://Scenes/Loaders/BodyPartsLoader.tscn"
+
 [display]
 
 window/size/viewport_width=320
