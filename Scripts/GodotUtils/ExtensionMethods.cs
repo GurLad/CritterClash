@@ -6,6 +6,7 @@ using System.Text.Json;
 
 public static class ExtensionMethods
 {
+    private const float TILE_PHYSICAL_SIZE = 64;
     private static readonly Random rng = new Random();
 
     // Math
@@ -13,6 +14,11 @@ public static class ExtensionMethods
     public static Vector2I ToV2I(this Vector2 vector2)
     {
         return new Vector2I(Mathf.RoundToInt(vector2.X), Mathf.RoundToInt(vector2.Y));
+    }
+
+    public static Vector2 ToPhysicalLocation(this Vector2I vector2)
+    {
+        return new Vector2(vector2.X, vector2.Y) * TILE_PHYSICAL_SIZE;
     }
 
     public static float Distance(this Vector2I origin, Vector2I target)
