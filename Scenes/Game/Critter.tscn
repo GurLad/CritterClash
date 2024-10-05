@@ -1,8 +1,21 @@
-[gd_scene load_steps=2 format=3 uid="uid://dswbpsujo7hpv"]
+[gd_scene load_steps=3 format=3 uid="uid://dswbpsujo7hpv"]
 
 [ext_resource type="Script" path="res://Scripts/Critter.cs" id="1_dnu4a"]
+[ext_resource type="PackedScene" uid="uid://dg8cvsyh02nrv" path="res://Scenes/Game/UI/UIStats.tscn" id="2_0ve5m"]
 
-[node name="Critter" type="Sprite2D"]
+[node name="Critter" type="Sprite2D" node_paths=PackedStringArray("UIStats")]
 script = ExtResource("1_dnu4a")
+UIStats = NodePath("UIStats")
 BaseModulate = Color(1, 1, 1, 1)
 ActedModulate = Color(0.377919, 0.377919, 0.377919, 1)
+
+[node name="UIStats" parent="." instance=ExtResource("2_0ve5m")]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -40.5
+offset_top = 21.5
+offset_right = 15.5
+offset_bottom = 37.5

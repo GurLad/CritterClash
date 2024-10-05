@@ -5,6 +5,9 @@ using System.Collections.Generic;
 public partial class Critter : Sprite2D
 {
     // Exports
+    [ExportCategory("Nodes")]
+    [Export] private UIStats UIStats;
+    [ExportCategory("Colours")]
     [Export] private Color BaseModulate;
     [Export] private Color ActedModulate;
     [ExportCategory("Animation")]
@@ -80,6 +83,19 @@ public partial class Critter : Sprite2D
         Body.OnDealDamage += AnimateDealDamage;
         Body.OnTakeDamage += AnimateTakeDamage;
         Body.OnDeath += AnimateDeath;
+        UIStats.Render(Body.Stats.ToDisplayStats()); // Just render at a bunch of places...
+    }
+
+    public void BeginTurn()
+    {
+        Body.BeginTurn();
+        UIStats.Render(Body.Stats.ToDisplayStats()); // Just render at a bunch of places...
+    }
+
+    public void EndTurn()
+    {
+        Body.EndTurn();
+        UIStats.Render(Body.Stats.ToDisplayStats()); // Just render at a bunch of places...
     }
 
     public bool CanAttachPart(BodyPartRecord part)
@@ -99,6 +115,7 @@ public partial class Critter : Sprite2D
         newSprite.FlipH = Enemy;
         newSprite.Visible = true;
         UpdateModulate();
+        UIStats.Render(Body.Stats.ToDisplayStats()); // Just render at a bunch of places...
     }
 
     public void Attack(Critter target)
@@ -223,6 +240,7 @@ public partial class Critter : Sprite2D
 
     private bool PreAnimate(Action callback)
     {
+        UIStats.Render(Body.Stats.ToDisplayStats()); // Just render at a bunch of places...
         if (Busy)
         {
             ActionQueue.Enqueue(callback);
@@ -235,6 +253,7 @@ public partial class Critter : Sprite2D
 
     private void PostAnimate()
     {
+        UIStats.Render(Body.Stats.ToDisplayStats()); // Just render at a bunch of places...
         if (ActionQueue.Count > 0)
         {
             _busy = false;

@@ -55,6 +55,11 @@ public partial class GameGrid : Node2D
         Critters.ForEach(a => { a.Acted = false; a.UpdateModulate(); });
     }
 
+    public void CrittersForEach(Action<Critter> action)
+    {
+        Critters.ForEach(a => action?.Invoke(a));
+    }
+
     public void RemoveCritter(Critter critter)
     {
         Critters.Remove(critter);

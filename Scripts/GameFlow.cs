@@ -39,6 +39,7 @@ public partial class GameFlow : Node
             GD.PrintErr("[GameFlow]: Finished another turn during auto-battle!");
             return;
         }
+        GameGrid.CrittersForEach(a => a.EndTurn());
         AutoBattling = true;
         ExecuteAutoBattleStep();
     }
@@ -48,6 +49,7 @@ public partial class GameFlow : Node
         AutoBattling = false;
         EnemyTurn = enemy;
         GameGrid.RefreshAllCritters();
+        GameGrid.CrittersForEach(a => a.BeginTurn());
     }
 
     private void ExecuteAutoBattleStep()
