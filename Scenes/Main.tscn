@@ -1,0 +1,35 @@
+[gd_scene load_steps=7 format=3 uid="uid://irplfbkggjqq"]
+
+[ext_resource type="Script" path="res://Scripts/GodotUtils/SceneController.cs" id="1_gcwgb"]
+[ext_resource type="PackedScene" uid="uid://b6jua45s20qxq" path="res://Scenes/Game/Game.tscn" id="2_areel"]
+[ext_resource type="Script" path="res://Scripts/GodotUtils/Transitions/FadeTransition.cs" id="3_awqtb"]
+[ext_resource type="Script" path="res://Scripts/GodotUtils/MusicController.cs" id="4_ww0ob"]
+[ext_resource type="AudioStream" uid="uid://xdihqpj85dtw" path="res://Music/CritterFriends.wav" id="5_oqln8"]
+[ext_resource type="AudioStream" uid="uid://dxm51f1xi4o1a" path="res://Music/CritterClash.wav" id="6_fenjh"]
+
+[node name="Main" type="Node" node_paths=PackedStringArray("scenesNode")]
+script = ExtResource("1_gcwgb")
+firstScene = "Game"
+scenes = {
+"Game": ExtResource("2_areel")
+}
+pathTransition = NodePath("FadeTransition")
+scenesNode = NodePath("Scenes")
+
+[node name="Scenes" type="Node" parent="."]
+
+[node name="FadeTransition" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+script = ExtResource("3_awqtb")
+transitionTime = 0.5
+
+[node name="MusicController" type="Node" parent="."]
+script = ExtResource("4_ww0ob")
+firstTrack = "CritterFriends"
+trackNames = PackedStringArray("CritterFriends", "CritterClash")
+trackStreams = Array[AudioStream]([ExtResource("5_oqln8"), ExtResource("6_fenjh")])
