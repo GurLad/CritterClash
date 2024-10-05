@@ -12,6 +12,7 @@ public class Deck
     private List<ACard> Discard { get; } = new List<ACard>();
 
     public event Action<ACard> OnCardDrawn;
+    public event Action<int, ACard> OnCardPlaced;
 
     public Deck(List<(int Count, ACard Card)> cards)
     {
@@ -32,8 +33,10 @@ public class Deck
         {
             GD.PrintErr("[Deck]: Playing a card outside the hand!");
         }
-        Discard.Add(Hand[index]);
+        ACard card = Hand[index];
+        Discard.Add(card);
         Hand.RemoveAt(index);
+        OnCardPlaced?.Invoke(index, card);
         DrawCard();
     }
 

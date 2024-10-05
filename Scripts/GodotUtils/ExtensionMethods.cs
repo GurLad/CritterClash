@@ -21,6 +21,11 @@ public static class ExtensionMethods
         return new Vector2(vector2.X, vector2.Y) * TILE_PHYSICAL_SIZE;
     }
 
+    public static Vector2I ToTile(this Vector2 vector2)
+    {
+        return (vector2 / TILE_PHYSICAL_SIZE).ToV2I();
+    }
+
     public static float Distance(this Vector2I origin, Vector2I target)
     {
         return Mathf.Sqrt(Mathf.Pow(origin.X - target.X, 2) + Mathf.Pow(origin.Y - target.Y, 2));
