@@ -10,10 +10,10 @@ public partial class BodyLoader : AGameLoader<BodyLoader, BodyRecord>
     {
         new BodyRecord(
             2, "Ringabod",
-            new Stats(3, 0, -1),
+            new Stats(2, 2, -1),
             new List<ATrigger>(),
             "",
-            "A very durable body! Good luck getting it to move."),
+            "A very strong and tough body! Good luck getting it to move, though."),
     };
 }
 

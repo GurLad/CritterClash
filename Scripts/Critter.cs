@@ -67,6 +67,7 @@ public partial class Critter : Sprite2D
         _tile = tile;
         Enemy = enemy;
         Position = Tile.ToPhysicalLocation();
+        FlipH = Enemy;
         Body = new Body(bodyRecord);
         for (int i = 0; i < (int)BodyPartType.EndMarker; i++)
         {
@@ -98,6 +99,8 @@ public partial class Critter : Sprite2D
         BodyPartLocations[part.Type].Remove(holder);
         Sprite2D newSprite = (Sprite2D)part.Sprite.Duplicate();
         holder.AddChild(newSprite);
+        holder.Position = new Vector2(holder.Position.X * Direction, holder.Position.Y);
+        newSprite.FlipH = Enemy;
         newSprite.Visible = true;
     }
 

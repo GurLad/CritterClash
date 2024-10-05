@@ -42,7 +42,13 @@ public partial class GameGrid : Node2D
         {
             target.X = collision.Tile.X - sign;
         }
+        target.X = Mathf.Clamp(target.X, 0, Size.X - 1);
         return (target, collision);
+    }
+
+    public void RefreshAllCritters()
+    {
+        Critters.ForEach(a => a.Acted = a.Body.Stats.Speed <= 0);
     }
 
     public bool CanPlaceNewCritter(bool enemy, Vector2I pos, BodyRecord bodyRecord)
@@ -83,6 +89,8 @@ public partial class GameGrid : Node2D
         {
             return;
         }
-        this[pos].AttachPart(partRecord);
+        Critter target = this[pos];
+        target.AttachPart(partRecord);
+        target.Acted = target.Body.Stats.Speed <= 0;
     }
 }

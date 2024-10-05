@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://c5d4h8ww4yuqt"]
+[gd_scene load_steps=3 format=3 uid="uid://c5d4h8ww4yuqt"]
 
 [ext_resource type="Script" path="res://Scripts/GameGrid.cs" id="1_jqm0r"]
+[ext_resource type="PackedScene" uid="uid://dswbpsujo7hpv" path="res://Scenes/Critter.tscn" id="2_5wdwt"]
 
 [node name="GameGrid" type="Node2D"]
 script = ExtResource("1_jqm0r")
+SceneCritter = ExtResource("2_5wdwt")
