@@ -29,8 +29,8 @@ public partial class Critter : Sprite2D
         get => _tile;
         set
         {
-            AnimateMove(value);
             _tile = value;
+            AnimateMove(value);
         }
     }
     private bool _busy = false;
@@ -109,6 +109,10 @@ public partial class Critter : Sprite2D
         Interpolator.OnFinish = () =>
         {
             Body.DealDamage(target.Body);
+            if (target.Body.Dead)
+            {
+                Tile = Tile + Vector2I.Right * Direction;
+            }
             PostAnimate();
         };
     }
@@ -217,6 +221,7 @@ public partial class Critter : Sprite2D
     {
         if (ActionQueue.Count > 0)
         {
+            _busy = false;
             ActionQueue.Dequeue().Invoke();
         }
         else

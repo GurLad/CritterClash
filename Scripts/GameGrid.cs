@@ -37,13 +37,16 @@ public partial class GameGrid : Node2D
         bool enemy = critter.Enemy;
         Vector2I target = critter.Tile + (enemy ? Vector2I.Left : Vector2I.Right) * critter.Body.Stats.Speed;
         int sign = critter.Direction;
-        Critter collision = Critters.Find(a => a.Tile.X * sign >= target.X * sign && a.Tile.X * sign <= critter.Tile.X * sign && a != critter);
+        Critter collision = Critters.Find(a =>
+            a.Tile.Y == critter.Tile.Y &&
+            a.Tile.X * sign <= target.X * sign &&
+            a.Tile.X * sign >= critter.Tile.X * sign &&
+            a != critter);
         if (collision != null)
         {
             target.X = collision.Tile.X - sign;
         }
         target.X = Mathf.Clamp(target.X, 0, Size.X - 1);
-        GD.Print("There: " + target);
         return (target, collision);
     }
 

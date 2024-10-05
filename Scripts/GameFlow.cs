@@ -71,7 +71,7 @@ public partial class GameFlow : Node
                 nextCritter.Tile = action.NewTile;
                 if (action.Collision != null && action.Collision.Enemy != nextCritter.Enemy)
                 {
-                    nextCritter.Body.DealDamage(action.Collision.Body);
+                    nextCritter.Attack(action.Collision);
                 }
             }
         }
