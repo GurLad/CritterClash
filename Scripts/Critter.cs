@@ -52,8 +52,10 @@ public partial class Critter : Sprite2D
     {
         Body.AttachPart(part);
         Node2D holder = BodyPartLocations[part.Type].RandomItemInList();
+        BodyPartLocations[part.Type].Remove(holder);
         Sprite2D newSprite = (Sprite2D)part.Sprite.Duplicate();
         holder.AddChild(newSprite);
+        newSprite.Visible = true;
     }
 
     private void AnimateMove(Vector2I target)

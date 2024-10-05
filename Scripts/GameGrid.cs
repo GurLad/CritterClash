@@ -7,7 +7,7 @@ public partial class GameGrid : Node2D
     private const int MAX_PLACE_DIST_FROM_BASE = 1;
 
     public Vector2I Size { get; } = new Vector2I(7, 3); // Hardcoded for now
-    public Critter this[Vector2I pos] => Critters.Find(a => a.Position == pos);
+    public Critter this[Vector2I pos] => Critters.Find(a => a.Tile == pos);
 
     private List<Critter> Critters { get; } = new List<Critter>();
 
@@ -41,6 +41,7 @@ public partial class GameGrid : Node2D
         Critter newCritter = new Critter();
         AddChild(newCritter);
         newCritter.Init(enemy, pos, bodyRecord);
+        Critters.Add(newCritter);
     }
 
     public bool CanAttachBodyPart(bool enemy, Vector2I pos, BodyPartRecord partRecord)
@@ -51,7 +52,6 @@ public partial class GameGrid : Node2D
             return false;
         }
         return target.Enemy == enemy && target.CanAttachPart(partRecord);
-
     }
 
     public void AttachBodyPart(bool enemy, Vector2I pos, BodyPartRecord partRecord)

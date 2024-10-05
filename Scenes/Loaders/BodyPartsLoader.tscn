@@ -1,5 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://c6oto54jo0oqm"]
+[gd_scene load_steps=9 format=3 uid="uid://c6oto54jo0oqm"]
 
+[ext_resource type="Script" path="res://Scripts/Loaders/BodyParts/BodyPartLoader.cs" id="1_4pmcx"]
 [ext_resource type="Texture2D" uid="uid://cj13n86hpryk8" path="res://Sprites/Heads/Beholder.png" id="1_clrmc"]
 [ext_resource type="Texture2D" uid="uid://ccm6b4g6mdgxh" path="res://Sprites/Arms/TentacleArm.png" id="2_4cg8k"]
 [ext_resource type="Script" path="res://Scripts/Loaders/BodyParts/BodyPartLoaderNode.cs" id="2_5bx7k"]
@@ -9,10 +10,11 @@
 [ext_resource type="Texture2D" uid="uid://bxh6ee0v1kqt1" path="res://Sprites/Legs/Wheel.png" id="6_q21do"]
 
 [node name="BodyPartsLoader" type="Node2D"]
+script = ExtResource("1_4pmcx")
 
 [node name="Beholder" type="Sprite2D" parent="."]
 visible = false
-position = Vector2(-1, -7)
+position = Vector2(0, -4)
 texture = ExtResource("1_clrmc")
 script = ExtResource("2_5bx7k")
 
