@@ -5,8 +5,9 @@ using System.Collections.Generic;
 public class Body
 {
     public BodyRecord Record { get; init; }
-    public List<BodyPartRecord> BodyParts { get; } = new List<BodyPartRecord>();
-    public Dictionary<BodyPartType, int> CurrentParts { get; } = new Dictionary<BodyPartType, int>();
+    private List<AStatsMod> StatMods { get; } = new List<AStatsMod>();
+    private List<BodyPartRecord> BodyParts { get; } = new List<BodyPartRecord>();
+    private Dictionary<BodyPartType, int> CurrentParts { get; } = new Dictionary<BodyPartType, int>();
 
     // Events
     public event Action<TriggerParameter<Body>> OnBeginTurn;
@@ -51,6 +52,11 @@ public class Body
         OnBodyPartAttached?.Invoke(new TriggerParameter<Body>(this), new TriggerParameter<BodyPartRecord>(part));
     }
 
+    public void AddStatsMod(AStatsMod mod)
+    {
+        StatMods.Add(mod);
+    }
+
     public void BeginTurn()
     {
         OnBeginTurn?.Invoke(new TriggerParameter<Body>(this));
@@ -66,6 +72,15 @@ public class Body
         TriggerParameter<int> damage = new TriggerParameter<int>(Stats.Attack);
         OnDealDamage?.Invoke(new TriggerParameter<Body>(this), new TriggerParameter<Body>(target), damage);
         return target.TakeDamage(target, damage);
+    }
+
+    public void TakeDirectDamage(int amount)
+    {
+        DamageTaken -= amount;
+        if (DamageTaken >= Stats.Health)
+        {
+            Die();
+        }
     }
 
     private int TakeDamage(Body attacker, TriggerParameter<int> damage)

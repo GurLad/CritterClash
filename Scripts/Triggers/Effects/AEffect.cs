@@ -4,5 +4,5 @@ using System.Collections.Generic;
 
 public abstract class AEffect
 {
-    public abstract void Activate(Dictionary<string, TriggerParameter> args);
+    public abstract bool Activate(Dictionary<string, TriggerParameter> args);
 }
