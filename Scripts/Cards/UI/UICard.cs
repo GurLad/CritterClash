@@ -17,7 +17,7 @@ public partial class UICard : Control
     public void Init(bool enemy, int index, ACard card)
     {
         Card = card;
-
+        Render(card);
     }
 
     public override Variant _GetDragData(Vector2 atPosition)

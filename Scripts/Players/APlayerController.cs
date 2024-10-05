@@ -6,6 +6,8 @@ public abstract partial class APlayerController : Node
     [Export] private GameFlow GameFlow;
     [Export] public bool Enemy { get; private set; }
 
+    protected Deck Deck { get; set; }
+
     [Signal]
     public delegate void OnFinishTurnEventHandler(APlayerController player);
 
@@ -15,10 +17,21 @@ public abstract partial class APlayerController : Node
         GameFlow.ConnectPlayerController(this);
     }
 
-    public abstract void BeginTurn();
+    public void ConnectDeck(Deck deck)
+    {
+        Deck = deck;
+    }
+
+    public void BeginTurn()
+    {
+        Deck.BeginTurn();
+        BeginTurnInternal();
+    }
 
     protected void EmitFinishTurn()
     {
         EmitSignal(SignalName.OnFinishTurn, this);
     }
+
+    protected abstract void BeginTurnInternal();
 }

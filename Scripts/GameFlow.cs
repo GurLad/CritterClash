@@ -41,6 +41,15 @@ public partial class GameFlow : Node
     {
         player.OnFinishTurn += OnPlayerFinishTurn;
         Players.Add(player.Enemy, player);
+        // TEMP DEBUG
+        player.ConnectDeck(new Deck(player.Enemy,
+            (20, new CardBody("Ringabod")),
+            (8, new CardBodyPart("Beholder")),
+            (4, new CardBodyPart("Monkey Paw")),
+            (4, new CardBodyPart("Tentacle Whip")),
+            (5, new CardBodyPart("Chicken Leg")),
+            (3, new CardBodyPart("Wheel")),
+            (1, new CardBodyPart("Cockatrice Leg"))));
         TryInit();
     }
 

@@ -11,6 +11,8 @@ public partial class CardBodyPart : ACard<BodyPartRecord>
 
     public CardBodyPart(BodyPartRecord value) : base(value) { }
 
+    public CardBodyPart(string name) : base(BodyPartLoader.Get(name)) { }
+
     public override bool CanPlaceAt(bool enemy, GameGrid grid, Vector2I pos)
     {
         return grid.CanAttachBodyPart(enemy, pos, Value);

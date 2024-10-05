@@ -11,6 +11,8 @@ public partial class CardBody : ACard<BodyRecord>
 
     public CardBody(BodyRecord value) : base(value) { }
 
+    public CardBody(string name) : base(BodyLoader.Get(name)) { }
+
     public override bool CanPlaceAt(bool enemy, GameGrid grid, Vector2I pos)
     {
         return grid.CanPlaceNewCritter(enemy, pos, Value);

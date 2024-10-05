@@ -6,7 +6,11 @@ using System.Linq;
 public class Deck
 {
     private const int HAND_SIZE = 5;
+    private const int MANA_PER_TURN = 5;
+    private const int MAX_MANA = 9;
 
+    public int Mana { get; private set; }
+    private bool Enemy { get; set; }
     private List<ACard> Library { get; set; } = new List<ACard>();
     private List<ACard> Hand { get; } = new List<ACard>();
     private List<ACard> Discard { get; } = new List<ACard>();
@@ -14,8 +18,9 @@ public class Deck
     public event Action<ACard> OnCardDrawn;
     public event Action<int, ACard> OnCardPlaced;
 
-    public Deck(List<(int Count, ACard Card)> cards)
+    public Deck(bool enemy, List<(int Count, ACard Card)> cards)
     {
+        Enemy = enemy;
         cards.ForEach(a =>
         {
             for (int i = 0; i < a.Count; i++)
@@ -25,15 +30,40 @@ public class Deck
         });
         Library = Library.Shuffle();
         DrawHand();
+        Mana = MANA_PER_TURN;
     }
 
-    public void PlayCard(int index)
+    public Deck(bool enemy, params (int Count, ACard Card)[] cards) : this(enemy, cards.ToList()) { }
+
+    public void BeginTurn()
+    {
+        Mana = Mathf.Min(Mana + MANA_PER_TURN, MAX_MANA);
+    }
+
+    public bool CanPlayCard(int index)
     {
         if (index >= Hand.Count || index < 0)
         {
             GD.PrintErr("[Deck]: Playing a card outside the hand!");
+            return false;
+        }
+        return Hand[index].Cost <= Mana;
+    }
+
+    public void PlayCard(int index, GameGrid grid, Vector2I position)
+    {
+        if (index >= Hand.Count || index < 0)
+        {
+            GD.PrintErr("[Deck]: Playing a card outside the hand!");
+            return;
         }
         ACard card = Hand[index];
+        if (card.Cost > Mana)
+        {
+            GD.PrintErr("[Deck]: Trying to play a card you cannot afford!");
+        }
+        Mana -= card.Cost;
+        card.PlaceAt(Enemy, grid, position);
         Discard.Add(card);
         Hand.RemoveAt(index);
         OnCardPlaced?.Invoke(index, card);
@@ -69,9 +99,24 @@ public class Deck
             GD.PrintErr("[Deck]: Empty discard + library!");
             return;
         }
-        ACard card = Library[0];
+        int targetIndex = 0;
+        if (Hand.Count == HAND_SIZE - 1 && Hand.FindIndex(a => a is CardBody) < 0)
+        {
+            targetIndex = Library.FindIndex(a => a is CardBody);
+            if (targetIndex < 0)
+            {
+                ShuffleDiscardToLibrary();
+                targetIndex = Library.FindIndex(a => a is CardBody);
+            }
+            if (targetIndex < 0)
+            {
+                GD.PrintRaw("[Deck]: Zero bodies in library & discard!");
+                targetIndex = 0;
+            }
+        }
+        ACard card = Library[targetIndex];
         Hand.Add(card);
-        Library.RemoveAt(0);
+        Library.RemoveAt(targetIndex);
         OnCardDrawn?.Invoke(card);
     }
 
