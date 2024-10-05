@@ -9,27 +9,39 @@ public partial class GameFlow : Node
     // Properties
     public bool EnemyTurn { get; private set; } = false;
 
-    private bool AutoBattling = false;
+    private bool Inited { get; set; } = false;
+    private bool FinishedReady { get; set; } = false;
+    private bool AutoBattling { get; set; } = false;
     private List<Critter> AnimatingCritters { get; } = new List<Critter>();
+    private Dictionary<bool, APlayerController> Players { get; } = new Dictionary<bool, APlayerController>();
 
     public override void _Ready()
     {
         base._Ready();
         GameGrid.OnCritterPlaced += OnCritterPlaced;
-        // TEMP DEBUG
-        GameGrid.PlaceNewCritter(false, Vector2I.One, BodyLoader.Get("Ringabod"));
-        GameGrid.AttachBodyPart(false, Vector2I.One, BodyPartLoader.Get("Cockatrice Leg"));
-        GameGrid.AttachBodyPart(false, Vector2I.One, BodyPartLoader.Get("Wheel"));
-        GameGrid.AttachBodyPart(false, Vector2I.One, BodyPartLoader.Get("Monkey Paw"));
-        GameGrid.AttachBodyPart(false, Vector2I.One, BodyPartLoader.Get("Tentacle Whip"));
-        GameGrid.AttachBodyPart(false, Vector2I.One, BodyPartLoader.Get("Beholder"));
-        GameGrid.PlaceNewCritter(true, Vector2I.One + Vector2I.Right * 4, BodyLoader.Get("Ringabod"));
-        GameGrid.AttachBodyPart(true, Vector2I.One + Vector2I.Right * 4, BodyPartLoader.Get("Cockatrice Leg"));
-        GameGrid.AttachBodyPart(true, Vector2I.One + Vector2I.Right * 4, BodyPartLoader.Get("Wheel"));
-        GameGrid.AttachBodyPart(true, Vector2I.One + Vector2I.Right * 4, BodyPartLoader.Get("Monkey Paw"));
-        GameGrid.AttachBodyPart(true, Vector2I.One + Vector2I.Right * 4, BodyPartLoader.Get("Tentacle Whip"));
-        GameGrid.AttachBodyPart(true, Vector2I.One + Vector2I.Right * 4, BodyPartLoader.Get("Beholder"));
-        BeginTurn(false);
+        FinishedReady = true;
+        TryInit();
+        //// TEMP DEBUG
+        //GameGrid.PlaceNewCritter(false, Vector2I.One, BodyLoader.Get("Ringabod"));
+        //GameGrid.AttachBodyPart(false, Vector2I.One, BodyPartLoader.Get("Cockatrice Leg"));
+        //GameGrid.AttachBodyPart(false, Vector2I.One, BodyPartLoader.Get("Wheel"));
+        //GameGrid.AttachBodyPart(false, Vector2I.One, BodyPartLoader.Get("Monkey Paw"));
+        //GameGrid.AttachBodyPart(false, Vector2I.One, BodyPartLoader.Get("Tentacle Whip"));
+        //GameGrid.AttachBodyPart(false, Vector2I.One, BodyPartLoader.Get("Beholder"));
+        //GameGrid.PlaceNewCritter(true, Vector2I.One + Vector2I.Right * 4, BodyLoader.Get("Ringabod"));
+        //GameGrid.AttachBodyPart(true, Vector2I.One + Vector2I.Right * 4, BodyPartLoader.Get("Cockatrice Leg"));
+        //GameGrid.AttachBodyPart(true, Vector2I.One + Vector2I.Right * 4, BodyPartLoader.Get("Wheel"));
+        //GameGrid.AttachBodyPart(true, Vector2I.One + Vector2I.Right * 4, BodyPartLoader.Get("Monkey Paw"));
+        //GameGrid.AttachBodyPart(true, Vector2I.One + Vector2I.Right * 4, BodyPartLoader.Get("Tentacle Whip"));
+        //GameGrid.AttachBodyPart(true, Vector2I.One + Vector2I.Right * 4, BodyPartLoader.Get("Beholder"));
+        //BeginTurn(false);
+    }
+
+    public void ConnectPlayerController(APlayerController player)
+    {
+        player.OnFinishTurn += OnPlayerFinishTurn;
+        Players.Add(player.Enemy, player);
+        TryInit();
     }
 
     public void FinishTurn()
@@ -50,6 +62,15 @@ public partial class GameFlow : Node
         EnemyTurn = enemy;
         GameGrid.RefreshAllCritters();
         GameGrid.CrittersForEach(a => a.BeginTurn());
+        Players[enemy].BeginTurn();
+    }
+
+    private void TryInit()
+    {
+        if (FinishedReady && Players.ContainsKey(false) && Players.ContainsKey(true))
+        {
+            BeginTurn(false);
+        }
     }
 
     private void ExecuteAutoBattleStep()
@@ -80,6 +101,18 @@ public partial class GameFlow : Node
         else
         {
             BeginTurn(!EnemyTurn);
+        }
+    }
+
+    private void OnPlayerFinishTurn(APlayerController player)
+    {
+        if (player.Enemy == EnemyTurn)
+        {
+            FinishTurn();
+        }
+        else
+        {
+            GD.PrintErr("Wrong player is trying to finish their turn!");
         }
     }
 
