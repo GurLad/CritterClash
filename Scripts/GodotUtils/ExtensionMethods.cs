@@ -21,9 +21,9 @@ public static class ExtensionMethods
         return new Vector2(vector2.X, vector2.Y) * TILE_PHYSICAL_SIZE;
     }
 
-    public static Vector2I ToTile(this Vector2 vector2)
+    public static Vector2I ToTile(this Vector2 vector2, Vector2? offset = null)
     {
-        return (vector2 / TILE_PHYSICAL_SIZE).ToV2I();
+        return ((vector2 + (offset ?? Vector2.Zero)) / TILE_PHYSICAL_SIZE).ToV2I();
     }
 
     public static float Distance(this Vector2I origin, Vector2I target)

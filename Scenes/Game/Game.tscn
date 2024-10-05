@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://b6jua45s20qxq"]
+[gd_scene load_steps=4 format=3 uid="uid://b6jua45s20qxq"]
 
 [ext_resource type="PackedScene" uid="uid://c5d4h8ww4yuqt" path="res://Scenes/Game/GameGrid.tscn" id="1_vdxqi"]
+[ext_resource type="Script" path="res://Scripts/Cards/UI/UICardPlacementGrid.cs" id="2_qid8k"]
 [ext_resource type="Script" path="res://Scripts/GameFlow.cs" id="2_ro6tr"]
 
 [node name="Game" type="Node"]
@@ -19,6 +20,16 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="UIPlacementGrid" type="Control" parent="UI" node_paths=PackedStringArray("GameGrid")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_qid8k")
+GameGrid = NodePath("../../2D/GameGrid")
 
 [node name="Button" type="Button" parent="UI"]
 layout_mode = 1
