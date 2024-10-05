@@ -93,13 +93,13 @@ public partial class GameFlow : Node
 
     private void OnCritterDied(Critter critter)
     {
-        if (AnimatingCritters.Contains(critter))
-        {
-            AnimatingCritters.Remove(critter);
-            if (AnimatingCritters.Count <= 0)
-            {
-                ExecuteAutoBattleStep();
-            }
-        }
+        //if (AnimatingCritters.Contains(critter))
+        //{
+        //    AnimatingCritters.Remove(critter);
+        //    if (AnimatingCritters.Count <= 0)
+        //    {
+        //        ExecuteAutoBattleStep();
+        //    }
+        //}
     }
 }

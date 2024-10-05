@@ -7,9 +7,22 @@ public partial class Critter : Sprite2D
     // Exports
     [Export] private Color BaseModulate;
     [Export] private Color ActedModulate;
+    [ExportCategory("Animation")]
+    [Export] private float MoveTime = 0.5f;
+    [Export] private float AttackDistance = 20;
+    [Export] private float PreAttackTime = 0.3f;
+    [Export] private float MidAttackPause = 0.2f;
+    [Export] private float PostAttackTime = 0.5f;
+    [Export] private float DamagedDistance = 20;
+    [Export] private float PreDamagedTime = 0.3f;
+    [Export] private float MidDamagedPause = 0.2f;
+    [Export] private float PostDamagedTime = 0.5f;
+    [Export] private float DieTime = 0.5f;
+    [Export] private float DieRotationCount = 5;
     // Properties
     public Body Body { get; private set; }
     public bool Enemy { get; private set; }
+    public int Direction => Enemy ? -1 : 1;
     private Vector2I _tile;
     public Vector2I Tile
     {
@@ -35,12 +48,19 @@ public partial class Critter : Sprite2D
 
     private Dictionary<BodyPartType, List<Node2D>> BodyPartLocations { get; } = new Dictionary<BodyPartType, List<Node2D>>();
     private Queue<Action> ActionQueue { get; } = new Queue<Action>();
+    private Interpolator Interpolator { get; } = new Interpolator();
 
     [Signal]
     public delegate void OnFinishAnimationEventHandler(Critter critter);
 
     [Signal]
     public delegate void OnBeginAnimationEventHandler(Critter critter);
+
+    public override void _Ready()
+    {
+        base._Ready();
+        AddChild(Interpolator);
+    }
 
     public void Init(bool enemy, Vector2I tile, BodyRecord bodyRecord)
     {
@@ -81,34 +101,104 @@ public partial class Critter : Sprite2D
         newSprite.Visible = true;
     }
 
+    public void Attack(Critter target)
+    {
+        if (!PreAnimate(() => Attack(target))) return;
+
+        Interpolator.Interpolate(PreAttackTime,
+            new Interpolator.InterpolateObject(
+                a => Position = a,
+                Position,
+                Position + new Vector2(Direction * AttackDistance, 0),
+                Easing.EaseInQuad));
+        Interpolator.OnFinish = () =>
+        {
+            Body.DealDamage(target.Body);
+            PostAnimate();
+        };
+    }
+
     private void AnimateMove(Vector2I target)
     {
         if (!PreAnimate(() => AnimateMove(target))) return;
-        // TBA
-        Position = Tile.ToPhysicalLocation();
-        PostAnimate();
+
+        Interpolator.Interpolate(MoveTime,
+            new Interpolator.InterpolateObject(
+                a => Position = a,
+                Position,
+                Tile.ToPhysicalLocation(),
+                Easing.EaseInOutQuad));
+        Interpolator.OnFinish = PostAnimate;
     }
 
     private void AnimateDealDamage(TriggerParameter<Body> @this, TriggerParameter<Body> target, TriggerParameter<int> damage)
     {
         if (!PreAnimate(() => AnimateDealDamage(@this, target, damage))) return;
-        // TBA
-        PostAnimate();
+
+        Interpolator.Delay(MidAttackPause);
+        Interpolator.OnFinish = () =>
+        {
+            Interpolator.Interpolate(PostAttackTime,
+                new Interpolator.InterpolateObject(
+                    a => Position = a,
+                    Position,
+                    Position - new Vector2(Direction * AttackDistance, 0),
+                    Easing.EaseInOutQuad));
+            Interpolator.OnFinish = PostAnimate;
+        };
     }
 
     private void AnimateTakeDamage(TriggerParameter<Body> @this, TriggerParameter<Body> attacker, TriggerParameter<int> damage)
     {
         if (!PreAnimate(() => AnimateTakeDamage(@this, attacker, damage))) return;
-        // TBA
-        PostAnimate();
+
+        Interpolator.Interpolate(PreDamagedTime,
+            new Interpolator.InterpolateObject(
+                a => Position = a,
+                Position,
+                Position - new Vector2(Direction * DamagedDistance, 0),
+                Easing.EaseOutElastic));
+        Interpolator.OnFinish = () =>
+        {
+            Interpolator.Delay(MidDamagedPause);
+            if (!Body.Dead)
+            {
+                Interpolator.OnFinish = () =>
+                {
+                    Interpolator.Interpolate(PostDamagedTime,
+                        new Interpolator.InterpolateObject(
+                            a => Position = a,
+                            Position,
+                            Position + new Vector2(Direction * AttackDistance, 0),
+                            Easing.EaseInOutQuad));
+                    Interpolator.OnFinish = PostAnimate;
+                };
+            }
+            else
+            {
+                PostAnimate();
+            }
+        };
     }
 
     private void AnimateDeath(TriggerParameter<Body> @this)
     {
         if (!PreAnimate(() => AnimateDeath(@this))) return;
-        // TBA
-        QueueFree();
-        PostAnimate();
+
+        Interpolator.Interpolate(PreDamagedTime,
+            new Interpolator.InterpolateObject(
+                a => Scale = a,
+                Scale,
+                Vector2.One / 10000f),
+            new Interpolator.InterpolateObject(
+                a => Rotation = a,
+                Rotation,
+                Rotation + Mathf.Pi * 2 * DieRotationCount));
+        Interpolator.OnFinish = () =>
+        {
+            QueueFree();
+            PostAnimate();
+        };
     }
 
     private bool PreAnimate(Action callback)

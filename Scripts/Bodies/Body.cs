@@ -19,6 +19,7 @@ public class Body
     public event Action<TriggerParameter<Body>> OnDeath;
 
     public int DamageTaken { get; private set; } = 0;
+    public bool Dead => DamageTaken >= Stats.Health;
     public Stats Stats
     {
         get
