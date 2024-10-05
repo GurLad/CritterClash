@@ -1,0 +1,40 @@
+[gd_scene load_steps=7 format=3 uid="uid://c6oto54jo0oqm"]
+
+[ext_resource type="Texture2D" uid="uid://cj13n86hpryk8" path="res://Sprites/Heads/Beholder.png" id="1_clrmc"]
+[ext_resource type="Texture2D" uid="uid://ccm6b4g6mdgxh" path="res://Sprites/Arms/TentacleArm.png" id="2_4cg8k"]
+[ext_resource type="Texture2D" uid="uid://c08wqq36p6uo1" path="res://Sprites/Arms/MonkeyPaw.png" id="3_6p1c4"]
+[ext_resource type="Texture2D" uid="uid://ds7gmsvitjvth" path="res://Sprites/Legs/BirdLeg.png" id="4_ppdt1"]
+[ext_resource type="Texture2D" uid="uid://doc1x3613j82t" path="res://Sprites/Legs/CockatriceLeg.png" id="5_tn5am"]
+[ext_resource type="Texture2D" uid="uid://bxh6ee0v1kqt1" path="res://Sprites/Legs/Wheel.png" id="6_q21do"]
+
+[node name="BodyPartsLoader" type="Node2D"]
+
+[node name="Beholder" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(-1, -7)
+texture = ExtResource("1_clrmc")
+
+[node name="Tentacle Whip" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(0, 10)
+texture = ExtResource("2_4cg8k")
+
+[node name="Monkey Paw" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(4, 10)
+texture = ExtResource("3_6p1c4")
+
+[node name="Chicken Leg" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(0, 10)
+texture = ExtResource("4_ppdt1")
+
+[node name="Cockatrice Leg" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(0, 10)
+texture = ExtResource("5_tn5am")
+
+[node name="Wheel" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(0, 10)
+texture = ExtResource("6_q21do")
