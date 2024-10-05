@@ -35,16 +35,7 @@ public partial class Critter : Sprite2D
     }
     private bool _busy = false;
     public bool Busy => _busy || ActionQueue.Count > 0;
-    private bool _acted = false;
-    public bool Acted
-    {
-        get => _acted;
-        set
-        {
-            _acted = value;
-            Modulate = value ? ActedModulate : BaseModulate;
-        }
-    }
+    public bool Acted { get; set; }
 
     private Dictionary<BodyPartType, List<Node2D>> BodyPartLocations { get; } = new Dictionary<BodyPartType, List<Node2D>>();
     private Queue<Action> ActionQueue { get; } = new Queue<Action>();
@@ -102,6 +93,7 @@ public partial class Critter : Sprite2D
         holder.Position = new Vector2(holder.Position.X * Direction, holder.Position.Y);
         newSprite.FlipH = Enemy;
         newSprite.Visible = true;
+        UpdateModulate();
     }
 
     public void Attack(Critter target)
@@ -119,6 +111,11 @@ public partial class Critter : Sprite2D
             Body.DealDamage(target.Body);
             PostAnimate();
         };
+    }
+
+    public void UpdateModulate()
+    {
+        Modulate = (Acted || Body.Stats.Speed <= 0) ? ActedModulate : BaseModulate;
     }
 
     private void AnimateMove(Vector2I target)

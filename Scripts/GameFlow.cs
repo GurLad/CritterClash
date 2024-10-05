@@ -59,9 +59,9 @@ public partial class GameFlow : Node
         Critter nextCritter = GameGrid.GetFirstAvailableCritter(EnemyTurn);
         if (nextCritter != null)
         {
+            nextCritter.Acted = true;
             if (nextCritter.Body.Stats.Speed <= 0)
             {
-                nextCritter.Acted = true;
                 ExecuteAutoBattleStep();
             }
             else
@@ -107,7 +107,7 @@ public partial class GameFlow : Node
 
     private void OnActiveCritterFinishAnimation(Critter critter)
     {
-        critter.Acted = true;
+        critter.UpdateModulate();
         critter.OnFinishAnimation -= OnActiveCritterFinishAnimation;
     }
 

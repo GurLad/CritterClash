@@ -36,19 +36,20 @@ public partial class GameGrid : Node2D
     {
         bool enemy = critter.Enemy;
         Vector2I target = critter.Tile + (enemy ? Vector2I.Left : Vector2I.Right) * critter.Body.Stats.Speed;
-        int sign = enemy ? -1 : 1;
-        Critter collision = Critters.Find(a => a.Tile.X * sign >= target.X * sign && a.Tile.X * sign <= critter.Tile.X * sign);
+        int sign = critter.Direction;
+        Critter collision = Critters.Find(a => a.Tile.X * sign >= target.X * sign && a.Tile.X * sign <= critter.Tile.X * sign && a != critter);
         if (collision != null)
         {
             target.X = collision.Tile.X - sign;
         }
         target.X = Mathf.Clamp(target.X, 0, Size.X - 1);
+        GD.Print("There: " + target);
         return (target, collision);
     }
 
     public void RefreshAllCritters()
     {
-        Critters.ForEach(a => a.Acted = a.Body.Stats.Speed <= 0);
+        Critters.ForEach(a => a.Acted = false);
     }
 
     public bool CanPlaceNewCritter(bool enemy, Vector2I pos, BodyRecord bodyRecord)
@@ -91,6 +92,5 @@ public partial class GameGrid : Node2D
         }
         Critter target = this[pos];
         target.AttachPart(partRecord);
-        target.Acted = target.Body.Stats.Speed <= 0;
     }
 }
