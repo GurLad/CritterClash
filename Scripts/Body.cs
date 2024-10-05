@@ -7,6 +7,7 @@ public class Body
     public BodyRecord Record { get; init; }
     private List<AStatsMod> StatMods { get; } = new List<AStatsMod>();
     private List<BodyPartRecord> BodyParts { get; } = new List<BodyPartRecord>();
+    private Dictionary<BodyPartType, int> MaxParts { get; } = new Dictionary<BodyPartType, int>();
     private Dictionary<BodyPartType, int> CurrentParts { get; } = new Dictionary<BodyPartType, int>();
 
     // Events
@@ -34,14 +35,16 @@ public class Body
         Record = record;
         for (int i = 0; i < (int)BodyPartType.EndMarker; i++)
         {
+            MaxParts.Add((BodyPartType)i, 0);
             CurrentParts.Add((BodyPartType)i, 0);
         }
+        Record.PartSlots.ForEach(a => MaxParts[a.Type]++);
         Record.BaseTriggers.ForEach(a => a.Connect(this));
     }
 
     public bool CanAttachPart(BodyPartRecord part)
     {
-        return CurrentParts[part.Type] < Record.PartSlots[part.Type];
+        return CurrentParts[part.Type] < MaxParts[part.Type];
     }
 
     public void AttachPart(BodyPartRecord part)
