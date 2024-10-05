@@ -1,8 +1,13 @@
 using Godot;
 using System;
+using System.Collections.Generic;
 
 public class TriggerDeath : ATrigger
 {
+    public TriggerDeath(List<AEffect> effects) : base(effects) { }
+
+    public TriggerDeath(AEffect effect) : base(effect) { }
+
     protected override void ConnectInternal(Body body)
     {
         body.OnDeath += Death;
@@ -15,7 +20,7 @@ public class TriggerDeath : ATrigger
 
     private void Death(TriggerParameter<Body> @this)
     {
-        Trigger(new System.Collections.Generic.Dictionary<string, TriggerParameter>()
+        Trigger(new Dictionary<string, TriggerParameter>()
         {
             { "this", @this }
         });

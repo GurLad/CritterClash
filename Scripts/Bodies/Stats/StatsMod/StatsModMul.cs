@@ -3,6 +3,8 @@ using System;
 
 public class StatsModMul : AStatsMod
 {
+    protected StatsModMul(int health, int attack, int speed) : base(health, attack, speed) { }
+
     public override Stats Apply(Stats origin)
     {
         Stats result = new Stats(origin);

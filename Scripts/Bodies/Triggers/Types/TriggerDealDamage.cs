@@ -1,8 +1,13 @@
 using Godot;
 using System;
+using System.Collections.Generic;
 
 public class TriggerDealDamage : ATrigger
 {
+    public TriggerDealDamage(List<AEffect> effects) : base(effects) { }
+
+    public TriggerDealDamage(AEffect effect) : base(effect) { }
+
     protected override void ConnectInternal(Body body)
     {
         body.OnDealDamage += DealDamage;
@@ -15,7 +20,7 @@ public class TriggerDealDamage : ATrigger
 
     private void DealDamage(TriggerParameter<Body> @this, TriggerParameter<Body> target, TriggerParameter<int> damage)
     {
-        Trigger(new System.Collections.Generic.Dictionary<string, TriggerParameter>()
+        Trigger(new Dictionary<string, TriggerParameter>()
         {
             { "this", @this },
             { "target", target },

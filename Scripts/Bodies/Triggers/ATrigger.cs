@@ -6,6 +6,16 @@ public abstract class ATrigger
 {
     public List<AEffect> Effects;
 
+    protected ATrigger(List<AEffect> effects)
+    {
+        Effects = effects;
+    }
+
+    protected ATrigger(AEffect effect)
+    {
+        Effects = new List<AEffect>() { effect };
+    }
+
     protected void Trigger(Dictionary<string, TriggerParameter> args)
     {
         Effects.ForEach(a => a.Activate(args));

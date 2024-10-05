@@ -1,8 +1,13 @@
 using Godot;
 using System;
+using System.Collections.Generic;
 
 public class TriggerBeginTurn : ATrigger
 {
+    public TriggerBeginTurn(List<AEffect> effects) : base(effects) { }
+
+    public TriggerBeginTurn(AEffect effect) : base(effect) { }
+
     protected override void ConnectInternal(Body body)
     {
         body.OnBeginTurn += BeginTurn;
@@ -15,7 +20,7 @@ public class TriggerBeginTurn : ATrigger
 
     private void BeginTurn(TriggerParameter<Body> @this)
     {
-        Trigger(new System.Collections.Generic.Dictionary<string, TriggerParameter>()
+        Trigger(new Dictionary<string, TriggerParameter>()
         {
             { "this", @this }
         });

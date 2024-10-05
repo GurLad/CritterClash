@@ -1,8 +1,13 @@
 using Godot;
 using System;
+using System.Collections.Generic;
 
 public class TriggerBodyPartAttached : ATrigger
 {
+    public TriggerBodyPartAttached(List<AEffect> effects) : base(effects) { }
+
+    public TriggerBodyPartAttached(AEffect effect) : base(effect) { }
+
     protected override void ConnectInternal(Body body)
     {
         body.OnBodyPartAttached += BodyPartAttached;
@@ -15,7 +20,7 @@ public class TriggerBodyPartAttached : ATrigger
 
     private void BodyPartAttached(TriggerParameter<Body> @this, TriggerParameter<BodyPartRecord> bodyPart)
     {
-        Trigger(new System.Collections.Generic.Dictionary<string, TriggerParameter>()
+        Trigger(new Dictionary<string, TriggerParameter>()
         {
             { "this", @this },
             { "bodyPart", bodyPart },
