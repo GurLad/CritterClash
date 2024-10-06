@@ -1,13 +1,33 @@
-[gd_scene load_steps=9 format=3 uid="uid://c6oto54jo0oqm"]
+[gd_scene load_steps=29 format=3 uid="uid://c6oto54jo0oqm"]
 
 [ext_resource type="Script" path="res://Scripts/Loaders/BodyParts/BodyPartLoader.cs" id="1_4pmcx"]
 [ext_resource type="Texture2D" uid="uid://cj13n86hpryk8" path="res://Sprites/Heads/Beholder.png" id="1_clrmc"]
 [ext_resource type="Texture2D" uid="uid://ccm6b4g6mdgxh" path="res://Sprites/Arms/TentacleArm.png" id="2_4cg8k"]
 [ext_resource type="Script" path="res://Scripts/Loaders/BodyParts/BodyPartLoaderNode.cs" id="2_5bx7k"]
 [ext_resource type="Texture2D" uid="uid://c08wqq36p6uo1" path="res://Sprites/Arms/MonkeyPaw.png" id="3_6p1c4"]
+[ext_resource type="Texture2D" uid="uid://b3g6yu46grjks" path="res://Sprites/Heads/Alien.png" id="4_5epxv"]
 [ext_resource type="Texture2D" uid="uid://ds7gmsvitjvth" path="res://Sprites/Legs/BirdLeg.png" id="4_ppdt1"]
+[ext_resource type="Texture2D" uid="uid://cqnd330j6rx70" path="res://Sprites/Heads/Brain.png" id="5_4jq6q"]
 [ext_resource type="Texture2D" uid="uid://doc1x3613j82t" path="res://Sprites/Legs/CockatriceLeg.png" id="5_tn5am"]
+[ext_resource type="Texture2D" uid="uid://ccgw8307uigmf" path="res://Sprites/Heads/Bully.png" id="6_6sryv"]
 [ext_resource type="Texture2D" uid="uid://bxh6ee0v1kqt1" path="res://Sprites/Legs/Wheel.png" id="6_q21do"]
+[ext_resource type="Texture2D" uid="uid://3p6uxy07qyjw" path="res://Sprites/Heads/Butterfly.png" id="7_hd3rc"]
+[ext_resource type="Texture2D" uid="uid://b1fy1ycafifen" path="res://Sprites/Heads/Cat.png" id="8_ug1np"]
+[ext_resource type="Texture2D" uid="uid://bpogw4lv6jgq5" path="res://Sprites/Heads/Gnome.png" id="9_k87ch"]
+[ext_resource type="Texture2D" uid="uid://chxwisxmctn6k" path="res://Sprites/Arms/BearArm.png" id="9_mj354"]
+[ext_resource type="Texture2D" uid="uid://c300aj2qxdp6k" path="res://Sprites/Heads/Mosquito.png" id="10_egb8u"]
+[ext_resource type="Texture2D" uid="uid://cpa63ldgapagp" path="res://Sprites/Arms/LsrSwd3000.png" id="10_kdme3"]
+[ext_resource type="Texture2D" uid="uid://cn3lgti6c2h4a" path="res://Sprites/Heads/Woodpecker.png" id="11_rrsdc"]
+[ext_resource type="Texture2D" uid="uid://bj12bj2yia2q6" path="res://Sprites/Arms/MousePointer.png" id="11_v0wea"]
+[ext_resource type="Texture2D" uid="uid://kr6wk50b11y8" path="res://Sprites/Arms/SkeletalArm.png" id="12_owdpm"]
+[ext_resource type="Texture2D" uid="uid://dsoym8c3mgai0" path="res://Sprites/Arms/SpikeArm.png" id="13_8ad61"]
+[ext_resource type="Texture2D" uid="uid://prs0gmatormr" path="res://Sprites/Arms/TRexArm.png" id="14_3mlbk"]
+[ext_resource type="Texture2D" uid="uid://dswpe38knu3hm" path="res://Sprites/Legs/Cheetah.png" id="23_tv6aa"]
+[ext_resource type="Texture2D" uid="uid://b1mvgk5s73chq" path="res://Sprites/Legs/Frog.png" id="24_hq6i7"]
+[ext_resource type="Texture2D" uid="uid://raf67j7p2yfd" path="res://Sprites/Legs/HouseCat.png" id="25_352u2"]
+[ext_resource type="Texture2D" uid="uid://dcbet1achthql" path="res://Sprites/Legs/PegLeg.png" id="26_jf26u"]
+[ext_resource type="Texture2D" uid="uid://gakrxf5pych1" path="res://Sprites/Legs/Skeleton.png" id="27_xw5vv"]
+[ext_resource type="Texture2D" uid="uid://muonk1118eo7" path="res://Sprites/Legs/SpikyLeg.png" id="28_kggsj"]
 
 [node name="BodyPartsLoader" type="Node2D"]
 script = ExtResource("1_4pmcx")
@@ -16,6 +36,54 @@ script = ExtResource("1_4pmcx")
 visible = false
 position = Vector2(0, -4)
 texture = ExtResource("1_clrmc")
+script = ExtResource("2_5bx7k")
+
+[node name="Alien" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(2, -8)
+texture = ExtResource("4_5epxv")
+script = ExtResource("2_5bx7k")
+
+[node name="Brain" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(1, -2)
+texture = ExtResource("5_4jq6q")
+script = ExtResource("2_5bx7k")
+
+[node name="Bulldog" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(0, -5)
+texture = ExtResource("6_6sryv")
+script = ExtResource("2_5bx7k")
+
+[node name="Fly" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(1, -4)
+texture = ExtResource("7_hd3rc")
+script = ExtResource("2_5bx7k")
+
+[node name="Cat" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(0, -9)
+texture = ExtResource("8_ug1np")
+script = ExtResource("2_5bx7k")
+
+[node name="Gnome" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(0, -7)
+texture = ExtResource("9_k87ch")
+script = ExtResource("2_5bx7k")
+
+[node name="Mosquito" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(1, -4)
+texture = ExtResource("10_egb8u")
+script = ExtResource("2_5bx7k")
+
+[node name="Woodpecker" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(3, -6)
+texture = ExtResource("11_rrsdc")
 script = ExtResource("2_5bx7k")
 
 [node name="Tentacle" type="Sprite2D" parent="."]
@@ -28,6 +96,42 @@ script = ExtResource("2_5bx7k")
 visible = false
 position = Vector2(4, 10)
 texture = ExtResource("3_6p1c4")
+script = ExtResource("2_5bx7k")
+
+[node name="Bear Arm" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(9, 11)
+texture = ExtResource("9_mj354")
+script = ExtResource("2_5bx7k")
+
+[node name="Lsr Swd 3000" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(5, 9)
+texture = ExtResource("10_kdme3")
+script = ExtResource("2_5bx7k")
+
+[node name="Cursor" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(7, 8)
+texture = ExtResource("11_v0wea")
+script = ExtResource("2_5bx7k")
+
+[node name="Skelly Arm" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(3, 10)
+texture = ExtResource("12_owdpm")
+script = ExtResource("2_5bx7k")
+
+[node name="Spiky Arm" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(8, 10)
+texture = ExtResource("13_8ad61")
+script = ExtResource("2_5bx7k")
+
+[node name="T-Rex" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(3, 8)
+texture = ExtResource("14_3mlbk")
 script = ExtResource("2_5bx7k")
 
 [node name="Chicken Leg" type="Sprite2D" parent="."]
@@ -46,4 +150,39 @@ script = ExtResource("2_5bx7k")
 visible = false
 position = Vector2(0, 10)
 texture = ExtResource("6_q21do")
+script = ExtResource("2_5bx7k")
+
+[node name="Cheetah" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(0, 10)
+texture = ExtResource("23_tv6aa")
+script = ExtResource("2_5bx7k")
+
+[node name="Frog" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(-1, 10)
+texture = ExtResource("24_hq6i7")
+script = ExtResource("2_5bx7k")
+
+[node name="House Cat" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(0, 10)
+texture = ExtResource("25_352u2")
+script = ExtResource("2_5bx7k")
+
+[node name="Peg Leg" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(1, 10)
+texture = ExtResource("26_jf26u")
+script = ExtResource("2_5bx7k")
+
+[node name="Skelly Leg" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(1, 10)
+texture = ExtResource("27_xw5vv")
+script = ExtResource("2_5bx7k")
+
+[node name="Spiky Leg" type="Sprite2D" parent="."]
+position = Vector2(2, 9)
+texture = ExtResource("28_kggsj")
 script = ExtResource("2_5bx7k")
