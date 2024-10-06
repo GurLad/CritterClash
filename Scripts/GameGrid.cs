@@ -67,7 +67,11 @@ public partial class GameGrid : Node2D
 
     public bool CanPlaceNewCritter(bool enemy, Vector2I pos, BodyRecord bodyRecord)
     {
-        if ((pos.X >= MaxPlaceDistFromBase && !enemy) || (pos.Y < Size.X - MaxPlaceDistFromBase && enemy))
+        if (pos.X < 0 || pos.X >= Size.X || pos.Y < 0 || pos.Y >= Size.Y)
+        {
+            return false;
+        }
+        if ((pos.X >= MaxPlaceDistFromBase && !enemy) || (pos.X < Size.X - MaxPlaceDistFromBase && enemy))
         {
             return false;
         }

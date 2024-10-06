@@ -21,6 +21,7 @@ public abstract partial class APlayerController : Node
     public void ConnectDeck(Deck deck)
     {
         Deck = deck;
+        ConnectDeckInternal(deck);
     }
 
     public void BeginTurn()

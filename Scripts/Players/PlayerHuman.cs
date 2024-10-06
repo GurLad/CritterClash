@@ -17,8 +17,6 @@ public partial class PlayerHuman : APlayerController
     {
         // Animate....
         PlayerUI.Visible = true;
-        PlacementGrid.Init(Deck);
-        Hand.Init(Deck);
     }
 
     protected override void ConnectDeckInternal(Deck deck)
