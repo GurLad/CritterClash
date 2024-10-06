@@ -21,6 +21,7 @@ public partial class UIPlayerHealth : Control
         HealthLabel.Text = Player.StartingHealth.ToString();
         BaseScale = HealthContainer.Scale;
         BaseModulate = HealthContainer.Modulate;
+        HealthContainer.PivotOffset = HealthContainer.Size / 2;
         Player.OnTakeDamage += OnTakeDamage;
         AddChild(Interpolator);
     }
