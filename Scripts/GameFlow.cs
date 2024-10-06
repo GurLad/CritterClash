@@ -15,6 +15,7 @@ public partial class GameFlow : Node
     private bool AutoBattling { get; set; } = false;
     private List<Critter> AnimatingCritters { get; } = new List<Critter>();
     private Dictionary<bool, APlayerController> Players { get; } = new Dictionary<bool, APlayerController>();
+    private LevelData LevelData { get; set; } = null;
 
     public override void _Ready()
     {
@@ -43,15 +44,24 @@ public partial class GameFlow : Node
     {
         player.OnFinishTurn += OnPlayerFinishTurn;
         Players.Add(player.Enemy, player);
-        // TEMP DEBUG
-        player.ConnectDeck(new Deck(player.Enemy,
-            (20, new CardBody("Ringabod")),
-            (8, new CardBodyPart("Beholder")),
-            (4, new CardBodyPart("Monkey Paw")),
-            (4, new CardBodyPart("Tentacle")),
-            (5, new CardBodyPart("Chicken Leg")),
-            (3, new CardBodyPart("Wheel")),
-            (1, new CardBodyPart("Cockatrice"))));
+        if (LevelData != null)
+        {
+            player.ConnectDeck(player.Enemy ? LevelData.cpuDeck : LevelData.humanDeck);
+        }
+        TryInit();
+    }
+
+    public void ConnectLevel(LevelData level)
+    {
+        LevelData = level;
+        if (Players.ContainsKey(false))
+        {
+            Players[false].ConnectDeck(LevelData.humanDeck);
+        }
+        if (Players.ContainsKey(true))
+        {
+            Players[true].ConnectDeck(LevelData.cpuDeck);
+        }
         TryInit();
     }
 
@@ -86,7 +96,7 @@ public partial class GameFlow : Node
 
     private void TryInit()
     {
-        if (FinishedReady && Players.ContainsKey(false) && Players.ContainsKey(true))
+        if (FinishedReady && Players.ContainsKey(false) && Players.ContainsKey(true) && LevelData != null)
         {
             BeginTurn(false);
         }

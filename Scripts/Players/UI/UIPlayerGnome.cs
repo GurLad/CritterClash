@@ -51,6 +51,6 @@ public partial class UIPlayerGnome : Sprite2D
                 0,
                 1,
                 Easing.EaseInOutSin));
-        Interpolator.OnFinish = () => Texture = Base;
+        Interpolator.OnFinish = () => Texture = IsDead ? Dead : Base;
     }
 }
