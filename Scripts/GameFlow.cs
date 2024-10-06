@@ -6,6 +6,8 @@ public partial class GameFlow : Node
 {
     // Exports
     [Export] private GameGrid GameGrid { get; set; }
+    [Export] private WinLoseScreen WinScreen { get; set; }
+    [Export] private WinLoseScreen LoseScreen { get; set; }
     // Properties
     public bool EnemyTurn { get; private set; } = false;
 
@@ -210,6 +212,14 @@ public partial class GameFlow : Node
         {
             // Stop everything...
             GameOver = true;
+            if (!critter.Enemy)
+            {
+                WinScreen.ShowWinLose();
+            }
+            else
+            {
+                LoseScreen.ShowWinLose();
+            }
         }
     }
 

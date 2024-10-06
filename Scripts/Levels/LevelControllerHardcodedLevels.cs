@@ -134,7 +134,7 @@ public partial class LevelController : Node
                 (7, new CardBodyPart("Woodpecker")),
                 (7, new CardBodyPart("Fly")))),
         new LevelData(
-            "Level XX - Chaos",
+            "Level 4 - Chaos",
             "One copy of everything - go wild!",
             new Deck(false,
                 (1, new CardBody("Ringabod")),
