@@ -251,7 +251,7 @@ position = Vector2(8, 7)
 [node name="Arm2B" type="Node2D" parent="Scorpion"]
 position = Vector2(11, 5)
 
-[node name="Dry Scropion" type="Sprite2D" parent="." node_paths=PackedStringArray("Heads", "Arms", "Legs")]
+[node name="Dry Scorpion" type="Sprite2D" parent="." node_paths=PackedStringArray("Heads", "Arms", "Legs")]
 visible = false
 texture = ExtResource("11_2hur8")
 script = ExtResource("3_ficde")
@@ -259,22 +259,22 @@ Heads = []
 Arms = [NodePath("Arm1F"), NodePath("Arm2B")]
 Legs = [NodePath("../Scorpion/Leg1F"), NodePath("../Scorpion/Leg2B"), NodePath("../Scorpion/Leg3F"), NodePath("../Scorpion/Leg4B")]
 
-[node name="Leg1F" type="Node2D" parent="Dry Scropion"]
+[node name="Leg1F" type="Node2D" parent="Dry Scorpion"]
 position = Vector2(-7, 6)
 
-[node name="Leg2B" type="Node2D" parent="Dry Scropion"]
+[node name="Leg2B" type="Node2D" parent="Dry Scorpion"]
 position = Vector2(-5, 6)
 
-[node name="Leg3F" type="Node2D" parent="Dry Scropion"]
+[node name="Leg3F" type="Node2D" parent="Dry Scorpion"]
 position = Vector2(5, 6)
 
-[node name="Leg4B" type="Node2D" parent="Dry Scropion"]
+[node name="Leg4B" type="Node2D" parent="Dry Scorpion"]
 position = Vector2(7, 6)
 
-[node name="Arm1F" type="Node2D" parent="Dry Scropion"]
+[node name="Arm1F" type="Node2D" parent="Dry Scorpion"]
 position = Vector2(8, 7)
 
-[node name="Arm2B" type="Node2D" parent="Dry Scropion"]
+[node name="Arm2B" type="Node2D" parent="Dry Scorpion"]
 position = Vector2(11, 5)
 
 [node name="4-Leg Mammal" type="Sprite2D" parent="." node_paths=PackedStringArray("Heads", "Arms", "Legs")]

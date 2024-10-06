@@ -7,6 +7,8 @@ public partial class LevelController : Node
     private static List<LevelData> Levels { get; } = new List<LevelData>()
     {
         new LevelData(
+            "Debug",
+            "Debug",
             new Deck(false,
                 (20, new CardBody("Ringabod")),
                 (8, new CardBodyPart("Beholder")),

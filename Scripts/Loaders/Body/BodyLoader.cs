@@ -17,17 +17,17 @@ public partial class BodyLoader : AGameLoader<BodyLoader, BodyRecord>
                 }
                 else
                 {
-                    GD.PrintErr("[BodyPartLoader]: Loader node without a record!");
+                    GD.PrintErr("[BodyLoader]: Loader node without a record! " + node.Name);
                 }
             }
             else
             {
-                GD.PrintErr("[BodyPartLoader]: Invalid loader node!");
+                GD.PrintErr("[BodyLoader]: Invalid loader node!");
             }
         }
         if (BodyRecords.FindIndex(a => !a.Inited) >= 0)
         {
-            GD.PrintErr("[BodyPartLoader]: Record without a loader node!");
+            GD.PrintErr("[BodyLoader]: Record without a loader node! " + BodyRecords.Find(a => !a.Inited));
         }
     }
 }

@@ -58,7 +58,7 @@ public partial class BodyPartLoader : AGameLoader<BodyPartLoader, BodyPartRecord
             "Bzzzzzzz."),
         new BodyPartRecord(
             BodyPartType.Head,
-            2, "Cat",
+            1, "Cat",
             new StatsModAdd(0, 0, 2),
             new List<ATrigger>()
             {
@@ -138,10 +138,20 @@ public partial class BodyPartLoader : AGameLoader<BodyPartLoader, BodyPartRecord
             "Have you ever stabbed your toe on a cursor? No? Just me?"),
         new BodyPartRecord(
             BodyPartType.Arm,
-            3, "Spike Arm",
+            3, "Spiky Arm",
             new StatsModAdd(0, 5, 0),
             new List<ATrigger>(),
             "",
+            "Ow the edge."),
+        new BodyPartRecord(
+            BodyPartType.Arm,
+            2, "Lsr Swd 3000",
+            new StatsModAdd(0, 1, 0),
+            new List<ATrigger>()
+            {
+                new TriggerEndTurn(new EffectAddStatsMod("this", new StatsModAdd(0, 1, 0)))
+            },
+            "On End Turn: Gain 1 Attack.",
             "Ow the edge."),
         new BodyPartRecord(
             BodyPartType.Arm,
@@ -183,6 +193,13 @@ public partial class BodyPartLoader : AGameLoader<BodyPartLoader, BodyPartRecord
             new List<ATrigger>(),
             "",
             "This is my self-insert."),
+        new BodyPartRecord(
+            BodyPartType.Leg,
+            3, "Cheetah",
+            new StatsModAdd(0, 0, 3),
+            new List<ATrigger>(),
+            "",
+            "Gotta go fast!"),
         new BodyPartRecord(
             BodyPartType.Leg,
             2, "House Cat",

@@ -17,7 +17,7 @@ public partial class BodyPartLoader : AGameLoader<BodyPartLoader, BodyPartRecord
                 }
                 else
                 {
-                    GD.PrintErr("[BodyPartLoader]: Sprite without a record!");
+                    GD.PrintErr("[BodyPartLoader]: Sprite without a record! " + sprite.Name);
                 }
             }
             else
@@ -27,7 +27,7 @@ public partial class BodyPartLoader : AGameLoader<BodyPartLoader, BodyPartRecord
         }
         if (BodyPartRecords.FindIndex(a => !a.Inited) >= 0)
         {
-            GD.PrintErr("[BodyPartLoader]: Record without a sprite!");
+            GD.PrintErr("[BodyPartLoader]: Record without a sprite! " + BodyPartRecords.Find(a => !a.Inited));
         }
     }
 }
