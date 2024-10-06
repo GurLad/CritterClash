@@ -20,9 +20,12 @@ public class Deck
     public event Action<int, ACard> OnCardPlaced;
     public event Action<int, ACard> OnCardDiscarded;
 
+    private List<(int Count, ACard Card)> CardsBack;
+
     public Deck(bool enemy, List<(int Count, ACard Card)> cards)
     {
         Enemy = enemy;
+        CardsBack = cards;
         cards.ForEach(a =>
         {
             for (int i = 0; i < a.Count; i++)
@@ -169,5 +172,10 @@ public class Deck
             return targetIndex;
         }
         return null;
+    }
+
+    public Deck Clone()
+    {
+        return new Deck(Enemy, CardsBack);
     }
 }

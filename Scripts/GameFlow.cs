@@ -51,7 +51,7 @@ public partial class GameFlow : Node
         Players.Add(player.Enemy, player);
         if (LevelData != null)
         {
-            player.ConnectDeck(player.Enemy ? LevelData.cpuDeck : LevelData.humanDeck);
+            player.ConnectDeck(player.Enemy ? LevelData.CpuDeck.Clone() : LevelData.HumanDeck.Clone());
         }
         TryInit();
     }
@@ -61,11 +61,11 @@ public partial class GameFlow : Node
         LevelData = level;
         if (Players.ContainsKey(false))
         {
-            Players[false].ConnectDeck(LevelData.humanDeck);
+            Players[false].ConnectDeck(LevelData.HumanDeck.Clone());
         }
         if (Players.ContainsKey(true))
         {
-            Players[true].ConnectDeck(LevelData.cpuDeck);
+            Players[true].ConnectDeck(LevelData.CpuDeck.Clone());
         }
         TryInit();
     }

@@ -278,6 +278,7 @@ position = Vector2(8, 7)
 position = Vector2(11, 5)
 
 [node name="Mammal" type="Sprite2D" parent="." node_paths=PackedStringArray("Heads", "Arms", "Legs")]
+visible = false
 texture = ExtResource("17_owjth")
 script = ExtResource("3_ficde")
 Heads = [NodePath("HeadF")]
