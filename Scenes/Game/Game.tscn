@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://b6jua45s20qxq"]
+[gd_scene load_steps=10 format=3 uid="uid://b6jua45s20qxq"]
 
 [ext_resource type="PackedScene" uid="uid://c5d4h8ww4yuqt" path="res://Scenes/Game/GameGrid.tscn" id="1_vdxqi"]
 [ext_resource type="Theme" uid="uid://dpgoerknilx0y" path="res://DefaultTheme.tres" id="2_mh66l"]
 [ext_resource type="Script" path="res://Scripts/Cards/UI/UICardPlacementGrid.cs" id="2_qid8k"]
 [ext_resource type="Script" path="res://Scripts/GameFlow.cs" id="2_ro6tr"]
 [ext_resource type="Script" path="res://Scripts/Players/PlayerHuman.cs" id="4_kjomr"]
+[ext_resource type="PackedScene" uid="uid://bn6wgeo3idpmo" path="res://Scenes/Game/UI/UITileHighlight.tscn" id="4_s1nf0"]
 [ext_resource type="PackedScene" uid="uid://df3hhwbvk6qci" path="res://Scenes/Game/UI/UIHand.tscn" id="4_tlc0h"]
 [ext_resource type="Script" path="res://Scripts/Players/PlayerCPU.cs" id="5_7fil6"]
 [ext_resource type="PackedScene" uid="uid://beucq72sbbwgg" path="res://Scenes/Game/UI/UIPlayerHealth.tscn" id="5_pnjnh"]
@@ -36,6 +37,8 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("2_qid8k")
 GameGrid = NodePath("../../2D/GameGrid")
+GridPlacementPreviewTile = ExtResource("4_s1nf0")
+PreviewTileSizeOffset = Vector2(-20, -20)
 
 [node name="UIHumanHealth" parent="UI" node_paths=PackedStringArray("Player") instance=ExtResource("5_pnjnh")]
 layout_mode = 0

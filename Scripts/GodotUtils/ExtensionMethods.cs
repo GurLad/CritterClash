@@ -6,7 +6,7 @@ using System.Text.Json;
 
 public static class ExtensionMethods
 {
-    private const float TILE_PHYSICAL_SIZE = 72;
+    public const float TILE_PHYSICAL_SIZE = 80;
     private static readonly Random rng = new Random();
 
     // Math
