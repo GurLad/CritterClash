@@ -18,7 +18,7 @@ position = Vector2(0, -4)
 texture = ExtResource("1_clrmc")
 script = ExtResource("2_5bx7k")
 
-[node name="Tentacle Whip" type="Sprite2D" parent="."]
+[node name="Tentacle" type="Sprite2D" parent="."]
 visible = false
 position = Vector2(0, 10)
 texture = ExtResource("2_4cg8k")
@@ -36,7 +36,7 @@ position = Vector2(0, 10)
 texture = ExtResource("4_ppdt1")
 script = ExtResource("2_5bx7k")
 
-[node name="Cockatrice Leg" type="Sprite2D" parent="."]
+[node name="Cockatrice" type="Sprite2D" parent="."]
 visible = false
 position = Vector2(0, 10)
 texture = ExtResource("5_tn5am")

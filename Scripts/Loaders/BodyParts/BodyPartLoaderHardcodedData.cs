@@ -23,7 +23,7 @@ public partial class BodyPartLoader : AGameLoader<BodyPartLoader, BodyPartRecord
         // Arms
         new BodyPartRecord(
             BodyPartType.Arm,
-            2, "Tentacle Whip",
+            2, "Tentacle",
             new StatsModAdd(1, 1, 0),
             new List<ATrigger>(),
             "",
@@ -49,7 +49,7 @@ public partial class BodyPartLoader : AGameLoader<BodyPartLoader, BodyPartRecord
             "It won't turn you into a cockatrice."),
         new BodyPartRecord(
             BodyPartType.Leg,
-            3, "Cockatrice Leg",
+            3, "Cockatrice",
             new StatsModAdd(0, 0, 1),
             new List<ATrigger>()
             {

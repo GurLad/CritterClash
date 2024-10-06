@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://b6jua45s20qxq"]
+[gd_scene load_steps=11 format=3 uid="uid://b6jua45s20qxq"]
 
 [ext_resource type="PackedScene" uid="uid://c5d4h8ww4yuqt" path="res://Scenes/Game/GameGrid.tscn" id="1_vdxqi"]
 [ext_resource type="Theme" uid="uid://dpgoerknilx0y" path="res://DefaultTheme.tres" id="2_mh66l"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://df3hhwbvk6qci" path="res://Scenes/Game/UI/UIHand.tscn" id="4_tlc0h"]
 [ext_resource type="Script" path="res://Scripts/Players/PlayerCPU.cs" id="5_7fil6"]
 [ext_resource type="PackedScene" uid="uid://beucq72sbbwgg" path="res://Scenes/Game/UI/UIPlayerHealth.tscn" id="5_pnjnh"]
+[ext_resource type="StyleBox" uid="uid://bdxcong6loxje" path="res://ThemeUI/InnerPanel.tres" id="7_bxpbu"]
 
 [node name="Game" type="Node"]
 
@@ -61,13 +62,13 @@ anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_top = -21.0
-offset_bottom = 10.0
 grow_horizontal = 2
 grow_vertical = 0
 
 [node name="UIHand" parent="UI/HumanPlayerUI" instance=ExtResource("4_tlc0h")]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_styles/panel = ExtResource("7_bxpbu")
 
 [node name="Button" type="Button" parent="UI/HumanPlayerUI"]
 layout_mode = 2

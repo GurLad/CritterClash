@@ -10,6 +10,7 @@ public partial class UICardRenderer : Control
     [Export] private Label FlavourTextLabel;
     [Export] private TextureRect IconRect;
     [Export] private UIStats UIStats;
+    [Export] private Container UIStatsContainer;
 
     public void Render(ACard card)
     {
@@ -19,6 +20,6 @@ public partial class UICardRenderer : Control
         DescriptionContainer.Visible = !string.IsNullOrEmpty(card.Description);
         FlavourTextLabel.Text = card.FlavourText;
         IconRect.Texture = card.CardIcon;
-        UIStats.Render(card.Stats);
+        UIStatsContainer.Visible = UIStats.Render(card.Stats);
     }
 }

@@ -48,10 +48,10 @@ public partial class GameFlow : Node
             (20, new CardBody("Ringabod")),
             (8, new CardBodyPart("Beholder")),
             (4, new CardBodyPart("Monkey Paw")),
-            (4, new CardBodyPart("Tentacle Whip")),
+            (4, new CardBodyPart("Tentacle")),
             (5, new CardBodyPart("Chicken Leg")),
             (3, new CardBodyPart("Wheel")),
-            (1, new CardBodyPart("Cockatrice Leg"))));
+            (1, new CardBodyPart("Cockatrice"))));
         TryInit();
     }
 

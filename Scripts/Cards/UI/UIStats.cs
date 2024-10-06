@@ -10,7 +10,7 @@ public partial class UIStats : Control
     [Export] private Label Speed { get; set; }
     [Export] private TextureRect SpeedRect { get; set; }
 
-    public void Render(DisplayStats stats)
+    public bool Render(DisplayStats stats)
     {
         HealthRect.Visible = !string.IsNullOrEmpty(stats.Health);
         Health.Text = stats.Health;
@@ -18,5 +18,6 @@ public partial class UIStats : Control
         Attack.Text = stats.Attack;
         SpeedRect.Visible = !string.IsNullOrEmpty(stats.Speed);
         Speed.Text = stats.Speed;
+        return !string.IsNullOrEmpty(stats.Health) || !string.IsNullOrEmpty(stats.Attack) || !string.IsNullOrEmpty(stats.Speed);
     }
 }
