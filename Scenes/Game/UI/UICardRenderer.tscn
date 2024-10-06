@@ -1,12 +1,18 @@
-[gd_scene load_steps=6 format=3 uid="uid://bg1dml3xstwae"]
+[gd_scene load_steps=12 format=3 uid="uid://bg1dml3xstwae"]
 
 [ext_resource type="Theme" uid="uid://dpgoerknilx0y" path="res://DefaultTheme.tres" id="1_ya1dw"]
 [ext_resource type="Script" path="res://Scripts/Cards/UI/UICardRenderer.cs" id="2_cqm1h"]
 [ext_resource type="FontFile" uid="uid://ce81bajkbyhcd" path="res://Fonts/Born2bSportyV2.ttf" id="3_4gmx3"]
+[ext_resource type="StyleBox" uid="uid://b6eyqr5vx6xwx" path="res://ThemeUI/OuterPanel.tres" id="3_s0sxf"]
 [ext_resource type="PackedScene" uid="uid://dg8cvsyh02nrv" path="res://Scenes/Game/UI/UIStats.tscn" id="4_jm5j7"]
 [ext_resource type="FontFile" uid="uid://bsv32rkimuy3o" path="res://Fonts/3x5Mk2MinSpace.ttf" id="5_7vgpb"]
+[ext_resource type="Texture2D" uid="uid://536licwq80q1" path="res://Sprites/UI/ManaBlackOutline.png" id="5_sco3m"]
+[ext_resource type="FontFile" uid="uid://rvbvpgm8it03" path="res://Fonts/TomAndJerry.ttf" id="6_0s0ae"]
+[ext_resource type="StyleBox" uid="uid://bdxcong6loxje" path="res://ThemeUI/InnerPanel.tres" id="6_tulba"]
+[ext_resource type="StyleBox" uid="uid://ch7gsk8ow137v" path="res://ThemeUI/OuterPanelPressed.tres" id="7_in4nb"]
+[ext_resource type="Texture2D" uid="uid://c0jhfjet28sl7" path="res://Sprites/UI/Panels/SeperatorSimple.png" id="11_whjjn"]
 
-[node name="UICard" type="PanelContainer" node_paths=PackedStringArray("CostLabel", "NameLabel", "DescriptionLabel", "FlavourTextLabel", "IconRect", "UIStats")]
+[node name="UICard" type="PanelContainer" node_paths=PackedStringArray("CostLabel", "NameLabel", "DescriptionLabel", "DescriptionContainer", "FlavourTextLabel", "IconRect", "UIStats")]
 custom_minimum_size = Vector2(96, 0)
 anchors_preset = 15
 anchor_right = 1.0
@@ -15,46 +21,136 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_ya1dw")
 script = ExtResource("2_cqm1h")
-CostLabel = NodePath("VBoxContainer/Name/Cost")
-NameLabel = NodePath("VBoxContainer/Name")
-DescriptionLabel = NodePath("VBoxContainer/Description")
-FlavourTextLabel = NodePath("VBoxContainer/Flavour")
-IconRect = NodePath("VBoxContainer/Icon")
-UIStats = NodePath("VBoxContainer/UIStats")
+CostLabel = NodePath("VBoxContainer/MarginContainer/PanelContainer/MarginContainer/HBoxContainer/FakeManaR/TextureRect/Cost")
+NameLabel = NodePath("VBoxContainer/MarginContainer/PanelContainer/MarginContainer/HBoxContainer/Name/Name")
+DescriptionLabel = NodePath("VBoxContainer/MarginContainer2/PanelContainer/VBoxContainer/Description/Description")
+DescriptionContainer = NodePath("VBoxContainer/MarginContainer2/PanelContainer/VBoxContainer/Description")
+FlavourTextLabel = NodePath("VBoxContainer/MarginContainer2/PanelContainer/VBoxContainer/Flavour")
+IconRect = NodePath("VBoxContainer/MarginContainer2/PanelContainer/VBoxContainer/Icon")
+UIStats = NodePath("VBoxContainer/MarginContainer2/PanelContainer/VBoxContainer/PanelContainer/MarginContainer/UIStats")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 2
+theme_override_constants/separation = 0
 
-[node name="Name" type="Label" parent="VBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
 layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/MarginContainer"]
+layout_mode = 2
+theme_override_styles/panel = ExtResource("3_s0sxf")
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/MarginContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = -12
+theme_override_constants/margin_right = -12
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/MarginContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="FakeManaL" type="Control" parent="VBoxContainer/MarginContainer/PanelContainer/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+
+[node name="Name" type="Control" parent="VBoxContainer/MarginContainer/PanelContainer/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(0, 6)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Name" type="Label" parent="VBoxContainer/MarginContainer/PanelContainer/MarginContainer/HBoxContainer/Name"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
 theme_override_fonts/font = ExtResource("3_4gmx3")
 text = "Name"
 horizontal_alignment = 1
 
-[node name="Cost" type="Label" parent="VBoxContainer/Name"]
+[node name="FakeManaR" type="Control" parent="VBoxContainer/MarginContainer/PanelContainer/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/MarginContainer/PanelContainer/MarginContainer/HBoxContainer/FakeManaR"]
 layout_mode = 1
-anchors_preset = 11
-anchor_left = 1.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_sco3m")
+
+[node name="Cost" type="Label" parent="VBoxContainer/MarginContainer/PanelContainer/MarginContainer/HBoxContainer/FakeManaR/TextureRect"]
+layout_mode = 1
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -14.0
-grow_horizontal = 0
+offset_left = 2.0
+offset_top = 2.0
+grow_horizontal = 2
 grow_vertical = 2
-text = "99"
+theme_override_constants/outline_size = 2
+theme_override_fonts/font = ExtResource("6_0s0ae")
+text = "9"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="UIStats" parent="VBoxContainer" instance=ExtResource("4_jm5j7")]
-custom_minimum_size = Vector2(0, 16)
+[node name="Seperator" type="Control" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 8)
 layout_mode = 2
-size_flags_horizontal = 4
 
-[node name="Icon" type="TextureRect" parent="VBoxContainer"]
+[node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 7
+
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/MarginContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = ExtResource("6_tulba")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/MarginContainer2/PanelContainer"]
+layout_mode = 2
+
+[node name="Icon" type="TextureRect" parent="VBoxContainer/MarginContainer2/PanelContainer/VBoxContainer"]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 stretch_mode = 3
 
-[node name="Description" type="Label" parent="VBoxContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/MarginContainer2/PanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_styles/panel = ExtResource("7_in4nb")
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/MarginContainer2/PanelContainer/VBoxContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = -4
+theme_override_constants/margin_top = -4
+theme_override_constants/margin_right = -4
+theme_override_constants/margin_bottom = -6
+
+[node name="UIStats" parent="VBoxContainer/MarginContainer2/PanelContainer/VBoxContainer/PanelContainer/MarginContainer" instance=ExtResource("4_jm5j7")]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Description" type="VBoxContainer" parent="VBoxContainer/MarginContainer2/PanelContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Description" type="Label" parent="VBoxContainer/MarginContainer2/PanelContainer/VBoxContainer/Description"]
 custom_minimum_size = Vector2(10, 0)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("5_7vgpb")
@@ -62,7 +158,11 @@ theme_override_font_sizes/font_size = 5
 text = "Description"
 autowrap_mode = 3
 
-[node name="Flavour" type="Label" parent="VBoxContainer"]
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/MarginContainer2/PanelContainer/VBoxContainer/Description"]
+layout_mode = 2
+texture = ExtResource("11_whjjn")
+
+[node name="Flavour" type="Label" parent="VBoxContainer/MarginContainer2/PanelContainer/VBoxContainer"]
 custom_minimum_size = Vector2(10, 0)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("5_7vgpb")

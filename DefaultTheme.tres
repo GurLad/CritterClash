@@ -1,6 +1,8 @@
-[gd_resource type="Theme" load_steps=2 format=3 uid="uid://dpgoerknilx0y"]
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://dpgoerknilx0y"]
 
-[ext_resource type="FontFile" uid="uid://u83n2olxfiqy" path="res://Fonts/BetterPixels.ttf" id="1_b7dry"]
+[ext_resource type="StyleBox" uid="uid://cr35h7jb853xu" path="res://ThemeUI/Panel.tres" id="1_8frk5"]
+[ext_resource type="FontFile" uid="uid://u83n2olxfiqy" path="res://Fonts/BetterPixels.ttf" id="2_5beyg"]
 
 [resource]
-default_font = ExtResource("1_b7dry")
+default_font = ExtResource("2_5beyg")
+PanelContainer/styles/panel = ExtResource("1_8frk5")
