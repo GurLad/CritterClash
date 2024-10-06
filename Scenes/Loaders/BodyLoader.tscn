@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://dycy0tin21bi5"]
 
 [ext_resource type="Script" path="res://Scripts/Loaders/Body/BodyLoader.cs" id="1_uioub"]
-[ext_resource type="Texture2D" uid="uid://d2f6xh26x5sy3" path="res://Sprites/Bodies/Ringabod.png" id="2_84pwv"]
+[ext_resource type="Texture2D" uid="uid://cyy1gbpyswb62" path="res://Sprites/Bodies/RingabodSmall.png" id="2_d6gn8"]
 [ext_resource type="Script" path="res://Scripts/Loaders/Body/BodyLoaderNode.cs" id="3_ficde"]
 
 [node name="BodyLoader" type="Node2D"]
@@ -9,23 +9,23 @@ script = ExtResource("1_uioub")
 
 [node name="Ringabod" type="Sprite2D" parent="." node_paths=PackedStringArray("Heads", "Arms", "Legs")]
 visible = false
-texture = ExtResource("2_84pwv")
+texture = ExtResource("2_d6gn8")
 script = ExtResource("3_ficde")
 Heads = [NodePath("HeadF")]
 Arms = [NodePath("Arm1F"), NodePath("Arm2B")]
 Legs = [NodePath("Leg1F"), NodePath("Leg2B")]
 
 [node name="Leg1F" type="Node2D" parent="Ringabod"]
-position = Vector2(-7, 11)
+position = Vector2(-6, 10)
 
 [node name="Leg2B" type="Node2D" parent="Ringabod"]
-position = Vector2(7, 10)
+position = Vector2(7, 9)
 
 [node name="Arm1F" type="Node2D" parent="Ringabod"]
-position = Vector2(-12, -10)
+position = Vector2(-10, -9)
 
 [node name="Arm2B" type="Node2D" parent="Ringabod"]
-position = Vector2(12, -11)
+position = Vector2(11, -10)
 
 [node name="HeadF" type="Node2D" parent="Ringabod"]
-position = Vector2(0, -13)
+position = Vector2(0, -11)

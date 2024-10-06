@@ -78,7 +78,7 @@ public partial class Critter : Node2D
             Node2D holder = new Node2D();
             AddChild(holder);
             holder.Position = a.Position;
-            holder.ZIndex = a.Foreground ? 1 : -1;
+            holder.ZIndex = (a.Foreground ? 1 : -1) * (a.Type == BodyPartType.Arm ? 2 : 1);
             BodyPartLocations[a.Type].Add(holder);
         });
         Body.OnDealDamage += AnimateDealDamage;
