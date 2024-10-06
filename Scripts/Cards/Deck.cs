@@ -15,6 +15,7 @@ public class Deck
     public List<ACard> Hand { get; } = new List<ACard>(); // Whatevs
     private List<ACard> Discard { get; } = new List<ACard>();
 
+    public event Action OnBeginTurn;
     public event Action<ACard> OnCardDrawn;
     public event Action<int, ACard> OnCardPlaced;
 
@@ -38,6 +39,7 @@ public class Deck
     public void BeginTurn()
     {
         Mana = Mathf.Min(Mana + MANA_PER_TURN, MAX_MANA);
+        OnBeginTurn?.Invoke();
     }
 
     public bool CanPlayCard(int index, GameGrid grid, Vector2I position)

@@ -28,14 +28,24 @@ public partial class UICard : Control
         Card = card;
         Enemy = enemy;
         Index = index;
-        Render(card);
         // Animation
+        Interpolator.InterruptMode = Interpolator.Mode.Allowed;
         AddChild(Interpolator);
         BaseRendererPosition = Renderer.Position;
         BaseRendererScale = Renderer.Scale;
         BaseModulate = Renderer.Modulate;
         MouseEntered += OnMouseEntered;
         MouseExited += OnMouseExited;
+        // Render
+        Render(card);
+        Deck.OnCardPlaced += DeckOnCardPlaced;
+        Deck.OnBeginTurn += DeckOnBeginTurn;
+    }
+
+    public void Disconnect()
+    {
+        Deck.OnCardPlaced -= DeckOnCardPlaced;
+        Deck.OnBeginTurn -= DeckOnBeginTurn;
     }
 
     public override Variant _GetDragData(Vector2 atPosition)
@@ -89,9 +99,19 @@ public partial class UICard : Control
                 Easing.EaseInOutSin));
     }
 
+    private void DeckOnBeginTurn()
+    {
+        Render(Card);
+    }
+
+    private void DeckOnCardPlaced(int arg1, ACard arg2)
+    {
+        Render(Card);
+    }
+
     private void Render(ACard card)
     {
-        //Modulate = Deck.CanAffordCard(Index) ? BaseModulate : CantAffordModulate;
+        Modulate = Deck.CanAffordCard(Index) ? BaseModulate : CantAffordModulate;
         Renderer.Render(card);
     }
 }
