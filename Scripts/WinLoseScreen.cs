@@ -13,7 +13,9 @@ public partial class WinLoseScreen : Control
     public override void _Ready()
     {
         base._Ready();
+        AddChild(Interpolator);
         BaseScale = Scale;
+        PivotOffset = Size / 2;
         Next.Disabled = true;
         Visible = false;
     }

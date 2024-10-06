@@ -222,12 +222,14 @@ theme_override_fonts/font = ExtResource("18_gq7ln")
 text = "Start"
 
 [node name="WinLose" type="CenterContainer" parent="UI"]
+z_index = 10
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
 [node name="Win" type="PanelContainer" parent="UI/WinLose" node_paths=PackedStringArray("Next")]
 layout_mode = 2

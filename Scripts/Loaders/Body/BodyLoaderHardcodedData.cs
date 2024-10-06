@@ -63,7 +63,7 @@ public partial class BodyLoader : AGameLoader<BodyLoader, BodyRecord>
             "2 * Arms, 4 * Legs",
             "A very strong and tough body! Good luck getting it to move, though."),
         new BodyRecord(
-            1, "4-Leg Mammal",
+            1, "Mammal",
             new Stats(1, 0, 0),
             new List<ATrigger>(),
             "1 * Head, 4 * Legs",
