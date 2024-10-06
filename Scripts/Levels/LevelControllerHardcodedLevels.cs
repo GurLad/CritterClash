@@ -12,7 +12,7 @@ public partial class LevelController : Node
             "You are the gnome on the left, and your goal is to defeat the gnome on the right.\n" +
             "To do that, you need to create Critters - which eventually Clash - using your cards.\n" +
             "You get 5 cards and 5 mana per turn. Leftover cards will be discarded, but mana will remain for the next turn (up to 9).\n" +
-            "To place a card, drag it into the play area - it will light up if it's a valid move. To end your turn, press the green arrow." +
+            "To place a card, drag it into the play area - it will light up if it's a valid move. To end your turn, press the green arrow.\n" +
             "All Critters need a Body first - Bodies specify which parts they can hold, amongst Heads, Arms and Legs.\n" +
             "You can only place a Body on the left-most column - aka adjacent to your gnome. Keep this in mind!\n" +
             "After placing a Body, you can add Parts to it - Parts grant stat bonouses and/or effects. Parts can be placed anywhere (on your Critters).\n" +
@@ -23,6 +23,57 @@ public partial class LevelController : Node
                 (10, new CardBodyPart("Cat"))),
             new Deck(true,
                 (40, new CardBodyPart("Gnome")))),
+        new LevelData(
+            "Tutorial 2",
+            "Well done! So far, you only moved, but now let's get to the Clash part!\n" +
+            "Critters have 3 stats: Health, Attack, Speed.\n" +
+            "Health is the red heart - if it reachs 0, the critter dies.\n" +
+            "Attack is the orange explosion - critters with 0 or less attack cannot, well, attack.\n" +
+            "Speed is the blue circle - cirtters with 0 or less speed cannot move nor attack!\n" +
+            "Critters will attack if they would otherwise stand on the tile of their opponent - similar to chess.\n" +
+            "Also like chess, critters will take the spot of their opponent if they die.\n" +
+            "Good luck!",
+            new Deck(false,
+                (20, new CardBody("Scorpion")),
+                (20, new CardBody("Land Shark")),
+                (5, new CardBodyPart("Cheetah")),
+                (5, new CardBodyPart("Spiky Leg")),
+                (5, new CardBodyPart("Tentacle")),
+                (5, new CardBodyPart("Cursor")),
+                (5, new CardBodyPart("Gnome")),
+                (5, new CardBodyPart("Fly"))),
+            new Deck(true,
+                (30, new CardBody("4-Leg Mammal")),
+                (10, new CardBodyPart("Cheetah")),
+                (10, new CardBodyPart("Spiky Leg")),
+                (10, new CardBodyPart("Gnome")),
+                (10, new CardBodyPart("Cat")))),
+        new LevelData(
+            "Level 1 - Growing Pains",
+            "Let's spice things up a little - how about critters which slowly get stronger?",
+            new Deck(false,
+                (10, new CardBody("Scorpion")),
+                (10, new CardBody("Land Shark")),
+                (10, new CardBody("4-Leg Mammal")),
+                (10, new CardBody("Ninja Turtle")),
+                (10, new CardBodyPart("Lsr Swd 3000")),
+                (10, new CardBodyPart("T-Rex")),
+                (10, new CardBodyPart("Spiky Arm")),
+                (10, new CardBodyPart("Frog")),
+                (10, new CardBodyPart("Wheel")),
+                (10, new CardBodyPart("Peg Leg")),
+                (10, new CardBodyPart("Brain")),
+                (10, new CardBodyPart("Bulldog")),
+                (10, new CardBodyPart("Mosquito"))),
+            new Deck(true,
+                (20, new CardBody("Scorpion")),
+                (20, new CardBody("Land Shark")),
+                (5, new CardBodyPart("Cheetah")),
+                (5, new CardBodyPart("Spiky Leg")),
+                (5, new CardBodyPart("Tentacle")),
+                (5, new CardBodyPart("Cursor")),
+                (5, new CardBodyPart("Gnome")),
+                (5, new CardBodyPart("Fly")))),
         new LevelData(
             "Level XX - Chaos",
             "One copy of everything - go wild!",
