@@ -1,12 +1,28 @@
-[gd_scene load_steps=5 format=3 uid="uid://jt8cbva1e60g"]
+[gd_scene load_steps=17 format=3 uid="uid://jt8cbva1e60g"]
 
 [ext_resource type="Script" path="res://Scripts/VFXSFXController.cs" id="1_tk0bk"]
 [ext_resource type="PackedScene" uid="uid://dryqasatn1cby" path="res://Scenes/VFX/VFXHit.tscn" id="2_lnmc8"]
 [ext_resource type="PackedScene" uid="uid://bn42au43ay4d7" path="res://Scenes/VFX/VFXDamageText.tscn" id="3_wu8s0"]
 [ext_resource type="PackedScene" uid="uid://vtadl51rgatn" path="res://Scenes/VFX/VFXSpiral.tscn" id="4_7lqcu"]
+[ext_resource type="AudioStream" uid="uid://mkpmpdbilose" path="res://SFX/Hurt1.mp3" id="5_vufmo"]
+[ext_resource type="AudioStream" uid="uid://dhrft2fmfaki1" path="res://SFX/Hurt2.mp3" id="6_ktd14"]
+[ext_resource type="AudioStream" uid="uid://dj0k65ayfd786" path="res://SFX/Hurt3.mp3" id="7_mtygp"]
+[ext_resource type="AudioStream" uid="uid://dv1y35ttrhaq8" path="res://SFX/Spawn1.mp3" id="8_wpg5v"]
+[ext_resource type="AudioStream" uid="uid://jojwhiivhuyu" path="res://SFX/Spawn2.mp3" id="9_lqxx4"]
+[ext_resource type="AudioStream" uid="uid://ccqt2180byp1p" path="res://SFX/Spawn3.mp3" id="10_lf3ti"]
+[ext_resource type="AudioStream" uid="uid://djacsttt07j63" path="res://SFX/Attack1.mp3" id="11_8dh73"]
+[ext_resource type="AudioStream" uid="uid://71i8ie182yu4" path="res://SFX/Attack2.mp3" id="12_l0buh"]
+[ext_resource type="AudioStream" uid="uid://dkdnfcoxccjxy" path="res://SFX/Attack3.mp3" id="13_xjvvt"]
+[ext_resource type="AudioStream" uid="uid://dlnth6kfwj2vy" path="res://SFX/Dead1.mp3" id="14_y6iop"]
+[ext_resource type="AudioStream" uid="uid://bqgbarasd4324" path="res://SFX/Dead2.mp3" id="15_700rl"]
+[ext_resource type="AudioStream" uid="uid://bx0u5v2pl8k0s" path="res://SFX/Dead3.mp3" id="16_5x0aj"]
 
 [node name="VFXSFXController" type="Node"]
 script = ExtResource("1_tk0bk")
 SceneHitVfx = ExtResource("2_lnmc8")
 SceneDamageText = ExtResource("3_wu8s0")
 SceneSpawnVfx = ExtResource("4_7lqcu")
+DamagedSFX = Array[AudioStream]([ExtResource("5_vufmo"), ExtResource("6_ktd14"), ExtResource("7_mtygp")])
+SpawnSFX = Array[AudioStream]([ExtResource("8_wpg5v"), ExtResource("9_lqxx4"), ExtResource("10_lf3ti")])
+AttackSFX = Array[AudioStream]([ExtResource("11_8dh73"), ExtResource("12_l0buh"), ExtResource("13_xjvvt")])
+DeadSFX = Array[AudioStream]([ExtResource("14_y6iop"), ExtResource("15_700rl"), ExtResource("16_5x0aj")])
