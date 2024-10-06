@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://irplfbkggjqq"]
+[gd_scene load_steps=8 format=3 uid="uid://irplfbkggjqq"]
 
 [ext_resource type="Script" path="res://Scripts/GodotUtils/SceneController.cs" id="1_gcwgb"]
 [ext_resource type="PackedScene" uid="uid://b6jua45s20qxq" path="res://Scenes/Game/Game.tscn" id="2_areel"]
 [ext_resource type="Script" path="res://Scripts/GodotUtils/Transitions/FadeTransition.cs" id="3_awqtb"]
+[ext_resource type="PackedScene" uid="uid://pncw30a2ufqu" path="res://Scenes/Win.tscn" id="3_ipegp"]
 [ext_resource type="Script" path="res://Scripts/GodotUtils/MusicController.cs" id="4_ww0ob"]
 [ext_resource type="AudioStream" uid="uid://xdihqpj85dtw" path="res://Music/CritterFriends.wav" id="5_oqln8"]
 [ext_resource type="AudioStream" uid="uid://dxm51f1xi4o1a" path="res://Music/CritterClash.wav" id="6_fenjh"]
@@ -11,7 +12,8 @@
 script = ExtResource("1_gcwgb")
 firstScene = "Game"
 scenes = {
-"Game": ExtResource("2_areel")
+"Game": ExtResource("2_areel"),
+"Win": ExtResource("3_ipegp")
 }
 pathTransition = NodePath("FadeTransition")
 scenesNode = NodePath("Scenes")

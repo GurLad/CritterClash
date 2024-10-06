@@ -1,0 +1,43 @@
+[gd_scene load_steps=5 format=3 uid="uid://pncw30a2ufqu"]
+
+[ext_resource type="Texture2D" uid="uid://ccsc84xs1k28l" path="res://Sprites/Backgrounds/Background4.png" id="1_w477y"]
+[ext_resource type="Theme" uid="uid://dpgoerknilx0y" path="res://DefaultTheme.tres" id="2_sq0od"]
+[ext_resource type="FontFile" uid="uid://rvbvpgm8it03" path="res://Fonts/TomAndJerry.ttf" id="3_sw1f1"]
+[ext_resource type="Script" path="res://Scripts/QuitButton.cs" id="4_c63dv"]
+
+[node name="Win" type="Node"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_w477y")
+centered = false
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -0.5
+offset_top = -11.5
+offset_right = 0.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_sq0od")
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_sq0od")
+theme_override_constants/outline_size = 2
+theme_override_fonts/font = ExtResource("3_sw1f1")
+text = "You Finished the Game !"
+
+[node name="Button" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/outline_size = 2
+theme_override_fonts/font = ExtResource("3_sw1f1")
+text = "Quit"
+script = ExtResource("4_c63dv")
+
+[connection signal="pressed" from="VBoxContainer/Button" to="VBoxContainer/Button" method="Press"]
