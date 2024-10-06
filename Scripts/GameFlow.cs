@@ -79,7 +79,6 @@ public partial class GameFlow : Node
             GD.PrintErr("[GameFlow]: Finished another turn during auto-battle!");
             return;
         }
-        GameGrid.CrittersForEach(a => a.EndTurn());
         AutoBattling = true;
         ExecuteAutoBattleStep();
     }
@@ -122,6 +121,7 @@ public partial class GameFlow : Node
             if (nextCritter.Body.BaseStats.Speed <= 0)
             {
                 nextCritter.UpdateModulate();
+                nextCritter.EndTurn();
                 ExecuteAutoBattleStep();
             }
             else
@@ -191,6 +191,7 @@ public partial class GameFlow : Node
     private void OnActiveCritterFinishAnimation(Critter critter)
     {
         critter.UpdateModulate();
+        critter.EndTurn();
         critter.OnFinishAnimation -= OnActiveCritterFinishAnimation;
     }
 
