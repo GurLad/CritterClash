@@ -1,20 +1,51 @@
-[gd_scene load_steps=10 format=3 uid="uid://b6jua45s20qxq"]
+[gd_scene load_steps=18 format=3 uid="uid://b6jua45s20qxq"]
 
+[ext_resource type="Texture2D" uid="uid://uog64ksk2hhf" path="res://Sprites/Backgrounds/Background4Gnomeless.png" id="1_hoow6"]
 [ext_resource type="PackedScene" uid="uid://c5d4h8ww4yuqt" path="res://Scenes/Game/GameGrid.tscn" id="1_vdxqi"]
 [ext_resource type="Theme" uid="uid://dpgoerknilx0y" path="res://DefaultTheme.tres" id="2_mh66l"]
 [ext_resource type="Script" path="res://Scripts/Cards/UI/UICardPlacementGrid.cs" id="2_qid8k"]
 [ext_resource type="Script" path="res://Scripts/GameFlow.cs" id="2_ro6tr"]
+[ext_resource type="Texture2D" uid="uid://cvsaeav4asjsk" path="res://Sprites/Gnomes/Gnome1.png" id="2_x5dc0"]
+[ext_resource type="Script" path="res://Scripts/Players/UI/UIPlayerGnome.cs" id="3_klm21"]
+[ext_resource type="Texture2D" uid="uid://8j7da6wf28mr" path="res://Sprites/Gnomes/Gnome1Hurt.png" id="4_5r3fu"]
 [ext_resource type="Script" path="res://Scripts/Players/PlayerHuman.cs" id="4_kjomr"]
 [ext_resource type="PackedScene" uid="uid://bn6wgeo3idpmo" path="res://Scenes/Game/UI/UITileHighlight.tscn" id="4_s1nf0"]
 [ext_resource type="PackedScene" uid="uid://df3hhwbvk6qci" path="res://Scenes/Game/UI/UIHand.tscn" id="4_tlc0h"]
 [ext_resource type="Script" path="res://Scripts/Players/PlayerCPU.cs" id="5_7fil6"]
 [ext_resource type="PackedScene" uid="uid://beucq72sbbwgg" path="res://Scenes/Game/UI/UIPlayerHealth.tscn" id="5_pnjnh"]
+[ext_resource type="Texture2D" uid="uid://janomqjb46km" path="res://Sprites/Gnomes/Gnome1Dead.png" id="5_y3psk"]
+[ext_resource type="Texture2D" uid="uid://dsp081305u37w" path="res://Sprites/Gnomes/Gnome2.png" id="6_d73nc"]
+[ext_resource type="Texture2D" uid="uid://c2v5rlp3m2gmm" path="res://Sprites/Gnomes/Gnome2Hurt.png" id="7_iwpsc"]
+[ext_resource type="Texture2D" uid="uid://b4p04m6npegta" path="res://Sprites/Gnomes/Gnome2Dead.png" id="8_dpk3p"]
 
 [node name="Game" type="Node"]
 
 [node name="2D" type="Node2D" parent="."]
 
 [node name="Background" type="Sprite2D" parent="2D"]
+z_index = -5
+texture = ExtResource("1_hoow6")
+centered = false
+
+[node name="Gnome1" type="Sprite2D" parent="2D" node_paths=PackedStringArray("Player")]
+z_index = -5
+texture = ExtResource("2_x5dc0")
+centered = false
+script = ExtResource("3_klm21")
+Player = NodePath("../../Players/Human")
+Base = ExtResource("2_x5dc0")
+Hurt = ExtResource("4_5r3fu")
+Dead = ExtResource("5_y3psk")
+
+[node name="Gnome2" type="Sprite2D" parent="2D" node_paths=PackedStringArray("Player")]
+z_index = -5
+texture = ExtResource("6_d73nc")
+centered = false
+script = ExtResource("3_klm21")
+Player = NodePath("../../Players/CPU")
+Base = ExtResource("6_d73nc")
+Hurt = ExtResource("7_iwpsc")
+Dead = ExtResource("8_dpk3p")
 
 [node name="GameGrid" parent="2D" instance=ExtResource("1_vdxqi")]
 position = Vector2(160, 30)
@@ -42,6 +73,10 @@ PreviewTileSizeOffset = Vector2(-20, -20)
 
 [node name="UIHumanHealth" parent="UI" node_paths=PackedStringArray("Player") instance=ExtResource("5_pnjnh")]
 layout_mode = 0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 40.0
+offset_bottom = 42.0
 Player = NodePath("../../Players/Human")
 
 [node name="UICPUHealth" parent="UI" node_paths=PackedStringArray("Player") instance=ExtResource("5_pnjnh")]
@@ -49,8 +84,10 @@ layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -32.0
-offset_right = 0.0
+offset_left = -40.0
+offset_top = 8.0
+offset_right = -8.0
+offset_bottom = 42.0
 grow_horizontal = 0
 Player = NodePath("../../Players/CPU")
 

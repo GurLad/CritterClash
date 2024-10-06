@@ -87,6 +87,7 @@ public partial class Critter : Node2D
         Body.OnDealDamage += AnimateDealDamage;
         Body.OnTakeDamage += AnimateTakeDamage;
         Body.OnDeath += AnimateDeath;
+        UpdateModulate();
         Render(); // Just render at a bunch of places...
     }
 

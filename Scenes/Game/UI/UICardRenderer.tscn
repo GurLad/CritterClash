@@ -10,7 +10,7 @@
 [ext_resource type="FontFile" uid="uid://rvbvpgm8it03" path="res://Fonts/TomAndJerry.ttf" id="6_0s0ae"]
 [ext_resource type="StyleBox" uid="uid://bdxcong6loxje" path="res://ThemeUI/InnerPanel.tres" id="6_tulba"]
 [ext_resource type="StyleBox" uid="uid://ch7gsk8ow137v" path="res://ThemeUI/OuterPanelPressed.tres" id="7_in4nb"]
-[ext_resource type="Material" uid="uid://cyjyxfqfe7q12" path="res://Shaders/OutlineMaterial.tres" id="8_ir04m"]
+[ext_resource type="Material" path="res://Shaders/OutlineMaterial.tres" id="8_ir04m"]
 [ext_resource type="Texture2D" uid="uid://d2f6xh26x5sy3" path="res://Sprites/Bodies/Ringabod.png" id="9_nech3"]
 [ext_resource type="Texture2D" uid="uid://c0jhfjet28sl7" path="res://Sprites/UI/Panels/SeperatorSimple.png" id="11_whjjn"]
 
