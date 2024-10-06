@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://dryqasatn1cby"]
+
+[sub_resource type="Curve" id="Curve_j8i5y"]
+_data = [Vector2(0.00289855, 0.970488), 0.0, 1.4, 0, 0, Vector2(0.997101, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_kryex"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[node name="VFXHit" type="CPUParticles2D"]
+emitting = false
+amount = 60
+lifetime = 0.3
+one_shot = true
+speed_scale = 1.65
+explosiveness = 1.0
+emission_shape = 1
+emission_sphere_radius = 4.88
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 90.91
+initial_velocity_max = 90.91
+linear_accel_min = -100.0
+linear_accel_max = -100.0
+scale_amount_curve = SubResource("Curve_j8i5y")
+color_ramp = SubResource("Gradient_kryex")
