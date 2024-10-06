@@ -1,8 +1,22 @@
-[gd_scene load_steps=4 format=3 uid="uid://dycy0tin21bi5"]
+[gd_scene load_steps=18 format=3 uid="uid://dycy0tin21bi5"]
 
 [ext_resource type="Script" path="res://Scripts/Loaders/Body/BodyLoader.cs" id="1_uioub"]
 [ext_resource type="Texture2D" uid="uid://cyy1gbpyswb62" path="res://Sprites/Bodies/RingabodSmall.png" id="2_d6gn8"]
 [ext_resource type="Script" path="res://Scripts/Loaders/Body/BodyLoaderNode.cs" id="3_ficde"]
+[ext_resource type="Texture2D" uid="uid://bd43pjc4t01gs" path="res://Sprites/Bodies/Snail.png" id="4_1a07f"]
+[ext_resource type="Texture2D" uid="uid://weeb5knfr4ic" path="res://Sprites/Bodies/AngrySnail.png" id="5_54n56"]
+[ext_resource type="Texture2D" uid="uid://2k3ggd6tuelr" path="res://Sprites/Bodies/Bee.png" id="6_8tlm2"]
+[ext_resource type="Texture2D" uid="uid://3nl0i8q7vyj" path="res://Sprites/Bodies/ButterFly.png" id="7_lw301"]
+[ext_resource type="Texture2D" uid="uid://dpuuxdj05o0eg" path="res://Sprites/Bodies/FlutterFly.png" id="8_rdusd"]
+[ext_resource type="Texture2D" uid="uid://dd3u16kjdcuso" path="res://Sprites/Bodies/MerWorm.png" id="9_bnjcj"]
+[ext_resource type="Texture2D" uid="uid://d0ncnn6k5tshi" path="res://Sprites/Bodies/BipedBlob.png" id="9_xe6vu"]
+[ext_resource type="Texture2D" uid="uid://cqxdniuestd4w" path="res://Sprites/Bodies/Scorpion.png" id="10_gidi6"]
+[ext_resource type="Texture2D" uid="uid://20lhuvqb82cj" path="res://Sprites/Bodies/Turtle.png" id="10_ilugf"]
+[ext_resource type="Texture2D" uid="uid://cuhepew02vik6" path="res://Sprites/Bodies/DesertScorpion.png" id="11_2hur8"]
+[ext_resource type="Texture2D" uid="uid://dgffflofjal4j" path="res://Sprites/Bodies/NinjaTurtle.png" id="11_eam1t"]
+[ext_resource type="Texture2D" uid="uid://c2rm8s5teg44m" path="res://Sprites/Bodies/Landshark.png" id="13_83tto"]
+[ext_resource type="Texture2D" uid="uid://dl5piif4m8jq6" path="res://Sprites/Bodies/Radioshark.png" id="14_ok8ha"]
+[ext_resource type="Texture2D" uid="uid://c56vo3m0h3hoi" path="res://Sprites/Bodies/FourLeggedMammal.png" id="17_owjth"]
 
 [node name="BodyLoader" type="Node2D"]
 script = ExtResource("1_uioub")
@@ -29,3 +43,255 @@ position = Vector2(11, -10)
 
 [node name="HeadF" type="Node2D" parent="Ringabod"]
 position = Vector2(0, -11)
+
+[node name="Snail" type="Sprite2D" parent="." node_paths=PackedStringArray("Heads", "Arms", "Legs")]
+visible = false
+texture = ExtResource("4_1a07f")
+script = ExtResource("3_ficde")
+Heads = [NodePath("HeadF")]
+Arms = []
+Legs = []
+
+[node name="HeadF" type="Node2D" parent="Snail"]
+position = Vector2(9, -8)
+
+[node name="Angry Snail" type="Sprite2D" parent="." node_paths=PackedStringArray("Heads", "Arms", "Legs")]
+visible = false
+texture = ExtResource("5_54n56")
+script = ExtResource("3_ficde")
+Heads = [NodePath("HeadF")]
+Arms = []
+Legs = []
+
+[node name="HeadF" type="Node2D" parent="Angry Snail"]
+position = Vector2(9, -8)
+
+[node name="Bee" type="Sprite2D" parent="." node_paths=PackedStringArray("Heads", "Arms", "Legs")]
+visible = false
+texture = ExtResource("6_8tlm2")
+script = ExtResource("3_ficde")
+Heads = [NodePath("HeadF")]
+Arms = []
+Legs = []
+
+[node name="HeadF" type="Node2D" parent="Bee"]
+position = Vector2(6, -3)
+
+[node name="Butterfly" type="Sprite2D" parent="." node_paths=PackedStringArray("Heads", "Arms", "Legs")]
+visible = false
+texture = ExtResource("7_lw301")
+script = ExtResource("3_ficde")
+Heads = [NodePath("HeadF")]
+Arms = []
+Legs = []
+
+[node name="HeadF" type="Node2D" parent="Butterfly"]
+position = Vector2(7, -5)
+
+[node name="Flutter Fly" type="Sprite2D" parent="." node_paths=PackedStringArray("Heads", "Arms", "Legs")]
+visible = false
+texture = ExtResource("8_rdusd")
+script = ExtResource("3_ficde")
+Heads = [NodePath("HeadF")]
+Arms = []
+Legs = []
+
+[node name="HeadF" type="Node2D" parent="Flutter Fly"]
+position = Vector2(7, -5)
+
+[node name="Merworm" type="Sprite2D" parent="." node_paths=PackedStringArray("Heads", "Arms", "Legs")]
+visible = false
+texture = ExtResource("9_bnjcj")
+script = ExtResource("3_ficde")
+Heads = [NodePath("HeadF")]
+Arms = [NodePath("Arm1F"), NodePath("Arm2B")]
+Legs = []
+
+[node name="Arm1F" type="Node2D" parent="Merworm"]
+position = Vector2(-6, -7)
+
+[node name="Arm2B" type="Node2D" parent="Merworm"]
+position = Vector2(-1, -6)
+
+[node name="HeadF" type="Node2D" parent="Merworm"]
+position = Vector2(1, -10)
+
+[node name="Biped Blob" type="Sprite2D" parent="." node_paths=PackedStringArray("Heads", "Arms", "Legs")]
+visible = false
+texture = ExtResource("9_xe6vu")
+script = ExtResource("3_ficde")
+Heads = [NodePath("HeadF")]
+Arms = [NodePath("Arm1F"), NodePath("Arm2B")]
+Legs = [NodePath("Leg1F"), NodePath("Leg2B")]
+
+[node name="Leg1F" type="Node2D" parent="Biped Blob"]
+position = Vector2(-6, 8)
+
+[node name="Leg2B" type="Node2D" parent="Biped Blob"]
+position = Vector2(2, 7)
+
+[node name="Arm1F" type="Node2D" parent="Biped Blob"]
+position = Vector2(-8, -10)
+
+[node name="Arm2B" type="Node2D" parent="Biped Blob"]
+position = Vector2(4, -10)
+
+[node name="HeadF" type="Node2D" parent="Biped Blob"]
+position = Vector2(-2, -9)
+
+[node name="Turtle" type="Sprite2D" parent="." node_paths=PackedStringArray("Heads", "Arms", "Legs")]
+visible = false
+texture = ExtResource("10_ilugf")
+script = ExtResource("3_ficde")
+Heads = [NodePath("HeadF")]
+Arms = [NodePath("Arm1F"), NodePath("Arm2B")]
+Legs = [NodePath("Leg1F"), NodePath("Leg2B")]
+
+[node name="Leg1F" type="Node2D" parent="Turtle"]
+position = Vector2(-4, 7)
+
+[node name="Leg2B" type="Node2D" parent="Turtle"]
+position = Vector2(3, 6)
+
+[node name="Arm1F" type="Node2D" parent="Turtle"]
+position = Vector2(-2, -6)
+
+[node name="Arm2B" type="Node2D" parent="Turtle"]
+position = Vector2(6, -5)
+
+[node name="HeadF" type="Node2D" parent="Turtle"]
+position = Vector2(5, -7)
+
+[node name="Ninja Turtle" type="Sprite2D" parent="." node_paths=PackedStringArray("Heads", "Arms", "Legs")]
+visible = false
+texture = ExtResource("11_eam1t")
+script = ExtResource("3_ficde")
+Heads = [NodePath("HeadF")]
+Arms = [NodePath("Arm1F"), NodePath("Arm2B")]
+Legs = [NodePath("Leg1F"), NodePath("Leg2B")]
+
+[node name="Leg1F" type="Node2D" parent="Ninja Turtle"]
+position = Vector2(-4, 7)
+
+[node name="Leg2B" type="Node2D" parent="Ninja Turtle"]
+position = Vector2(3, 6)
+
+[node name="Arm1F" type="Node2D" parent="Ninja Turtle"]
+position = Vector2(-2, -6)
+
+[node name="Arm2B" type="Node2D" parent="Ninja Turtle"]
+position = Vector2(6, -5)
+
+[node name="HeadF" type="Node2D" parent="Ninja Turtle"]
+position = Vector2(5, -7)
+
+[node name="Land Shark" type="Sprite2D" parent="." node_paths=PackedStringArray("Heads", "Arms", "Legs")]
+visible = false
+texture = ExtResource("13_83tto")
+script = ExtResource("3_ficde")
+Heads = [NodePath("HeadF")]
+Arms = [NodePath("Arm1F"), NodePath("Arm2B")]
+Legs = [NodePath("Leg1F")]
+
+[node name="Leg1F" type="Node2D" parent="Land Shark"]
+position = Vector2(-6, 6)
+
+[node name="Arm1F" type="Node2D" parent="Land Shark"]
+position = Vector2(4, -3)
+
+[node name="Arm2B" type="Node2D" parent="Land Shark"]
+position = Vector2(7, -4)
+
+[node name="HeadF" type="Node2D" parent="Land Shark"]
+position = Vector2(8, -7)
+
+[node name="Sky Shark" type="Sprite2D" parent="." node_paths=PackedStringArray("Heads", "Arms", "Legs")]
+visible = false
+texture = ExtResource("14_ok8ha")
+script = ExtResource("3_ficde")
+Heads = [NodePath("HeadF")]
+Arms = [NodePath("Arm1F"), NodePath("Arm2B")]
+Legs = [NodePath("Leg1F")]
+
+[node name="Leg1F" type="Node2D" parent="Sky Shark"]
+position = Vector2(-6, 6)
+
+[node name="Arm1F" type="Node2D" parent="Sky Shark"]
+position = Vector2(4, -3)
+
+[node name="Arm2B" type="Node2D" parent="Sky Shark"]
+position = Vector2(7, -4)
+
+[node name="HeadF" type="Node2D" parent="Sky Shark"]
+position = Vector2(8, -7)
+
+[node name="Scorpion" type="Sprite2D" parent="." node_paths=PackedStringArray("Heads", "Arms", "Legs")]
+visible = false
+texture = ExtResource("10_gidi6")
+script = ExtResource("3_ficde")
+Heads = []
+Arms = [NodePath("Arm1F"), NodePath("Arm2B")]
+Legs = [NodePath("Leg1F"), NodePath("Leg2B"), NodePath("Leg3F"), NodePath("Leg4B")]
+
+[node name="Leg1F" type="Node2D" parent="Scorpion"]
+position = Vector2(-7, 6)
+
+[node name="Leg2B" type="Node2D" parent="Scorpion"]
+position = Vector2(-5, 6)
+
+[node name="Leg3F" type="Node2D" parent="Scorpion"]
+position = Vector2(5, 6)
+
+[node name="Leg4B" type="Node2D" parent="Scorpion"]
+position = Vector2(7, 6)
+
+[node name="Arm1F" type="Node2D" parent="Scorpion"]
+position = Vector2(8, 7)
+
+[node name="Arm2B" type="Node2D" parent="Scorpion"]
+position = Vector2(11, 5)
+
+[node name="Dry Scropion" type="Sprite2D" parent="." node_paths=PackedStringArray("Heads", "Arms", "Legs")]
+visible = false
+texture = ExtResource("11_2hur8")
+script = ExtResource("3_ficde")
+Heads = []
+Arms = [NodePath("Arm1F"), NodePath("Arm2B")]
+Legs = [NodePath("../Scorpion/Leg1F"), NodePath("../Scorpion/Leg2B"), NodePath("../Scorpion/Leg3F"), NodePath("../Scorpion/Leg4B")]
+
+[node name="Leg1F" type="Node2D" parent="Dry Scropion"]
+position = Vector2(-7, 6)
+
+[node name="Leg2B" type="Node2D" parent="Dry Scropion"]
+position = Vector2(-5, 6)
+
+[node name="Leg3F" type="Node2D" parent="Dry Scropion"]
+position = Vector2(5, 6)
+
+[node name="Leg4B" type="Node2D" parent="Dry Scropion"]
+position = Vector2(7, 6)
+
+[node name="Arm1F" type="Node2D" parent="Dry Scropion"]
+position = Vector2(8, 7)
+
+[node name="Arm2B" type="Node2D" parent="Dry Scropion"]
+position = Vector2(11, 5)
+
+[node name="4-Leg Mammal" type="Sprite2D" parent="." node_paths=PackedStringArray("Heads", "Arms", "Legs")]
+texture = ExtResource("17_owjth")
+script = ExtResource("3_ficde")
+Heads = []
+Arms = []
+Legs = [NodePath("Leg1F"), NodePath("Leg2B"), NodePath("Leg3F"), NodePath("Leg4B")]
+
+[node name="Leg1F" type="Node2D" parent="4-Leg Mammal"]
+position = Vector2(-7, 4)
+
+[node name="Leg2B" type="Node2D" parent="4-Leg Mammal"]
+position = Vector2(-5, 4)
+
+[node name="Leg3F" type="Node2D" parent="4-Leg Mammal"]
+position = Vector2(4, 4)
+
+[node name="Leg4B" type="Node2D" parent="4-Leg Mammal"]
+position = Vector2(6, 4)
