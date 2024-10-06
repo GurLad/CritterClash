@@ -17,7 +17,7 @@
 [node name="Background" type="Sprite2D" parent="2D"]
 
 [node name="GameGrid" parent="2D" instance=ExtResource("1_vdxqi")]
-position = Vector2(168, 30)
+position = Vector2(160, 30)
 
 [node name="UI" type="Control" parent="."]
 layout_mode = 3
