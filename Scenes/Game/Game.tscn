@@ -37,24 +37,6 @@ grow_vertical = 2
 script = ExtResource("2_qid8k")
 GameGrid = NodePath("../../2D/GameGrid")
 
-[node name="HumanPlayerUI" type="HBoxContainer" parent="UI"]
-layout_mode = 1
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = -21.0
-grow_horizontal = 2
-grow_vertical = 0
-
-[node name="UIHand" parent="UI/HumanPlayerUI" instance=ExtResource("4_tlc0h")]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="Button" type="Button" parent="UI/HumanPlayerUI"]
-layout_mode = 2
-text = "Next Turn"
-
 [node name="UIHumanHealth" parent="UI" node_paths=PackedStringArray("Player") instance=ExtResource("5_pnjnh")]
 layout_mode = 0
 Player = NodePath("../../Players/Human")
@@ -68,6 +50,25 @@ offset_left = -32.0
 offset_right = 0.0
 grow_horizontal = 0
 Player = NodePath("../../Players/CPU")
+
+[node name="HumanPlayerUI" type="HBoxContainer" parent="UI"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -21.0
+offset_bottom = 10.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="UIHand" parent="UI/HumanPlayerUI" instance=ExtResource("4_tlc0h")]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Button" type="Button" parent="UI/HumanPlayerUI"]
+layout_mode = 2
+text = "Next Turn"
 
 [node name="GameFlow" type="Node" parent="." node_paths=PackedStringArray("GameGrid")]
 script = ExtResource("2_ro6tr")

@@ -1,71 +1,21 @@
-[gd_scene load_steps=6 format=3 uid="uid://maqkf41xhifx"]
+[gd_scene load_steps=4 format=3 uid="uid://maqkf41xhifx"]
 
 [ext_resource type="Theme" uid="uid://dpgoerknilx0y" path="res://DefaultTheme.tres" id="1_hn48q"]
 [ext_resource type="Script" path="res://Scripts/Cards/UI/UICard.cs" id="2_4oepe"]
-[ext_resource type="FontFile" uid="uid://ce81bajkbyhcd" path="res://Fonts/Born2bSportyV2.ttf" id="3_mpqwi"]
-[ext_resource type="PackedScene" uid="uid://dg8cvsyh02nrv" path="res://Scenes/Game/UI/UIStats.tscn" id="4_dhj50"]
-[ext_resource type="FontFile" uid="uid://bsv32rkimuy3o" path="res://Fonts/3x5Mk2MinSpace.ttf" id="5_gspht"]
+[ext_resource type="PackedScene" uid="uid://bg1dml3xstwae" path="res://Scenes/Game/UI/UICardRenderer.tscn" id="3_oblto"]
 
-[node name="UICard" type="PanelContainer" node_paths=PackedStringArray("CostLabel", "NameLabel", "DescriptionLabel", "FlavourTextLabel", "IconRect", "UIStats")]
+[node name="UICard" type="MarginContainer" node_paths=PackedStringArray("Renderer")]
 custom_minimum_size = Vector2(96, 0)
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 0
 theme = ExtResource("1_hn48q")
 script = ExtResource("2_4oepe")
-CostLabel = NodePath("VBoxContainer/Name/Cost")
-NameLabel = NodePath("VBoxContainer/Name")
-DescriptionLabel = NodePath("VBoxContainer/Description")
-FlavourTextLabel = NodePath("VBoxContainer/Flavour")
-IconRect = NodePath("VBoxContainer/Icon")
-UIStats = NodePath("VBoxContainer/UIStats")
+Renderer = NodePath("UICard")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="UICard" parent="." instance=ExtResource("3_oblto")]
 layout_mode = 2
-
-[node name="Name" type="Label" parent="VBoxContainer"]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("3_mpqwi")
-text = "Name"
-horizontal_alignment = 1
-
-[node name="Cost" type="Label" parent="VBoxContainer/Name"]
-layout_mode = 1
-anchors_preset = 11
-anchor_left = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -14.0
-grow_horizontal = 0
-grow_vertical = 2
-text = "99"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="UIStats" parent="VBoxContainer" instance=ExtResource("4_dhj50")]
-custom_minimum_size = Vector2(0, 16)
-layout_mode = 2
-size_flags_horizontal = 4
-
-[node name="Icon" type="TextureRect" parent="VBoxContainer"]
-custom_minimum_size = Vector2(32, 32)
-layout_mode = 2
-stretch_mode = 3
-
-[node name="Description" type="Label" parent="VBoxContainer"]
-custom_minimum_size = Vector2(10, 0)
-layout_mode = 2
-theme_override_fonts/font = ExtResource("5_gspht")
-theme_override_font_sizes/font_size = 5
-text = "Description"
-autowrap_mode = 3
-
-[node name="Flavour" type="Label" parent="VBoxContainer"]
-custom_minimum_size = Vector2(10, 0)
-layout_mode = 2
-theme_override_fonts/font = ExtResource("5_gspht")
-theme_override_font_sizes/font_size = 5
-text = "Flavour"
-autowrap_mode = 3
+mouse_filter = 2

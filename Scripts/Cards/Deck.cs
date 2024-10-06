@@ -100,34 +100,8 @@ public class Deck
             return;
         }
         int targetIndex = 0;
-        if (Hand.Count == HAND_SIZE - 1 && Hand.FindIndex(a => a is CardBody) < 0)
-        {
-            targetIndex = Library.FindIndex(a => a is CardBody);
-            if (targetIndex < 0)
-            {
-                ShuffleDiscardToLibrary();
-                targetIndex = Library.FindIndex(a => a is CardBody);
-            }
-            if (targetIndex < 0)
-            {
-                GD.PrintRaw("[Deck]: Zero bodies in library & discard!");
-                targetIndex = 0;
-            }
-        }
-        if (Hand.Count == HAND_SIZE - 1 && Hand.FindIndex(a => a is CardBodyPart) < 0)
-        {
-            targetIndex = Library.FindIndex(a => a is CardBodyPart);
-            if (targetIndex < 0)
-            {
-                ShuffleDiscardToLibrary();
-                targetIndex = Library.FindIndex(a => a is CardBodyPart);
-            }
-            if (targetIndex < 0)
-            {
-                GD.PrintRaw("[Deck]: Zero body parts in library & discard!");
-                targetIndex = 0;
-            }
-        }
+        targetIndex = DrawForcedCard<CardBodyPart>() ?? targetIndex;
+        targetIndex = DrawForcedCard<CardBody>() ?? targetIndex;
         ACard card = Library[targetIndex];
         Hand.Add(card);
         Library.RemoveAt(targetIndex);
@@ -139,5 +113,25 @@ public class Deck
         Discard.ForEach(a => Library.Add(a));
         Discard.Clear();
         Library = Library.Shuffle();
+    }
+
+    private int? DrawForcedCard<T>() where T : ACard
+    {
+        if (Hand.Count == HAND_SIZE - 1 && Hand.FindIndex(a => a is T) < 0)
+        {
+            int targetIndex = Library.FindIndex(a => a is T);
+            if (targetIndex < 0)
+            {
+                ShuffleDiscardToLibrary();
+                targetIndex = Library.FindIndex(a => a is T);
+            }
+            if (targetIndex < 0)
+            {
+                GD.PrintRaw("[Deck]: Zero " + typeof(T) + " in library & discard!");
+                targetIndex = 0;
+            }
+            return targetIndex;
+        }
+        return null;
     }
 }
