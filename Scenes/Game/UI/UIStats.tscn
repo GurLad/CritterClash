@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Scripts/Cards/UI/UIStats.cs" id="1_4rdgc"]
 [ext_resource type="Texture2D" uid="uid://dnmixye07nspo" path="res://Sprites/UI/Stats/Health2.png" id="2_ro413"]
 [ext_resource type="FontFile" uid="uid://bpl3q21erttxs" path="res://Fonts/5x3Nums2.ttf" id="3_q3u18"]
-[ext_resource type="Texture2D" uid="uid://buvqaxidsivv3" path="res://Sprites/UI/Stats/Attack2.png" id="4_7qdrj"]
+[ext_resource type="Texture2D" uid="uid://dvyic0tuvs8fo" path="res://Sprites/UI/Stats/Attack3.png" id="4_ba0sl"]
 [ext_resource type="Texture2D" uid="uid://1y8iih7ioakm" path="res://Sprites/UI/Stats/Speed2.png" id="5_1g7ka"]
 
 [node name="UIStats" type="HBoxContainer" node_paths=PackedStringArray("Health", "HealthRect", "Attack", "AttackRect", "Speed", "SpeedRect")]
@@ -41,7 +41,7 @@ vertical_alignment = 1
 
 [node name="Attack" type="TextureRect" parent="."]
 layout_mode = 2
-texture = ExtResource("4_7qdrj")
+texture = ExtResource("4_ba0sl")
 stretch_mode = 3
 
 [node name="Label" type="Label" parent="Attack"]

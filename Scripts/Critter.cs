@@ -2,11 +2,12 @@ using Godot;
 using System;
 using System.Collections.Generic;
 
-public partial class Critter : Sprite2D
+public partial class Critter : Node2D
 {
     // Exports
     [ExportCategory("Nodes")]
     [Export] private UIStats UIStats;
+    [Export] private Sprite2D Renderer;
     [ExportCategory("Colours")]
     [Export] private Color BaseModulate;
     [Export] private Color ActedModulate;
@@ -65,13 +66,13 @@ public partial class Critter : Sprite2D
         _tile = tile;
         Enemy = enemy;
         Position = Tile.ToPhysicalLocation();
-        FlipH = Enemy;
+        Renderer.FlipH = Enemy;
         Body = new Body(bodyRecord);
         for (int i = 0; i < (int)BodyPartType.EndMarker; i++)
         {
             BodyPartLocations.Add((BodyPartType)i, new List<Node2D>());
         }
-        Texture = Body.Record.Texture;
+        Renderer.Texture = Body.Record.Texture;
         Body.Record.PartSlots.ForEach(a =>
         {
             Node2D holder = new Node2D();
