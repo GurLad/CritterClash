@@ -8,7 +8,7 @@ public abstract partial class APlayerController : Node
     [Export] public bool Enemy { get; private set; }
     [Export] public int StartingHealth { get; private set; }
 
-    protected Deck Deck { get; set; }
+    protected Deck Deck { get; private set; }
     private int Health { get; set; }
 
     [Signal]

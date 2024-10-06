@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://b6jua45s20qxq"]
+[gd_scene load_steps=21 format=3 uid="uid://b6jua45s20qxq"]
 
 [ext_resource type="Texture2D" uid="uid://uog64ksk2hhf" path="res://Sprites/Backgrounds/Background4Gnomeless.png" id="1_hoow6"]
 [ext_resource type="PackedScene" uid="uid://c5d4h8ww4yuqt" path="res://Scenes/Game/GameGrid.tscn" id="1_vdxqi"]
@@ -17,6 +17,9 @@
 [ext_resource type="Texture2D" uid="uid://dsp081305u37w" path="res://Sprites/Gnomes/Gnome2.png" id="6_d73nc"]
 [ext_resource type="Texture2D" uid="uid://c2v5rlp3m2gmm" path="res://Sprites/Gnomes/Gnome2Hurt.png" id="7_iwpsc"]
 [ext_resource type="Texture2D" uid="uid://b4p04m6npegta" path="res://Sprites/Gnomes/Gnome2Dead.png" id="8_dpk3p"]
+[ext_resource type="StyleBox" uid="uid://b6eyqr5vx6xwx" path="res://ThemeUI/OuterPanel.tres" id="15_1cf7o"]
+[ext_resource type="Texture2D" uid="uid://dievtj0gx8wqk" path="res://Sprites/UI/NextTurn.png" id="16_h7lbm"]
+[ext_resource type="PackedScene" uid="uid://cs8jmxb3ttw1u" path="res://Scenes/Game/UI/UIPlayerMana.tscn" id="17_3nven"]
 
 [node name="Game" type="Node"]
 
@@ -36,6 +39,7 @@ Player = NodePath("../../Players/Human")
 Base = ExtResource("2_x5dc0")
 Hurt = ExtResource("4_5r3fu")
 Dead = ExtResource("5_y3psk")
+HurtModulate = Color(0.728048, 0.1567, 0.335947, 1)
 
 [node name="Gnome2" type="Sprite2D" parent="2D" node_paths=PackedStringArray("Player")]
 z_index = -5
@@ -46,6 +50,7 @@ Player = NodePath("../../Players/CPU")
 Base = ExtResource("6_d73nc")
 Hurt = ExtResource("7_iwpsc")
 Dead = ExtResource("8_dpk3p")
+HurtModulate = Color(0.728048, 0.1567, 0.335947, 1)
 
 [node name="GameGrid" parent="2D" instance=ExtResource("1_vdxqi")]
 position = Vector2(160, 30)
@@ -78,6 +83,7 @@ offset_top = 8.0
 offset_right = 40.0
 offset_bottom = 42.0
 Player = NodePath("../../Players/Human")
+TakeDamageAnimModulate = Color(0.728048, 0.1567, 0.335947, 1)
 
 [node name="UICPUHealth" parent="UI" node_paths=PackedStringArray("Player") instance=ExtResource("5_pnjnh")]
 layout_mode = 1
@@ -90,6 +96,7 @@ offset_right = -8.0
 offset_bottom = 42.0
 grow_horizontal = 0
 Player = NodePath("../../Players/CPU")
+TakeDamageAnimModulate = Color(0.728048, 0.1567, 0.335947, 1)
 
 [node name="HumanPlayerUI" type="HBoxContainer" parent="UI"]
 layout_mode = 1
@@ -103,11 +110,42 @@ grow_vertical = 0
 
 [node name="UIHand" parent="UI/HumanPlayerUI" instance=ExtResource("4_tlc0h")]
 layout_mode = 2
+size_flags_vertical = 0
 
-[node name="Button" type="Button" parent="UI/HumanPlayerUI"]
+[node name="EverythingElse" type="PanelContainer" parent="UI/HumanPlayerUI"]
+custom_minimum_size = Vector2(0, 121)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_styles/panel = ExtResource("15_1cf7o")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/HumanPlayerUI/EverythingElse"]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="Button" type="Button" parent="UI/HumanPlayerUI/EverythingElse/VBoxContainer"]
+custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Next Turn"
+size_flags_vertical = 0
+
+[node name="TextureRect" type="TextureRect" parent="UI/HumanPlayerUI/EverythingElse/VBoxContainer/Button"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("16_h7lbm")
+stretch_mode = 3
+
+[node name="PanelContainer" type="PanelContainer" parent="UI/HumanPlayerUI/EverythingElse/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/panel = ExtResource("15_1cf7o")
+
+[node name="UIPlayerMana" parent="UI/HumanPlayerUI/EverythingElse/VBoxContainer/PanelContainer" node_paths=PackedStringArray("Player") instance=ExtResource("17_3nven")]
+layout_mode = 2
+Player = NodePath("../../../../../../Players/Human")
 
 [node name="MouseBlocker" type="Control" parent="UI"]
 visible = false
@@ -124,10 +162,11 @@ GameGrid = NodePath("../2D/GameGrid")
 
 [node name="Players" type="Node" parent="."]
 
-[node name="Human" type="Node" parent="Players" node_paths=PackedStringArray("PlacementGrid", "Hand", "PlayerUI", "MouseBlocker", "GameFlow", "GameGrid")]
+[node name="Human" type="Node" parent="Players" node_paths=PackedStringArray("PlacementGrid", "Hand", "PlayerMana", "PlayerUI", "MouseBlocker", "GameFlow", "GameGrid")]
 script = ExtResource("4_kjomr")
 PlacementGrid = NodePath("../../UI/UIPlacementGrid")
 Hand = NodePath("../../UI/HumanPlayerUI/UIHand")
+PlayerMana = NodePath("../../UI/HumanPlayerUI/EverythingElse/VBoxContainer/PanelContainer/UIPlayerMana")
 PlayerUI = NodePath("../../UI/HumanPlayerUI")
 MouseBlocker = NodePath("../../UI/MouseBlocker")
 GameFlow = NodePath("../../GameFlow")
@@ -141,4 +180,4 @@ GameGrid = NodePath("../../2D/GameGrid")
 Enemy = true
 StartingHealth = 3
 
-[connection signal="pressed" from="UI/HumanPlayerUI/Button" to="Players/Human" method="FinishTurn"]
+[connection signal="pressed" from="UI/HumanPlayerUI/EverythingElse/VBoxContainer/Button" to="Players/Human" method="FinishTurn"]

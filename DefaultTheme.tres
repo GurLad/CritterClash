@@ -1,8 +1,36 @@
-[gd_resource type="Theme" load_steps=3 format=3 uid="uid://dpgoerknilx0y"]
+[gd_resource type="Theme" load_steps=7 format=3 uid="uid://dpgoerknilx0y"]
 
 [ext_resource type="StyleBox" uid="uid://cr35h7jb853xu" path="res://ThemeUI/Panel.tres" id="1_8frk5"]
 [ext_resource type="FontFile" uid="uid://u83n2olxfiqy" path="res://Fonts/BetterPixels.ttf" id="2_5beyg"]
+[ext_resource type="StyleBox" uid="uid://bdxcong6loxje" path="res://ThemeUI/InnerPanel.tres" id="2_d7hpr"]
+[ext_resource type="StyleBox" uid="uid://b6eyqr5vx6xwx" path="res://ThemeUI/OuterPanel.tres" id="3_dox1q"]
+[ext_resource type="StyleBox" uid="uid://ch7gsk8ow137v" path="res://ThemeUI/OuterPanelPressed.tres" id="4_5yw0a"]
+[ext_resource type="StyleBox" uid="uid://de8mwauabqs23" path="res://ThemeUI/OuterPanelHover.tres" id="4_p4i6d"]
 
 [resource]
 default_font = ExtResource("2_5beyg")
+Button/colors/font_color = Color(0.875, 0.875, 0.875, 1)
+Button/colors/font_disabled_color = Color(0.875, 0.875, 0.875, 0.5)
+Button/colors/font_focus_color = Color(0.95, 0.95, 0.95, 1)
+Button/colors/font_hover_color = Color(0.95, 0.95, 0.95, 1)
+Button/colors/font_hover_pressed_color = Color(1, 1, 1, 1)
+Button/colors/font_outline_color = Color(0, 0, 0, 1)
+Button/colors/font_pressed_color = Color(1, 1, 1, 1)
+Button/colors/icon_disabled_color = Color(1, 1, 1, 0.4)
+Button/colors/icon_focus_color = Color(1, 1, 1, 1)
+Button/colors/icon_hover_color = Color(1, 1, 1, 1)
+Button/colors/icon_hover_pressed_color = Color(1, 1, 1, 1)
+Button/colors/icon_normal_color = Color(1, 1, 1, 1)
+Button/colors/icon_pressed_color = Color(1, 1, 1, 1)
+Button/constants/align_to_largest_stylebox = 0
+Button/constants/h_separation = 4
+Button/constants/icon_max_width = 0
+Button/constants/outline_size = 0
+Button/font_sizes/font_size = 16
+Button/fonts/font = ExtResource("2_5beyg")
+Button/styles/disabled = ExtResource("2_d7hpr")
+Button/styles/focus = ExtResource("3_dox1q")
+Button/styles/hover = ExtResource("4_p4i6d")
+Button/styles/normal = ExtResource("3_dox1q")
+Button/styles/pressed = ExtResource("4_5yw0a")
 PanelContainer/styles/panel = ExtResource("1_8frk5")

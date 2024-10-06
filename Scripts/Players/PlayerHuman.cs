@@ -5,6 +5,7 @@ public partial class PlayerHuman : APlayerController
 {
     [Export] private UICardPlacementGrid PlacementGrid;
     [Export] private UIHand Hand;
+    [Export] private UIPlayerMana PlayerMana;
     [Export] private Control PlayerUI;
     [Export] private Control MouseBlocker;
     [ExportCategory("Animation")]
@@ -57,5 +58,6 @@ public partial class PlayerHuman : APlayerController
     {
         PlacementGrid.Init(deck);
         Hand.Init(deck);
+        PlayerMana.Init(deck);
     }
 }

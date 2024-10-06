@@ -1,0 +1,14 @@
+[gd_resource type="StyleBoxTexture" load_steps=2 format=3 uid="uid://de8mwauabqs23"]
+
+[ext_resource type="Texture2D" uid="uid://b384ndme26b82" path="res://Sprites/UI/Panels/OuterPanelHover.png" id="1_nqkhq"]
+
+[resource]
+content_margin_left = 8.0
+content_margin_top = 8.0
+content_margin_right = 8.0
+content_margin_bottom = 8.0
+texture = ExtResource("1_nqkhq")
+texture_margin_left = 13.0
+texture_margin_top = 15.0
+texture_margin_right = 17.0
+texture_margin_bottom = 15.0
