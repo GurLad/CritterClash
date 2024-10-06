@@ -42,17 +42,23 @@ text = "99"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Icon" type="TextureRect" parent="VBoxContainer"]
-layout_mode = 2
-
-[node name="Description" type="Label" parent="VBoxContainer"]
-layout_mode = 2
-text = "Description"
-
-[node name="Flavour" type="Label" parent="VBoxContainer"]
-layout_mode = 2
-text = "Flavour"
-
 [node name="UIStats" parent="VBoxContainer" instance=ExtResource("4_dhj50")]
 layout_mode = 2
 size_flags_horizontal = 4
+
+[node name="Icon" type="TextureRect" parent="VBoxContainer"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+stretch_mode = 3
+
+[node name="Description" type="Label" parent="VBoxContainer"]
+custom_minimum_size = Vector2(10, 0)
+layout_mode = 2
+text = "Description"
+autowrap_mode = 3
+
+[node name="Flavour" type="Label" parent="VBoxContainer"]
+custom_minimum_size = Vector2(10, 0)
+layout_mode = 2
+text = "Flavour"
+autowrap_mode = 3

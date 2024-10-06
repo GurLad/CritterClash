@@ -17,6 +17,8 @@ public partial class UICard : Control
     public void Init(bool enemy, int index, ACard card)
     {
         Card = card;
+        Enemy = enemy;
+        Index = index;
         Render(card);
     }
 
@@ -30,6 +32,7 @@ public partial class UICard : Control
         CostLabel.Text = card.Cost.ToString();
         NameLabel.Text = card.Name;
         DescriptionLabel.Text = card.Description;
+        DescriptionLabel.Visible = !string.IsNullOrEmpty(card.Description);
         FlavourTextLabel.Text = card.FlavourText;
         IconRect.Texture = card.CardIcon;
         UIStats.Render(card.Stats);

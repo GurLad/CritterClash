@@ -17,3 +17,4 @@ SceneUICard = ExtResource("3_nrlwt")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 2
+size_flags_horizontal = 4

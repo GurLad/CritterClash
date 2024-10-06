@@ -15,6 +15,7 @@ public partial class UIHand : Control
         Deck = deck;
         Deck.OnCardPlaced += OnCardPlaced;
         Deck.OnCardDrawn += OnCardDrawn;
+        RenderInit();
     }
 
     private void RenderInit()
@@ -37,7 +38,7 @@ public partial class UIHand : Control
     {
         UICard newCard = SceneUICard.Instantiate<UICard>();
         CardHolder.AddChild(newCard);
-        newCard.Index = Hand.Count;
+        newCard.Init(Deck.Enemy, Hand.Count, card);
         Hand.Add(newCard);
     }
 }

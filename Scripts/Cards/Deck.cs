@@ -10,7 +10,7 @@ public class Deck
     private const int MAX_MANA = 9;
 
     public int Mana { get; private set; }
-    private bool Enemy { get; set; }
+    public bool Enemy { get; set; } // Whatevs
     private List<ACard> Library { get; set; } = new List<ACard>();
     public List<ACard> Hand { get; } = new List<ACard>(); // Whatevs
     private List<ACard> Discard { get; } = new List<ACard>();
