@@ -50,6 +50,16 @@ public class Deck
         return Hand[index].Cost <= Mana && Hand[index].CanPlaceAt(Enemy, grid, position);
     }
 
+    public bool CanAffordCard(int index)
+    {
+        if (index >= Hand.Count || index < 0)
+        {
+            GD.PrintErr("[Deck]: Playing a card outside the hand!");
+            return false;
+        }
+        return Hand[index].Cost <= Mana;
+    }
+
     public void PlayCard(int index, GameGrid grid, Vector2I position)
     {
         if (index >= Hand.Count || index < 0)

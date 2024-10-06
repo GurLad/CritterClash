@@ -15,6 +15,7 @@ mouse_filter = 0
 theme = ExtResource("1_hn48q")
 script = ExtResource("2_4oepe")
 Renderer = NodePath("UICard")
+CantAffordModulate = Color(0.568973, 0.568973, 0.568973, 1)
 
 [node name="UICard" parent="." instance=ExtResource("3_oblto")]
 layout_mode = 2

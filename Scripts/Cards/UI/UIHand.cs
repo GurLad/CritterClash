@@ -39,7 +39,7 @@ public partial class UIHand : Control
     {
         UICard newCard = SceneUICard.Instantiate<UICard>();
         CardHolder.AddChild(newCard);
-        newCard.Init(Deck.Enemy, Hand.Count, card);
+        newCard.Init(Deck, Deck.Enemy, Hand.Count, card);
         Hand.Add(newCard);
     }
 }

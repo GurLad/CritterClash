@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class UICardRenderer : Node
+public partial class UICardRenderer : Control
 {
     [Export] private Label CostLabel;
     [Export] private Label NameLabel;
