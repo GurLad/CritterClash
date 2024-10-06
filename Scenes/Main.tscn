@@ -19,6 +19,7 @@ scenesNode = NodePath("Scenes")
 [node name="Scenes" type="Node" parent="."]
 
 [node name="FadeTransition" type="ColorRect" parent="."]
+z_index = 20
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
