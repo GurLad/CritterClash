@@ -8,7 +8,7 @@ script = ExtResource("1_dnu4a")
 UIStats = NodePath("UIStats")
 Renderer = NodePath("Renderer")
 BaseModulate = Color(1, 1, 1, 1)
-ActedModulate = Color(0.377919, 0.377919, 0.377919, 1)
+ActedModulate = Color(0.585062, 0.585062, 0.585062, 1)
 
 [node name="Renderer" type="Sprite2D" parent="."]
 

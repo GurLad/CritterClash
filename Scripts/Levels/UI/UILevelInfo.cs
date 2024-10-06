@@ -20,6 +20,7 @@ public partial class UILevelInfo : Control
         BaseScale = Scale;
         AddChild(Interpolator);
         Start.Disabled = true;
+        PivotOffset = Size / 2;
         if (GameFlow.Inited)
         {
             OnReadyToStart();
@@ -28,6 +29,7 @@ public partial class UILevelInfo : Control
         {
             GameFlow.OnReadyToStart += OnReadyToStart;
         }
+        Start.Pressed += FinishTutorial;
     }
 
     private void OnReadyToStart()
@@ -39,7 +41,7 @@ public partial class UILevelInfo : Control
                 a => Scale = BaseScale * a,
                 0,
                 1,
-                Easing.EaseInBack));
+                Easing.EaseOutBack));
         Interpolator.OnFinish = () => Start.Disabled = false;
     }
 
