@@ -174,6 +174,7 @@ public partial class Critter : Node2D
     {
         if (!PreAnimate(() => AnimateDealDamage(@this, target, damage))) return;
 
+        VFXSFXController.Instance.PlayAttack();
         if (Body.Dead)
         {
             PostAnimate();
@@ -240,6 +241,7 @@ public partial class Critter : Node2D
     {
         if (!PreAnimate(() => AnimateDeath(@this))) return;
 
+        VFXSFXController.Instance.PlayDead();
         Interpolator.Interpolate(PreDamagedTime,
             new Interpolator.InterpolateObject(
                 a => Scale = a,

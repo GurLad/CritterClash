@@ -11,6 +11,11 @@ public partial class VFXSFXController : Node
 
     [Export] private PackedScene SceneSpawnVfx;
 
+    [Export] private AudioStream[] DamagedSFX;
+    [Export] private AudioStream[] SpawnSFX;
+    [Export] private AudioStream[] AttackSFX;
+    [Export] private AudioStream[] DeadSFX;
+
     public override void _Ready()
     {
         base._Ready();
@@ -28,6 +33,7 @@ public partial class VFXSFXController : Node
         AddChild(damageText);
         damageText.Display(amount, pos);
         damageText.Position = pos;
+        Play(DamagedSFX.RandomItemInList());
     }
 
     public void DisplaySpawn(Vector2 pos)
@@ -37,5 +43,25 @@ public partial class VFXSFXController : Node
         hitVfx.Position = pos;
         hitVfx.Finished += () => hitVfx.QueueFree();
         hitVfx.Restart();
+        Play(SpawnSFX.RandomItemInList());
+    }
+
+    public void PlayAttack()
+    {
+        Play(AttackSFX.RandomItemInList());
+    }
+
+    public void PlayDead()
+    {
+        Play(DeadSFX.RandomItemInList());
+    }
+
+    private void Play(AudioStream stream)
+    {
+        AudioStreamPlayer newPlayer = new AudioStreamPlayer();
+        AddChild(newPlayer);
+        newPlayer.Stream = stream;
+        newPlayer.Finished += () => newPlayer.QueueFree();
+        newPlayer.Play();
     }
 }

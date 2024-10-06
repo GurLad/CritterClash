@@ -39,6 +39,7 @@ project/assembly_name="CritterClash"
 folder_colors={
 "res://Fonts/": "yellow",
 "res://Music/": "green",
+"res://SFX/": "red",
 "res://Scenes/": "teal",
 "res://Scripts/": "blue",
 "res://Sprites/": "purple",

@@ -305,4 +305,4 @@ StartingHealth = 3
 
 [connection signal="pressed" from="UI/HumanPlayerUI/EverythingElse/VBoxContainer/Button" to="Players/Human" method="FinishTurn"]
 [connection signal="pressed" from="UI/WinLose/Win/VBoxContainer/Next" to="LevelController" method="NextLevel"]
-[connection signal="pressed" from="UI/WinLose/Lose/VBoxContainer/Next" to="LevelController" method="NextLevel"]
+[connection signal="pressed" from="UI/WinLose/Lose/VBoxContainer/Next" to="LevelController" method="RestartLevel"]
