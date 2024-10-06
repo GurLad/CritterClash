@@ -46,7 +46,7 @@ public partial class LevelController : Node
             new Deck(true,
                 (30, new CardBody("Mammal")),
                 (10, new CardBodyPart("Frog")),
-                (10, new CardBodyPart("Spiky Leg")),
+                (10, new CardBodyPart("Chicken Leg")),
                 (10, new CardBodyPart("Gnome")),
                 (10, new CardBodyPart("Cat")))),
         new LevelData(
