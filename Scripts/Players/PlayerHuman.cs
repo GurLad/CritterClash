@@ -8,8 +8,8 @@ public partial class PlayerHuman : APlayerController
     [Export] private Control PlayerUI;
     [Export] private Control MouseBlocker;
     [ExportCategory("Animation")]
-    [Export] private float AnimationTime = 1;
-    [Export] private Vector2 AnimationPosOffset = Vector2.Down * 150;
+    [Export] private float AnimationTime = 0.3f;
+    [Export] private Vector2 AnimationPosOffset = Vector2.Down * 121;
 
     private Interpolator Interpolator = new Interpolator();
     private Vector2 BasePosition;
@@ -29,9 +29,9 @@ public partial class PlayerHuman : APlayerController
         Interpolator.Interpolate(AnimationTime,
             new Interpolator.InterpolateObject(
                 a => PlayerUI.Position = a,
-                PlayerUI.Position,
+                BasePosition,
                 BasePosition + AnimationPosOffset,
-                Easing.EaseInSin));
+                Easing.EaseOutQuad));
         Interpolator.OnFinish = () =>
         {
             MouseBlocker.Visible = false;
@@ -47,9 +47,9 @@ public partial class PlayerHuman : APlayerController
         Interpolator.Interpolate(AnimationTime,
             new Interpolator.InterpolateObject(
                 a => PlayerUI.Position = a,
-                PlayerUI.Position,
+                BasePosition + AnimationPosOffset,
                 BasePosition,
-                Easing.EaseInSin));
+                Easing.EaseInQuad));
         Interpolator.OnFinish = () => MouseBlocker.Visible = false;
     }
 
