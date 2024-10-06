@@ -31,6 +31,7 @@ public partial class UIHand : Control
             GD.PrintErr("[UIHand]: Deck-UI desync!");
         }
         removedCard.QueueFree();
+        Hand.RemoveAt(index);
         Hand.ForEach((a, i) => a.Index = i);
     }
 
