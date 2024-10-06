@@ -15,6 +15,7 @@ public partial class UIHand : Control
         Deck = deck;
         Deck.OnCardPlaced += OnCardPlaced;
         Deck.OnCardDrawn += OnCardDrawn;
+        Deck.OnBeginTurn += OnBeginTurn;
         RenderInit();
     }
 
@@ -30,10 +31,10 @@ public partial class UIHand : Control
         {
             GD.PrintErr("[UIHand]: Deck-UI desync!");
         }
-        removedCard.Disconnect();
         removedCard.QueueFree();
         Hand.RemoveAt(index);
         Hand.ForEach((a, i) => a.Index = i);
+        Hand.ForEach(a => a.Render());
     }
 
     private void OnCardDrawn(ACard card)
@@ -42,5 +43,11 @@ public partial class UIHand : Control
         CardHolder.AddChild(newCard);
         newCard.Init(Deck, Deck.Enemy, Hand.Count, card);
         Hand.Add(newCard);
+        Hand.ForEach(a => a.Render());
+    }
+
+    private void OnBeginTurn()
+    {
+        Hand.ForEach(a => a.Render());
     }
 }

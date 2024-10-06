@@ -37,15 +37,7 @@ public partial class UICard : Control
         MouseEntered += OnMouseEntered;
         MouseExited += OnMouseExited;
         // Render
-        Render(card);
-        Deck.OnCardPlaced += DeckOnCardPlaced;
-        Deck.OnBeginTurn += DeckOnBeginTurn;
-    }
-
-    public void Disconnect()
-    {
-        Deck.OnCardPlaced -= DeckOnCardPlaced;
-        Deck.OnBeginTurn -= DeckOnBeginTurn;
+        Render();
     }
 
     public override Variant _GetDragData(Vector2 atPosition)
@@ -99,19 +91,9 @@ public partial class UICard : Control
                 Easing.EaseInOutSin));
     }
 
-    private void DeckOnBeginTurn()
-    {
-        Render(Card);
-    }
-
-    private void DeckOnCardPlaced(int arg1, ACard arg2)
-    {
-        Render(Card);
-    }
-
-    private void Render(ACard card)
+    public void Render()
     {
         Modulate = Deck.CanAffordCard(Index) ? BaseModulate : CantAffordModulate;
-        Renderer.Render(card);
+        Renderer.Render(Card);
     }
 }
