@@ -26,6 +26,7 @@ scale_curve = SubResource("CurveTexture_wfcme")
 color_initial_ramp = SubResource("GradientTexture1D_eei4b")
 
 [node name="VFXSpawn" type="GPUParticles2D"]
+z_index = 10
 emitting = false
 amount = 20
 process_material = SubResource("ParticleProcessMaterial_mfx1n")

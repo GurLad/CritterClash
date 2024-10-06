@@ -183,6 +183,7 @@ texture = ExtResource("27_xw5vv")
 script = ExtResource("2_5bx7k")
 
 [node name="Spiky Leg" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(2, 9)
 texture = ExtResource("28_kggsj")
 script = ExtResource("2_5bx7k")

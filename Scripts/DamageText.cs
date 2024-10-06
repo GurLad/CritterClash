@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class DamageText : Control
+public partial class DamageText : Label
 {
     [Export]
     private Label display;

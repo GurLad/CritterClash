@@ -20,9 +20,12 @@ public partial class VFXSFXController : Node
     public void DisplayDamage(Vector2 pos, int amount)
     {
         CpuParticles2D hitVfx = SceneHitVfx.Instantiate<CpuParticles2D>();
+        AddChild(hitVfx);
         hitVfx.Position = pos;
         hitVfx.Finished += () => hitVfx.QueueFree();
+        hitVfx.Restart();
         DamageText damageText = SceneDamageText.Instantiate<DamageText>();
+        AddChild(damageText);
         damageText.Display(amount, pos);
         damageText.Position = pos;
     }
@@ -30,7 +33,9 @@ public partial class VFXSFXController : Node
     public void DisplaySpawn(Vector2 pos)
     {
         GpuParticles2D hitVfx = SceneSpawnVfx.Instantiate<GpuParticles2D>();
+        AddChild(hitVfx);
         hitVfx.Position = pos;
         hitVfx.Finished += () => hitVfx.QueueFree();
+        hitVfx.Restart();
     }
 }

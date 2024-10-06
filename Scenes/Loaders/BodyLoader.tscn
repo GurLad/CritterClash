@@ -280,7 +280,7 @@ position = Vector2(11, 5)
 [node name="4-Leg Mammal" type="Sprite2D" parent="." node_paths=PackedStringArray("Heads", "Arms", "Legs")]
 texture = ExtResource("17_owjth")
 script = ExtResource("3_ficde")
-Heads = []
+Heads = [NodePath("HeadF")]
 Arms = []
 Legs = [NodePath("Leg1F"), NodePath("Leg2B"), NodePath("Leg3F"), NodePath("Leg4B")]
 
@@ -295,3 +295,6 @@ position = Vector2(4, 4)
 
 [node name="Leg4B" type="Node2D" parent="4-Leg Mammal"]
 position = Vector2(6, 4)
+
+[node name="HeadF" type="Node2D" parent="4-Leg Mammal"]
+position = Vector2(9, -7)

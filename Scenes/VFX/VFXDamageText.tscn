@@ -4,6 +4,7 @@
 [ext_resource type="FontFile" uid="uid://rvbvpgm8it03" path="res://Fonts/TomAndJerry.ttf" id="1_jqajp"]
 
 [node name="DamageText" type="Label" node_paths=PackedStringArray("display")]
+z_index = 10
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0

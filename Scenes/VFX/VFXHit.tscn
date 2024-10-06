@@ -8,6 +8,7 @@ point_count = 2
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 
 [node name="VFXHit" type="CPUParticles2D"]
+z_index = 10
 emitting = false
 amount = 60
 lifetime = 0.3
