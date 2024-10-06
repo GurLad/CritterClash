@@ -33,8 +33,8 @@ DescriptionLabel = NodePath("VBoxContainer/MarginContainer2/PanelContainer/VBoxC
 DescriptionContainer = NodePath("VBoxContainer/MarginContainer2/PanelContainer/VBoxContainer/Description")
 FlavourTextLabel = NodePath("VBoxContainer/MarginContainer2/PanelContainer/VBoxContainer/Flavour")
 IconRect = NodePath("VBoxContainer/MarginContainer2/PanelContainer/VBoxContainer/Icon")
-UIStats = NodePath("VBoxContainer/MarginContainer2/PanelContainer/VBoxContainer/StatsContainr/MarginContainer/UIStats")
-UIStatsContainer = NodePath("VBoxContainer/MarginContainer2/PanelContainer/VBoxContainer/StatsContainr")
+UIStats = NodePath("VBoxContainer/MarginContainer2/PanelContainer/VBoxContainer/StatsContainr2/StatsContainr/MarginContainer/UIStats")
+UIStatsContainer = NodePath("VBoxContainer/MarginContainer2/PanelContainer/VBoxContainer/StatsContainr2/StatsContainr")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 2
@@ -147,19 +147,23 @@ custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 stretch_mode = 3
 
-[node name="StatsContainr" type="PanelContainer" parent="VBoxContainer/MarginContainer2/PanelContainer/VBoxContainer"]
+[node name="StatsContainr2" type="MarginContainer" parent="VBoxContainer/MarginContainer2/PanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 22)
+layout_mode = 2
+
+[node name="StatsContainr" type="PanelContainer" parent="VBoxContainer/MarginContainer2/PanelContainer/VBoxContainer/StatsContainr2"]
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_styles/panel = ExtResource("7_in4nb")
 
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/MarginContainer2/PanelContainer/VBoxContainer/StatsContainr"]
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/MarginContainer2/PanelContainer/VBoxContainer/StatsContainr2/StatsContainr"]
 layout_mode = 2
 theme_override_constants/margin_left = -4
 theme_override_constants/margin_top = -4
 theme_override_constants/margin_right = -4
 theme_override_constants/margin_bottom = -6
 
-[node name="UIStats" parent="VBoxContainer/MarginContainer2/PanelContainer/VBoxContainer/StatsContainr/MarginContainer" instance=ExtResource("4_jm5j7")]
+[node name="UIStats" parent="VBoxContainer/MarginContainer2/PanelContainer/VBoxContainer/StatsContainr2/StatsContainr/MarginContainer" instance=ExtResource("4_jm5j7")]
 custom_minimum_size = Vector2(0, 16)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -179,6 +183,8 @@ theme_override_font_sizes/font_size = 5
 text = "Description
 aaaa
 aaaa"
+horizontal_alignment = 1
+vertical_alignment = 1
 autowrap_mode = 3
 
 [node name="TextureRect" type="TextureRect" parent="VBoxContainer/MarginContainer2/PanelContainer/VBoxContainer/Description"]
@@ -188,11 +194,14 @@ texture = ExtResource("11_whjjn")
 [node name="Flavour" type="Label" parent="VBoxContainer/MarginContainer2/PanelContainer/VBoxContainer"]
 custom_minimum_size = Vector2(10, 18)
 layout_mode = 2
-size_flags_vertical = 8
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0.984314, 0.72549, 0.329412, 1)
 theme_override_constants/line_spacing = 1
 theme_override_fonts/font = ExtResource("5_7vgpb")
 theme_override_font_sizes/font_size = 5
 text = "Flavour
 aaaaa
 aaaaa"
+horizontal_alignment = 1
+vertical_alignment = 1
 autowrap_mode = 3

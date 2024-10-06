@@ -5,7 +5,7 @@ using System.Linq;
 
 public class Deck
 {
-    public const int HAND_SIZE = 5;
+    public const int HAND_SIZE = 4;
     private const int MANA_PER_TURN = 5;
     private const int MAX_MANA = 9;
 
@@ -39,6 +39,13 @@ public class Deck
     public void BeginTurn()
     {
         Mana = Mathf.Min(Mana + MANA_PER_TURN, MAX_MANA);
+        for (int i = 0; i < Hand.Count; i++)
+        {
+            // TBA: Freezing...
+            DiscardCard(i);
+            i--;
+        }
+        DrawHand();
         OnBeginTurn?.Invoke();
     }
 
@@ -79,7 +86,19 @@ public class Deck
         Discard.Add(card);
         Hand.RemoveAt(index);
         OnCardPlaced?.Invoke(index, card);
-        DrawCard();
+    }
+
+    private void DiscardCard(int index)
+    {
+        if (index >= Hand.Count || index < 0)
+        {
+            GD.PrintErr("[Deck]: Discarding a card outside the hand!");
+            return;
+        }
+        ACard card = Hand[index];
+        Discard.Add(card);
+        Hand.RemoveAt(index);
+        OnCardPlaced?.Invoke(index, card);
     }
 
     private void DrawHand()
