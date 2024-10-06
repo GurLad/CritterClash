@@ -16,7 +16,7 @@ public partial class UICardPlacementGrid : Control
     {
         if (data.As<GodotObject>() is UICard card)
         {
-            return card.Card.CanPlaceAt(card.Enemy, GameGrid, atPosition.ToTile(-GameGrid.Position));
+            return Deck.CanPlayCard(card.Index, GameGrid, atPosition.ToTile(-GameGrid.Position));
         }
         else
         {

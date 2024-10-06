@@ -30,7 +30,7 @@ public class Deck
         });
         Library = Library.Shuffle();
         DrawHand();
-        Mana = MANA_PER_TURN;
+        Mana = 0;
     }
 
     public Deck(bool enemy, params (int Count, ACard Card)[] cards) : this(enemy, cards.ToList()) { }
