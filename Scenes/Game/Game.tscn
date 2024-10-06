@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://b6jua45s20qxq"]
+[gd_scene load_steps=9 format=3 uid="uid://b6jua45s20qxq"]
 
 [ext_resource type="PackedScene" uid="uid://c5d4h8ww4yuqt" path="res://Scenes/Game/GameGrid.tscn" id="1_vdxqi"]
 [ext_resource type="Theme" uid="uid://dpgoerknilx0y" path="res://DefaultTheme.tres" id="2_mh66l"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://Scripts/Players/PlayerHuman.cs" id="4_kjomr"]
 [ext_resource type="PackedScene" uid="uid://df3hhwbvk6qci" path="res://Scenes/Game/UI/UIHand.tscn" id="4_tlc0h"]
 [ext_resource type="Script" path="res://Scripts/Players/PlayerCPU.cs" id="5_7fil6"]
+[ext_resource type="PackedScene" uid="uid://beucq72sbbwgg" path="res://Scenes/Game/UI/UIPlayerHealth.tscn" id="5_pnjnh"]
 
 [node name="Game" type="Node"]
 
@@ -36,7 +37,7 @@ grow_vertical = 2
 script = ExtResource("2_qid8k")
 GameGrid = NodePath("../../2D/GameGrid")
 
-[node name="PlayerUI" type="HBoxContainer" parent="UI"]
+[node name="HumanPlayerUI" type="HBoxContainer" parent="UI"]
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
@@ -46,13 +47,25 @@ offset_top = -21.0
 grow_horizontal = 2
 grow_vertical = 0
 
-[node name="UIHand" parent="UI/PlayerUI" instance=ExtResource("4_tlc0h")]
+[node name="UIHand" parent="UI/HumanPlayerUI" instance=ExtResource("4_tlc0h")]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Button" type="Button" parent="UI/PlayerUI"]
+[node name="Button" type="Button" parent="UI/HumanPlayerUI"]
 layout_mode = 2
 text = "Next Turn"
+
+[node name="UIHumanHealth" parent="UI" instance=ExtResource("5_pnjnh")]
+layout_mode = 0
+
+[node name="UICPUHealth" parent="UI" instance=ExtResource("5_pnjnh")]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -32.0
+offset_right = 0.0
+grow_horizontal = 0
 
 [node name="GameFlow" type="Node" parent="." node_paths=PackedStringArray("GameGrid")]
 script = ExtResource("2_ro6tr")
@@ -63,8 +76,8 @@ GameGrid = NodePath("../2D/GameGrid")
 [node name="Human" type="Node" parent="Players" node_paths=PackedStringArray("PlacementGrid", "Hand", "PlayerUI", "GameFlow", "GameGrid")]
 script = ExtResource("4_kjomr")
 PlacementGrid = NodePath("../../UI/UIPlacementGrid")
-Hand = NodePath("../../UI/PlayerUI/UIHand")
-PlayerUI = NodePath("../../UI/PlayerUI")
+Hand = NodePath("../../UI/HumanPlayerUI/UIHand")
+PlayerUI = NodePath("../../UI/HumanPlayerUI")
 GameFlow = NodePath("../../GameFlow")
 GameGrid = NodePath("../../2D/GameGrid")
 
@@ -74,4 +87,4 @@ GameFlow = NodePath("../../GameFlow")
 GameGrid = NodePath("../../2D/GameGrid")
 Enemy = true
 
-[connection signal="pressed" from="UI/PlayerUI/Button" to="Players/Human" method="FinishTurn"]
+[connection signal="pressed" from="UI/HumanPlayerUI/Button" to="Players/Human" method="FinishTurn"]

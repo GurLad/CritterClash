@@ -29,6 +29,7 @@ public abstract partial class APlayerController : Node
     public void ConnectDeck(Deck deck)
     {
         Deck = deck;
+        Health = StartingHealth;
         ConnectDeckInternal(deck);
     }
 
