@@ -5,7 +5,7 @@ using System.Linq;
 
 public class Deck
 {
-    public const int HAND_SIZE = 4;
+    public const int HAND_SIZE = 5;
     private const int MANA_PER_TURN = 5;
     private const int MAX_MANA = 9;
 
