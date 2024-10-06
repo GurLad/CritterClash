@@ -12,7 +12,7 @@ public partial class BodyLoader : AGameLoader<BodyLoader, BodyRecord>
             2, "Ringabod",
             new Stats(2, 2, -1),
             new List<ATrigger>(),
-            "",
+            "1 * Head, 2 * Arms, 2 * Legs",
             "A very strong and tough body! Good luck getting it to move, though."),
     };
 }
