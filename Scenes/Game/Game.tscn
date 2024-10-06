@@ -109,17 +109,27 @@ layout_mode = 2
 size_flags_horizontal = 3
 text = "Next Turn"
 
+[node name="MouseBlocker" type="Control" parent="UI"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
 [node name="GameFlow" type="Node" parent="." node_paths=PackedStringArray("GameGrid")]
 script = ExtResource("2_ro6tr")
 GameGrid = NodePath("../2D/GameGrid")
 
 [node name="Players" type="Node" parent="."]
 
-[node name="Human" type="Node" parent="Players" node_paths=PackedStringArray("PlacementGrid", "Hand", "PlayerUI", "GameFlow", "GameGrid")]
+[node name="Human" type="Node" parent="Players" node_paths=PackedStringArray("PlacementGrid", "Hand", "PlayerUI", "MouseBlocker", "GameFlow", "GameGrid")]
 script = ExtResource("4_kjomr")
 PlacementGrid = NodePath("../../UI/UIPlacementGrid")
 Hand = NodePath("../../UI/HumanPlayerUI/UIHand")
 PlayerUI = NodePath("../../UI/HumanPlayerUI")
+MouseBlocker = NodePath("../../UI/MouseBlocker")
 GameFlow = NodePath("../../GameFlow")
 GameGrid = NodePath("../../2D/GameGrid")
 StartingHealth = 3
