@@ -18,6 +18,7 @@ public class Deck
     public event Action OnBeginTurn;
     public event Action<ACard> OnCardDrawn;
     public event Action<int, ACard> OnCardPlaced;
+    public event Action<int, ACard> OnCardDiscarded;
 
     public Deck(bool enemy, List<(int Count, ACard Card)> cards)
     {
@@ -98,7 +99,7 @@ public class Deck
         ACard card = Hand[index];
         Discard.Add(card);
         Hand.RemoveAt(index);
-        OnCardPlaced?.Invoke(index, card);
+        OnCardDiscarded?.Invoke(index, card);
     }
 
     private void DrawHand()

@@ -14,6 +14,7 @@ public partial class UIHand : Control
     {
         Deck = deck;
         Deck.OnCardPlaced += OnCardPlaced;
+        Deck.OnCardDiscarded += OnCardPlaced;
         Deck.OnCardDrawn += OnCardDrawn;
         Deck.OnBeginTurn += OnBeginTurn;
         RenderInit();
