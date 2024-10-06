@@ -30,7 +30,7 @@ public partial class GameGrid : Node2D
         available.Sort((a, b) =>
         {
             return a.Tile.Y != b.Tile.Y ? a.Tile.Y.CompareTo(b.Tile.Y) :
-                (enemy ? -a.Tile.X.CompareTo(b.Tile.X) : a.Tile.X.CompareTo(b.Tile.X));
+                (enemy ? a.Tile.X.CompareTo(b.Tile.X) : -a.Tile.X.CompareTo(b.Tile.X));
         });
         return available.Count > 0 ? available[0] : null;
     }
@@ -40,13 +40,16 @@ public partial class GameGrid : Node2D
         bool enemy = critter.Enemy;
         Vector2I target = critter.Tile + (enemy ? Vector2I.Left : Vector2I.Right) * critter.Body.BaseStats.Speed;
         int sign = critter.Direction;
-        Critter collision = Critters.Find(a =>
+        List<Critter> collisions = Critters.FindAll(a =>
             a.Tile.Y == critter.Tile.Y &&
             a.Tile.X * sign <= target.X * sign &&
             a.Tile.X * sign >= critter.Tile.X * sign &&
             a != critter);
-        if (collision != null)
+        Critter collision = null;
+        if (collisions.Count > 0)
         {
+            collisions.Sort((a, b) => sign * a.Tile.X.CompareTo(b.Tile.X));
+            collision = collisions[0];
             target.X = collision.Tile.X - sign;
         }
         target.X = Mathf.Clamp(target.X, 0, Size.X - 1);

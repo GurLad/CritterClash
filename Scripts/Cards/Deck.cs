@@ -114,6 +114,20 @@ public class Deck
                 targetIndex = 0;
             }
         }
+        if (Hand.Count == HAND_SIZE - 1 && Hand.FindIndex(a => a is CardBodyPart) < 0)
+        {
+            targetIndex = Library.FindIndex(a => a is CardBodyPart);
+            if (targetIndex < 0)
+            {
+                ShuffleDiscardToLibrary();
+                targetIndex = Library.FindIndex(a => a is CardBodyPart);
+            }
+            if (targetIndex < 0)
+            {
+                GD.PrintRaw("[Deck]: Zero body parts in library & discard!");
+                targetIndex = 0;
+            }
+        }
         ACard card = Library[targetIndex];
         Hand.Add(card);
         Library.RemoveAt(targetIndex);

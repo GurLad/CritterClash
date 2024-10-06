@@ -119,10 +119,6 @@ public partial class GameFlow : Node
                 {
                     nextCritter.Attack(action.Collision);
                 }
-                else if (nextCritter.Tile == action.NewTile)
-                {
-                    OnActiveCritterFinishAnimation(nextCritter);
-                }
             }
         }
         else
