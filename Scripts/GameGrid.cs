@@ -8,13 +8,16 @@ public partial class GameGrid : Node2D
     [Export] private int MaxPlaceDistFromBase { get; set; } = 1;
     [Export] private PackedScene SceneCritter { get; set; }
     // Properties
-    public Vector2I Size { get; } = new Vector2I(7, 3); // Hardcoded for now
+    public Vector2I Size { get; } = new Vector2I(5, 3); // Hardcoded for now
     public Critter this[Vector2I pos] => Critters.Find(a => a.Tile == pos);
 
     private List<Critter> Critters { get; } = new List<Critter>();
 
     [Signal]
     public delegate void OnCritterPlacedEventHandler(Critter critter);
+
+    [Signal]
+    public delegate void OnCritterReachedBaseEventHandler(Critter critter);
 
     public override void _Ready()
     {
@@ -87,6 +90,7 @@ public partial class GameGrid : Node2D
         Critter newCritter = SceneCritter.Instantiate<Critter>();
         AddChild(newCritter);
         newCritter.Init(enemy, pos, bodyRecord);
+        newCritter.OnFinishMove += OnCritterFinishMove;
         Critters.Add(newCritter);
         EmitSignal(SignalName.OnCritterPlaced, newCritter);
     }
@@ -109,5 +113,13 @@ public partial class GameGrid : Node2D
         }
         Critter target = this[pos];
         target.AttachPart(partRecord);
+    }
+
+    private void OnCritterFinishMove(Critter critter, Vector2I targetTile)
+    {
+        if ((critter.Enemy && targetTile.X <= 0) || (!critter.Enemy && targetTile.X >= Size.X - 1))
+        {
+            EmitSignal(SignalName.OnCritterReachedBase, critter);
+        }
     }
 }

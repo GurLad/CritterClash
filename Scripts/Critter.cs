@@ -55,6 +55,9 @@ public partial class Critter : Node2D
     [Signal]
     public delegate void OnBeginAnimationEventHandler(Critter critter);
 
+    [Signal]
+    public delegate void OnFinishMoveEventHandler(Critter critter, Vector2I targetTile);
+
     public override void _Ready()
     {
         base._Ready();
@@ -137,6 +140,11 @@ public partial class Critter : Node2D
         };
     }
 
+    public void ReachBase()
+    {
+        AnimateDeath(new TriggerParameter<Body>(Body));
+    }
+
     public void UpdateModulate()
     {
         Modulate = (Acted || Body.BaseStats.Speed <= 0) ? ActedModulate : BaseModulate;
@@ -152,7 +160,11 @@ public partial class Critter : Node2D
                 Position,
                 Tile.ToPhysicalLocation(),
                 Easing.EaseInOutQuad));
-        Interpolator.OnFinish = PostAnimate;
+        Interpolator.OnFinish = () =>
+        {
+            EmitSignal(SignalName.OnFinishMove, this, target);
+            PostAnimate();
+        };
     }
 
     private void AnimateDealDamage(TriggerParameter<Body> @this, TriggerParameter<Body> target, TriggerParameter<int> damage)

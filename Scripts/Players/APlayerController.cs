@@ -6,8 +6,16 @@ public abstract partial class APlayerController : Node
     [Export] protected GameFlow GameFlow { get; private set; }
     [Export] protected GameGrid GameGrid { get; private set; }
     [Export] public bool Enemy { get; private set; }
+    [Export] public int StartingHealth { get; private set; }
 
     protected Deck Deck { get; set; }
+    private int Health { get; set; }
+
+    [Signal]
+    public delegate void OnTakeDamageEventHandler(APlayerController player, int newHealth);
+
+    [Signal]
+    public delegate void OnDeathEventHandler(APlayerController player);
 
     [Signal]
     public delegate void OnFinishTurnEventHandler(APlayerController player);
@@ -28,6 +36,21 @@ public abstract partial class APlayerController : Node
     {
         Deck.BeginTurn();
         BeginTurnInternal();
+    }
+
+    public bool TakeDamage()
+    {
+        Health--;
+        EmitSignal(SignalName.OnTakeDamage, Health);
+        if (Health <= 0)
+        {
+            EmitSignal(SignalName.OnDeath, this);
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 
     protected void EmitFinishTurn()

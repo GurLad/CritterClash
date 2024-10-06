@@ -9,6 +9,7 @@ public partial class GameFlow : Node
     // Properties
     public bool EnemyTurn { get; private set; } = false;
 
+    private bool GameOver { get; set; } = false;
     private bool Inited { get; set; } = false;
     private bool FinishedReady { get; set; } = false;
     private bool AutoBattling { get; set; } = false;
@@ -19,6 +20,7 @@ public partial class GameFlow : Node
     {
         base._Ready();
         GameGrid.OnCritterPlaced += OnCritterPlaced;
+        GameGrid.OnCritterReachedBase += OnCritterReachedBase;
         FinishedReady = true;
         TryInit();
         //// TEMP DEBUG
@@ -55,6 +57,10 @@ public partial class GameFlow : Node
 
     public void FinishTurn()
     {
+        if (GameOver)
+        {
+            return;
+        }
         if (AutoBattling)
         {
             GD.PrintErr("[GameFlow]: Finished another turn during auto-battle!");
@@ -67,6 +73,10 @@ public partial class GameFlow : Node
 
     public void BeginTurn(bool enemy)
     {
+        if (GameOver)
+        {
+            return;
+        }
         AutoBattling = false;
         EnemyTurn = enemy;
         GameGrid.RefreshAllCritters();
@@ -84,6 +94,10 @@ public partial class GameFlow : Node
 
     private void ExecuteAutoBattleStep()
     {
+        if (GameOver)
+        {
+            return;
+        }
         if (!AutoBattling)
         {
             GD.PrintErr("[GameFlow]: Trying to do an auto-battle step outside the auto-battle phase!");
@@ -160,6 +174,16 @@ public partial class GameFlow : Node
         critter.OnBeginAnimation += OnCritterBeginAnimation;
         critter.OnFinishAnimation += OnCritterFinishAnimation;
         critter.Body.OnDeath += (b) => OnCritterDied(critter);
+    }
+
+    private void OnCritterReachedBase(Critter critter)
+    {
+        critter.ReachBase();
+        if (Players[!critter.Enemy].TakeDamage())
+        {
+            // Stop everything...
+            GameOver = true;
+        }
     }
 
     private void OnCritterDied(Critter critter)
