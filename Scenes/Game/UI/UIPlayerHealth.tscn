@@ -4,10 +4,11 @@
 [ext_resource type="FontFile" uid="uid://rvbvpgm8it03" path="res://Fonts/TomAndJerry.ttf" id="2_7m2xr"]
 [ext_resource type="Script" path="res://Scripts/Players/UI/UIPlayerHealth.cs" id="2_g11qb"]
 
-[node name="UIPlayerHealth" type="CenterContainer" node_paths=PackedStringArray("HealthLabel")]
+[node name="UIPlayerHealth" type="CenterContainer" node_paths=PackedStringArray("HealthContainer", "HealthLabel")]
 offset_right = 32.0
 offset_bottom = 34.0
 script = ExtResource("2_g11qb")
+HealthContainer = NodePath("TextureRect")
 HealthLabel = NodePath("TextureRect/Label")
 TakeDamageAnimModulate = Color(0.728048, 0.1567, 0.335947, 1)
 

@@ -42,7 +42,7 @@ public abstract partial class APlayerController : Node
     public bool TakeDamage()
     {
         Health--;
-        EmitSignal(SignalName.OnTakeDamage, Health);
+        EmitSignal(SignalName.OnTakeDamage, this, Health);
         if (Health <= 0)
         {
             EmitSignal(SignalName.OnDeath, this);
