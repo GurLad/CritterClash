@@ -7,6 +7,23 @@ public partial class LevelController : Node
     private static List<LevelData> Levels { get; } = new List<LevelData>()
     {
         new LevelData(
+            "Tutorial 1",
+            "Welcome to Critter Clash! It's a bit complex and I'm nearly out of time so please bear with me!\n" +
+            "You are the gnome on the left, and your goal is to defeat the gnome on the right.\n" +
+            "To do that, you need to create Critters - which eventually Clash - using your cards.\n" +
+            "You get 5 cards and 5 mana per turn. Leftover cards will be discarded, but mana will remain for the next turn (up to 9).\n" +
+            "To place a card, drag it into the play area - it will light up if it's a valid move. To end your turn, press the green arrow." +
+            "All Critters need a Body first - Bodies specify which parts they can hold, amongst Heads, Arms and Legs.\n" +
+            "You can only place a Body on the left-most column - aka adjacent to your gnome. Keep this in mind!\n" +
+            "After placing a Body, you can add Parts to it - Parts grant stat bonouses and/or effects. Parts can be placed anywhere (on your Critters).\n" +
+            "For this level, there are no enemies - try placing a body and giving it legs to reach the enemy!",
+            new Deck(false,
+                (30, new CardBody("4-Leg Mammal")),
+                (10, new CardBodyPart("Cheetah")),
+                (10, new CardBodyPart("Cat"))),
+            new Deck(true,
+                (40, new CardBodyPart("Gnome")))),
+        new LevelData(
             "Level XX - Chaos",
             "One copy of everything - go wild!",
             new Deck(false,
@@ -47,6 +64,7 @@ public partial class LevelController : Node
                 (1, new CardBodyPart("Wheel")),
                 (1, new CardBodyPart("Frog")),
                 (1, new CardBodyPart("House Cat")),
+                (1, new CardBodyPart("Cheetah")),
                 (1, new CardBodyPart("Peg Leg")),
                 (1, new CardBodyPart("Skelly Leg")),
                 (1, new CardBodyPart("Spiky Leg"))),
