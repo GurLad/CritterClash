@@ -178,6 +178,7 @@ public partial class GameFlow : Node
 
     private void OnCritterReachedBase(Critter critter)
     {
+        GameGrid.RemoveCritter(critter);
         critter.ReachBase();
         if (Players[!critter.Enemy].TakeDamage())
         {

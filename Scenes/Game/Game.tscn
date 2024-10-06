@@ -55,10 +55,11 @@ size_flags_horizontal = 3
 layout_mode = 2
 text = "Next Turn"
 
-[node name="UIHumanHealth" parent="UI" instance=ExtResource("5_pnjnh")]
+[node name="UIHumanHealth" parent="UI" node_paths=PackedStringArray("Player") instance=ExtResource("5_pnjnh")]
 layout_mode = 0
+Player = NodePath("../../Players/Human")
 
-[node name="UICPUHealth" parent="UI" instance=ExtResource("5_pnjnh")]
+[node name="UICPUHealth" parent="UI" node_paths=PackedStringArray("Player") instance=ExtResource("5_pnjnh")]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
@@ -66,6 +67,7 @@ anchor_right = 1.0
 offset_left = -32.0
 offset_right = 0.0
 grow_horizontal = 0
+Player = NodePath("../../Players/CPU")
 
 [node name="GameFlow" type="Node" parent="." node_paths=PackedStringArray("GameGrid")]
 script = ExtResource("2_ro6tr")
@@ -80,11 +82,13 @@ Hand = NodePath("../../UI/HumanPlayerUI/UIHand")
 PlayerUI = NodePath("../../UI/HumanPlayerUI")
 GameFlow = NodePath("../../GameFlow")
 GameGrid = NodePath("../../2D/GameGrid")
+StartingHealth = 3
 
 [node name="CPU" type="Node" parent="Players" node_paths=PackedStringArray("GameFlow", "GameGrid")]
 script = ExtResource("5_7fil6")
 GameFlow = NodePath("../../GameFlow")
 GameGrid = NodePath("../../2D/GameGrid")
 Enemy = true
+StartingHealth = 3
 
 [connection signal="pressed" from="UI/HumanPlayerUI/Button" to="Players/Human" method="FinishTurn"]
