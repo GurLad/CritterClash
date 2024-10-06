@@ -10,12 +10,15 @@ public partial class GameFlow : Node
     public bool EnemyTurn { get; private set; } = false;
 
     private bool GameOver { get; set; } = false;
-    private bool Inited { get; set; } = false;
+    public bool Inited { get; private set; } = false; // Whatevs
     private bool FinishedReady { get; set; } = false;
     private bool AutoBattling { get; set; } = false;
     private List<Critter> AnimatingCritters { get; } = new List<Critter>();
     private Dictionary<bool, APlayerController> Players { get; } = new Dictionary<bool, APlayerController>();
-    private LevelData LevelData { get; set; } = null;
+    public LevelData LevelData { get; private set; } = null; // Whatevs
+
+    [Signal]
+    public delegate void OnReadyToStartEventHandler();
 
     public override void _Ready()
     {
@@ -98,7 +101,7 @@ public partial class GameFlow : Node
     {
         if (FinishedReady && Players.ContainsKey(false) && Players.ContainsKey(true) && LevelData != null)
         {
-            BeginTurn(false);
+            EmitSignal(SignalName.OnReadyToStart);
         }
     }
 
