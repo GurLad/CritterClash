@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 BodyLoader="*res://Scenes/Loaders/BodyLoader.tscn"
 BodyPartsLoader="*res://Scenes/Loaders/BodyPartsLoader.tscn"
+VfxsfxController="*res://Scenes/VFX/VFXSFXController.tscn"
 
 [display]
 

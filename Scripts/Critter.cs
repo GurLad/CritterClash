@@ -89,6 +89,7 @@ public partial class Critter : Node2D
         Body.OnDeath += AnimateDeath;
         UpdateModulate();
         Render(); // Just render at a bunch of places...
+        VFXSFXController.Instance.DisplaySpawn(Position);
     }
 
     public void BeginTurn()
@@ -121,6 +122,7 @@ public partial class Critter : Node2D
         newSprite.Visible = true;
         UpdateModulate();
         Render(); // Just render at a bunch of places...
+        VFXSFXController.Instance.DisplaySpawn(Position);
     }
 
     public void Attack(Critter target)
@@ -204,6 +206,7 @@ public partial class Critter : Node2D
     {
         if (!PreAnimate(() => AnimateTakeDamage(@this, attacker, damage))) return;
 
+        VFXSFXController.Instance.DisplayDamage(Position, damage.Data);
         Interpolator.Interpolate(PreDamagedTime,
             new Interpolator.InterpolateObject(
                 a => Position = a,

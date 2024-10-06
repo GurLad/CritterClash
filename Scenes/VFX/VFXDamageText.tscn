@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://bn42au43ay4d7"]
+
+[ext_resource type="Script" path="res://Scripts/DamageText.cs" id="1_idwm1"]
+[ext_resource type="FontFile" uid="uid://rvbvpgm8it03" path="res://Fonts/TomAndJerry.ttf" id="1_jqajp"]
+
+[node name="DamageText" type="Label" node_paths=PackedStringArray("display")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/outline_size = 2
+theme_override_fonts/font = ExtResource("1_jqajp")
+text = "3"
+script = ExtResource("1_idwm1")
+display = NodePath(".")

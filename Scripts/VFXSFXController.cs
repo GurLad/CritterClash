@@ -6,7 +6,10 @@ public partial class VFXSFXController : Node
 {
     public static VFXSFXController Instance { get; private set; }
 
-    [Export] private Node[] Vfx;
+    [Export] private PackedScene SceneHitVfx;
+    [Export] private PackedScene SceneDamageText;
+
+    [Export] private PackedScene SceneSpawnVfx;
 
     public override void _Ready()
     {
@@ -14,5 +17,20 @@ public partial class VFXSFXController : Node
         Instance = this;
     }
 
-    public 
+    public void DisplayDamage(Vector2 pos, int amount)
+    {
+        CpuParticles2D hitVfx = SceneHitVfx.Instantiate<CpuParticles2D>();
+        hitVfx.Position = pos;
+        hitVfx.Finished += () => hitVfx.QueueFree();
+        DamageText damageText = SceneDamageText.Instantiate<DamageText>();
+        damageText.Display(amount, pos);
+        damageText.Position = pos;
+    }
+
+    public void DisplaySpawn(Vector2 pos)
+    {
+        GpuParticles2D hitVfx = SceneSpawnVfx.Instantiate<GpuParticles2D>();
+        hitVfx.Position = pos;
+        hitVfx.Finished += () => hitVfx.QueueFree();
+    }
 }
