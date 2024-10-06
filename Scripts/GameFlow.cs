@@ -108,16 +108,28 @@ public partial class GameFlow : Node
             nextCritter.Acted = true;
             if (nextCritter.Body.BaseStats.Speed <= 0)
             {
+                nextCritter.UpdateModulate();
                 ExecuteAutoBattleStep();
             }
             else
             {
                 nextCritter.OnFinishAnimation += OnActiveCritterFinishAnimation;
                 (Vector2I NewTile, Critter Collision) action = GameGrid.TryMoveCritter(nextCritter);
-                nextCritter.Tile = action.NewTile;
+                bool didAnything = false;
+                if (nextCritter.Tile != action.NewTile)
+                {
+                    nextCritter.Tile = action.NewTile;
+                    didAnything = true;
+                }
                 if (action.Collision != null && action.Collision.Enemy != nextCritter.Enemy && nextCritter.Body.BaseStats.Attack > 0)
                 {
                     nextCritter.Attack(action.Collision);
+                    didAnything = true;
+                }
+                if (!didAnything)
+                {
+                    OnActiveCritterFinishAnimation(nextCritter);
+                    ExecuteAutoBattleStep();
                 }
             }
         }
