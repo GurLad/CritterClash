@@ -36,6 +36,7 @@ project/assembly_name="CritterClash"
 [file_customization]
 
 folder_colors={
+"res://Fonts/": "yellow",
 "res://Music/": "green",
 "res://Scenes/": "teal",
 "res://Scripts/": "blue",

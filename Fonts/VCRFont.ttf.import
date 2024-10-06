@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://ipko72o271u5"
-path="res://.godot/imported/3X5Nums.ttf-39b78ef6755f3e893671daa1b3112f26.fontdata"
+uid="uid://b0fi4nuo56d86"
+path="res://.godot/imported/VCRFont.ttf-9e7d3d8f054d8f5d2f6df2d9437e31ec.fontdata"
 
 [deps]
 
-source_file="res://3X5Nums.ttf"
-dest_files=["res://.godot/imported/3X5Nums.ttf-39b78ef6755f3e893671daa1b3112f26.fontdata"]
+source_file="res://Fonts/VCRFont.ttf"
+dest_files=["res://.godot/imported/VCRFont.ttf-9e7d3d8f054d8f5d2f6df2d9437e31ec.fontdata"]
 
 [params]
 

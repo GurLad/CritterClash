@@ -2,7 +2,7 @@
 
 [ext_resource type="Theme" uid="uid://dpgoerknilx0y" path="res://DefaultTheme.tres" id="1_hn48q"]
 [ext_resource type="Script" path="res://Scripts/Cards/UI/UICard.cs" id="2_4oepe"]
-[ext_resource type="FontFile" uid="uid://b0fi4nuo56d86" path="res://VCRFont.ttf" id="2_yekkq"]
+[ext_resource type="FontFile" uid="uid://b0fi4nuo56d86" path="res://Fonts/VCRFont.ttf" id="2_yekkq"]
 [ext_resource type="PackedScene" uid="uid://dg8cvsyh02nrv" path="res://Scenes/Game/UI/UIStats.tscn" id="4_dhj50"]
 
 [node name="UICard" type="PanelContainer" node_paths=PackedStringArray("CostLabel", "NameLabel", "DescriptionLabel", "FlavourTextLabel", "IconRect", "UIStats")]
