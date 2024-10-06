@@ -40,6 +40,10 @@ public partial class UIPlayerGnome : Sprite2D
 
     private void OnTakeDamage(APlayerController player, int newHealth)
     {
+        if (IsDead)
+        {
+            return;
+        }
         Texture = Hurt;
         Interpolator.Interpolate(HurtTime,
             new Interpolator.InterpolateObject(

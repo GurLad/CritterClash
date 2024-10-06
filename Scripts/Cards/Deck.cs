@@ -111,6 +111,10 @@ public class Deck
         }
         if (Library.Count < HAND_SIZE)
         {
+            ShuffleDiscardToLibrary();
+        }
+        if (Library.Count < HAND_SIZE)
+        {
             GD.PrintErr("[Deck]: Library is too small!");
             return;
         }
